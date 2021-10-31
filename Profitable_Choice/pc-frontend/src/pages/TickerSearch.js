@@ -11,10 +11,10 @@ const Create = () => {
     const handleSubmit = (e) => {
             /* This prevents the page from being refreshed when submitting the input */
         e.preventDefault();
-        const logTicker = {ticker};
-        console.log()
-
+        const tickerObject = {ticker};
+        console.log(tickerObject)
     }
+    
     return (
         <div className = "create">
             <h2> Input Ticker! </h2>
@@ -30,7 +30,7 @@ const Create = () => {
                 />
                 <button> Submit </button>
                 {/* Printing the tracked input from the input box */}
-                <p> {ticker} </p>
+                {/* <p> {ticker} </p> */}
             </form>
              </div>
     )

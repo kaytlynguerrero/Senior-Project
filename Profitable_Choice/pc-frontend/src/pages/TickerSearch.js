@@ -1,53 +1,55 @@
 // dummy component
 // This component will be used as a page that is loaded by the router
 
-import { useState } from "react"
+import React, {useState, useEffect} from "react";
 import axios from "axios"
+import reportWebVitals from "../reportWebVitals";
  
 
-// Create function that is creating a title (ticker)
-const Create = () => {
-    // we are creating the state of the ticker input to track it and send it back to the BE
-    const [ticker, setTicker] = useState('');
-    const handleSubmit = (e) => {
-            /* This prevents the page from being refreshed when submitting the input */
-        e.preventDefault();
-        const tickerObject = {ticker};
+class stockProfile extends React.Component {
 
-        axios.get("http://localhost:8080/search_ticker/"+tickerObject.ticker)
-        .then(response => {
-            console.log(response)
-        })
-
+    constructor(props){
+        super(props)
+        this.state = {companyProfile:""}
+        
     }
     
-    return (
-        <div className = "create">
-            <h2> Input Ticker! </h2>
-            <form onSubmit= {handleSubmit}>
-                <label>Ticker: </label>
-                <input
-                type = "text"
-                maxLength={4}
-                required
-                value={ticker}
-             /* We are creating a function that is taking an event object and targeting the title value */
-                onChange = {(e) => setTicker(e.target.value)}
-                />
-                <button> Submit </button>
-                {/* Printing the tracked input from the input box */}
-                {/* <p> {ticker} </p> */}
-                <p>{response}</p>
-            </form>
-             </div>
-    )
+    handleChange = (e) => {
+        const {id, value} = e.target
+        this.state[id] = value
+    }
 
+    handleSubmit = (e) => {
+        /* This prevents the page from being refreshed when submitting the input */
+    e.preventDefault();
+    fetch("http://localhost:8080/search_ticker/"+this.state.ticker)
+    .then(response => response.json())
+    .then(data => this.state.companyProfile=data)
+    console.log(this.state);
+    };
+
+
+    render() {
+        return (
+            <div className = "create">
+                <h2> Input Ticker! </h2>
+                <form onSubmit= {this.handleSubmit}>
+                    <label>Ticker: </label>
+                    <input
+                    id = "ticker"
+                    type = "text"
+                    maxLength={4}
+                    required
+                /* We are creating a function that is taking an event object and targeting the title value */
+                    onChange = {this.handleChange}
+                    />
+                    <button> Submit </button>
+                    {/* Printing the tracked input from the input box */}
+                    <p>
+                    </p>
+                </form>
+            </div>
+        )
+      }
 }
-// function TickerSearchPage() {
-//     return <div>
-//         Ticker Search Page
-
-//     </div>
-
-// }
-export default Create;
+export default stockProfile;

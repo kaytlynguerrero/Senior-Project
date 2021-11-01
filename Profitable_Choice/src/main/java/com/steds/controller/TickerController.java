@@ -1,18 +1,17 @@
 package com.steds.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.steds.model.Ticker;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
 @RestController
+@CrossOrigin
 public class TickerController {
 
     private final String apikey = "be141489434b9d5ebd38d0aa148ffc51";

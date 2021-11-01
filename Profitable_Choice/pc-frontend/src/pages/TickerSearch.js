@@ -2,17 +2,23 @@
 // This component will be used as a page that is loaded by the router
 
 import { useState } from "react"
+import axios from "axios"
+ 
 
 // Create function that is creating a title (ticker)
 const Create = () => {
     // we are creating the state of the ticker input to track it and send it back to the BE
     const [ticker, setTicker] = useState('');
-
     const handleSubmit = (e) => {
             /* This prevents the page from being refreshed when submitting the input */
         e.preventDefault();
         const tickerObject = {ticker};
-        console.log(tickerObject)
+
+        axios.get("http://localhost:8080/search_ticker/"+tickerObject.ticker)
+        .then(response => {
+            console.log(response)
+        })
+
     }
     
     return (
@@ -31,6 +37,7 @@ const Create = () => {
                 <button> Submit </button>
                 {/* Printing the tracked input from the input box */}
                 {/* <p> {ticker} </p> */}
+                <p>{response}</p>
             </form>
              </div>
     )

@@ -24,16 +24,6 @@ public class TickerController {
 
     @Autowired
     protected UserWebAppDao dao;
-   // @RequestMapping(value= url + "/api/v3/profile/AAPL?apikey=" + apikey, method = RequestMethod.GET)
-    //@ResponseStatus(value = HttpStatus.OK)
-
-  /*  public String getJSONData(){
-        String path = url+"/api/v3/profile/AAPL?apikey="+apikey;
-        RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.getForObject(path, String.class);
-        System.out.println(result);
-        return result;
-    }*/
 
     @RequestMapping(value="/search_ticker/{input}", method= RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
@@ -60,12 +50,11 @@ public class TickerController {
 
         return companyInfo;
     }
-    @RequestMapping(value="/register", method= RequestMethod.POST)
-    @ResponseStatus(value = HttpStatus.OK)
+
+    @PostMapping("register")
     public String registerUser(@RequestBody UserForm form) {
 
         User user = dao.registerUser(form);
-
         return "Joe Mama";
     }
 }

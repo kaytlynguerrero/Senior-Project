@@ -36,11 +36,9 @@ public class UserWebAppDaoTest {
         //Arrange...
 
         UserForm newuser = new UserForm();
-        newuser.setUserId(12345L);
         newuser.setUserName("sabur123");
         newuser.setFirstName("sabur");
         newuser.setLastName("khan");
-        newuser.setEnabled(true);
         newuser.setGender("male");
         newuser.setEmail("saburkhanatx@gmail.com");
         newuser.setPassword("password");

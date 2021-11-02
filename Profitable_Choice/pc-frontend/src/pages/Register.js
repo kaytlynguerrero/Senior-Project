@@ -1,15 +1,15 @@
 import axios from "axios";
 import React, { Component } from "react";
-export default class RegisterUser extends React.Component {
+export default class Register extends React.Component {
     state = {
-        userName: ''
+        username: ''
         // firstName: '',
         // lastName: '',
         // email: '',
         // password: ''
     }
     handleChange = event => {
-        this.setState({userName: event.target.value,
+        this.setState({username: event.target.value
                         // firstName: event.target.value,
                         // lastName: event.target.value,
                         // email: event.target.value })
@@ -18,7 +18,7 @@ export default class RegisterUser extends React.Component {
     handleSubmit = event => { 
         event.preventDefault();
         const user = {
-            userName: this.state.userName
+            username: this.state.username
             // firstName: this.state.firstName,
             // lastname: this.state.lastName,
             // email: this.state.email,
@@ -37,8 +37,8 @@ export default class RegisterUser extends React.Component {
                     <label>
                         Username: 
                         <input type="text"
-                            userName="userName"
-                            onChange={this.handleSubmit} />
+                            username="userName"
+                            onChange={this.handleChange} />
                     </label>
                     <button type="submit">Register</button>
                 </form>

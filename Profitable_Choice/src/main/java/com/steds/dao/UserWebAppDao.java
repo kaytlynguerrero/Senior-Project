@@ -12,7 +12,7 @@ public interface UserWebAppDao {
 
     public String loginUser(User user);
 
-    public User findUser(long id);
+    public User findUser(int id);
 
     public User findUserByName(String userName);
 

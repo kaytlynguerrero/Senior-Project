@@ -6,6 +6,7 @@ import com.steds.model.User;
 import com.steds.model.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,7 +21,6 @@ public class TickerController {
 
     private final String apikey = "be141489434b9d5ebd38d0aa148ffc51";
     private final String uri = "https://financialmodelingprep.com";
-
 
     @Autowired
     protected UserWebAppDao dao;
@@ -51,10 +51,21 @@ public class TickerController {
         return companyInfo;
     }
 
-    @PostMapping("register")
-    public String registerUser(@RequestBody UserForm form) {
-
+    @PostMapping("/register")
+    public ResponseEntity<User> registerUser(@RequestBody UserForm form) {
+        ResponseEntity<User> response = null;
         User user = dao.registerUser(form);
-        return "Joe Mama";
+        int userID = user.getUserId();
+        try{
+            if(dao.findUser(userID) != user) {
+                throw new Exception("Employee Id is not valid");
+            }
+            response = new ResponseEntity<User>(user,HttpStatus.OK);
+        }
+        catch(Exception e){
+           // Logger.error("Invalid Input:",e.getMessage());
+            response = new ResponseEntity<User>(user,HttpStatus.BAD_REQUEST);
+        }
+        return response;
     }
 }

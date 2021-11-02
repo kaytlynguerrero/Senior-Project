@@ -75,7 +75,7 @@ public class UserWepAppDaoJdbcTemplateImpl implements UserWebAppDao {
     }
 
     @Override
-    public User findUser(long id) {
+    public User findUser(int id) {
         try {
             return jdbcTemplate.queryForObject(SELECT_USER_SQL, this::mapRowToUser, id);
 

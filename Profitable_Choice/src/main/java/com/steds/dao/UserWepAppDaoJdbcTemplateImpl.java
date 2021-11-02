@@ -13,13 +13,15 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 @Repository
 public class UserWepAppDaoJdbcTemplateImpl implements UserWebAppDao {
 
     private JdbcTemplate jdbcTemplate;
 
-    private static final Map<Long,User> USERS_MAP = new HashMap<>();
+    private static final Map<Integer, User> USERS_MAP = new HashMap<Integer, User>();
+    private final static Random randomizer = new Random();
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -51,7 +53,8 @@ public class UserWepAppDaoJdbcTemplateImpl implements UserWebAppDao {
     //generate user id, create encrypted password with this.passwordEncoder.encode(form.getPassword())
     @Override
     public User registerUser(UserForm form) {
-        Long userId = form.getUserId() + 1;
+        int generateID = randomizer.nextInt(6);
+        int userId = generateID;
        // String encryptedPassword = this.passwordEncoder.encode(form.getPassword());      -----> figure out how to encrypt later
 
         User newUser = new User(userId, form.getUserName(), form.getFirstName(), form.getLastName(), true, form.getGender(), form.getEmail(), form.getPassword());
@@ -103,7 +106,7 @@ public class UserWepAppDaoJdbcTemplateImpl implements UserWebAppDao {
 
     private User mapRowToUser(ResultSet rs, int rowNum) throws SQLException {
         User user = new User();
-        user.setUserId(rs.getLong("userID"));
+        user.setUserId(rs.getInt("userID"));
         user.setUserName(rs.getString("userName"));
         user.setFirstName(rs.getString("firstName"));
         user.setLastName(rs.getString("lastName"));

@@ -1,6 +1,10 @@
 package com.steds.controller;
 
+import com.steds.dao.UserWebAppDao;
 import com.steds.model.Ticker;
+import com.steds.model.User;
+import com.steds.model.UserForm;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -18,6 +22,8 @@ public class TickerController {
     private final String uri = "https://financialmodelingprep.com";
 
 
+    @Autowired
+    protected UserWebAppDao dao;
    // @RequestMapping(value= url + "/api/v3/profile/AAPL?apikey=" + apikey, method = RequestMethod.GET)
     //@ResponseStatus(value = HttpStatus.OK)
 
@@ -53,5 +59,13 @@ public class TickerController {
         companyInfo.setExchangeShortName((String) returnObject.get("exchangeShortName"));
 
         return companyInfo;
+    }
+    @RequestMapping(value="/register", method= RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public String registerUser(@RequestBody UserForm form) {
+
+        User user = dao.registerUser(form);
+
+        return "Joe Mama";
     }
 }

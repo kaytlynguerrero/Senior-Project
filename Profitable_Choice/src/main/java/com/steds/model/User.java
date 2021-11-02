@@ -3,7 +3,7 @@ package com.steds.model;
 import java.util.Objects;
 
 public class User {
-    private Long userId;
+    private int userId;
     private String userName;
     private String firstName;
     private String lastName;
@@ -12,7 +12,7 @@ public class User {
     private String email;
     private String encryptedPassword;
 
-    public User(Long userId, String userName, String firstName, String lastName, boolean enabled, String gender, String email,String encryptedPassword) {
+    public User(int userId, String userName, String firstName, String lastName, boolean enabled, String gender, String email,String encryptedPassword) {
         this.userId = userId;
         this.userName = userName;
         this.firstName = firstName;
@@ -27,11 +27,11 @@ public class User {
 
     }
 
-    public Long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

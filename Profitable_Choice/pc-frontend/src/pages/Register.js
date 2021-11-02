@@ -14,30 +14,23 @@ export default class Register extends React.Component {
     handleChange = event => {
         const {id, value} = event.target
         this.setState({[id]:value})
-       // this.setState({userName: event.target.value
-                        // firstName: event.target.value,
-                        // lastName: event.target.value,
-                        // email: event.target.value })
-       // })
     }
-    handleSubmit = event => { 
+
+    handleSubmit = async event => { 
         event.preventDefault();
-        const user = {
-            userName: this.state.userName,
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            gender: this.state.gender,
-            email: this.state.email,
-            password: this.state.password,
-            confirmPassword: this.state.confirmPassword,
-        }
-        console.log({user});
-        //console.log(this.state);
-        axios.post("http://localhost:8080/register", { user })
-        .then( res => {
-            console.log(res)
-            console.log(res.data)
-        })
+
+         const requestData = {
+        method: 'POST',
+        headers:{
+           'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.state)
+      }
+      console.log(requestData);
+      const response = await fetch('http://localhost:8080/register', requestData);
+      const data = await response.json();
+      console.log(data);
+      
     }
     render() {
         return (

@@ -52,7 +52,6 @@ export default class Register extends React.Component {
                         First Name:
                         <input type ="text"
                             id = "firstName"
-                            type = "text"
                             required
                             onChange={this.handleChange}
                         />
@@ -61,7 +60,6 @@ export default class Register extends React.Component {
                         Last Name:
                         <input type ="text"
                             id = "lastName"
-                            type = "text"
                             required
                             onChange={this.handleChange}
                         />
@@ -70,7 +68,6 @@ export default class Register extends React.Component {
                         Gender:
                         <input type ="text"
                             id = "gender"
-                            type = "text"
                             required
                             onChange={this.handleChange}
                         />
@@ -79,25 +76,22 @@ export default class Register extends React.Component {
                         Email:
                         <input type ="text"
                             id = "email"
-                            type = "text"
                             required
                             onChange={this.handleChange}
                         />
                     </label>
                     <label>
                         Password:
-                        <input type ="text"
+                        <input type ="password"
                             id = "password"
-                            type = "text"
                             required
                             onChange={this.handleChange}
                         />
                     </label>
                     <label>
                         Confirm Password:
-                        <input type ="text"
+                        <input type ="password"
                             id = "confirmPassword"
-                            type = "text"
                             required
                             onChange={this.handleChange}
                         />

@@ -56,16 +56,35 @@ public class TickerController {
         ResponseEntity<User> response = null;
         User user = dao.registerUser(form);
         int userID = user.getUserId();
-        try{
-            if(dao.findUser(userID) != user) {
-                throw new Exception("Employee Id is not valid");
-            }
+       // try{
+        User debugUser = dao.findUser(userID);
+        if(dao.findUser(userID).equals(user)) {
+            System.out.println("user added in db and checked for");
             response = new ResponseEntity<User>(user,HttpStatus.OK);
         }
-        catch(Exception e){
+    //    }
+      /*  catch(Exception e){
            // Logger.error("Invalid Input:",e.getMessage());
             response = new ResponseEntity<User>(user,HttpStatus.BAD_REQUEST);
-        }
+        }*/
         return response;
     }
+  /*  @RequestMapping(value="/log-in/{username}/{password}", method= RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public ResponseEntity<User> loginUser (@PathVariable("username") String username, @PathVariable("password") String password) {
+        ResponseEntity<User> response = null;
+        User test = new User();
+        String checkUserName = username;
+        String checkPassword = password;
+     //   test.equals(dao.findUserByName(checkUserName));
+  //      User user = dao.findUserByName(checkUserName);
+    //    System.out.println(user);
+        User loggingUser = dao.findUserByPassword(password);
+        response = new ResponseEntity<User>(loggingUser,HttpStatus.OK);
+  /*      if(user.equals(loggingUser)){
+            System.out.println("user was found and received");
+            response = new ResponseEntity<User>(loggingUser,HttpStatus.OK);
+        }
+    return response;
+    }*/
 }

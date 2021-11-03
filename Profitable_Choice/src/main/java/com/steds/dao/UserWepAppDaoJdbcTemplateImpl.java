@@ -21,7 +21,7 @@ public class UserWepAppDaoJdbcTemplateImpl implements UserWebAppDao {
     private JdbcTemplate jdbcTemplate;
 
     private static final Map<Integer, User> USERS_MAP = new HashMap<Integer, User>();
-    private final static Random randomizer = new Random();
+    private final static Random randomizer = new Random(System.currentTimeMillis());
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -42,7 +42,8 @@ public class UserWepAppDaoJdbcTemplateImpl implements UserWebAppDao {
             "update User set userID = ?, userName = ?, firstName = ?, lastName = ?, enabled = ?, gender = ?, password = ? where id = ?";
     private static final String SELECT_ALL_USERS_SQL =
             "select * from User";
-
+    private static final String SELECT_USER_BY_PASSWORD_SQL =
+            "select * from User where password = ?";
     
     @Autowired
     public UserWepAppDaoJdbcTemplateImpl(JdbcTemplate jdbcTemplate) {
@@ -53,7 +54,7 @@ public class UserWepAppDaoJdbcTemplateImpl implements UserWebAppDao {
     //generate user id, create encrypted password with this.passwordEncoder.encode(form.getPassword())
     @Override
     public User registerUser(UserForm form) {
-        int generateID = randomizer.nextInt(6);
+        int generateID = 10000 + randomizer.nextInt(20000);
         int userId = generateID;
        // String encryptedPassword = this.passwordEncoder.encode(form.getPassword());      -----> figure out how to encrypt later
 
@@ -70,8 +71,14 @@ public class UserWepAppDaoJdbcTemplateImpl implements UserWebAppDao {
 
     //Do log-in later but for log in we need to surround it with try and catch blocks to see a valid login. Also create an additional model for logging in with String userID and password.
     @Override
-    public String loginUser(User user) {
-        return null;
+    public User loginUser(String password) {
+        User returnUser = null;
+;
+        String logginpassword = password;
+        System.out.println(logginpassword);
+        User loggingUser = findUserByPassword(logginpassword);
+
+        return loggingUser;
     }
 
     @Override
@@ -81,12 +88,24 @@ public class UserWepAppDaoJdbcTemplateImpl implements UserWebAppDao {
 
         } catch (EmptyResultDataAccessException e) {
             // if nothing is returned just catch the exception and return null
+
             return null;
         }    }
 
     @Override
+    public User findUserByPassword (String password) {
+        return jdbcTemplate.queryForObject(SELECT_USER_BY_PASSWORD_SQL, this::mapRowToUser, password);
+    }
+
+    @Override
     public User findUserByName(String userName) {
-        return jdbcTemplate.queryForObject(SELECT_USER_BY_USERNAME_SQL, this::mapRowToUser, userName);
+        try{
+            return jdbcTemplate.queryForObject(SELECT_USER_BY_USERNAME_SQL, this::mapRowToUser, userName);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        return null;
     }
 
     @Override

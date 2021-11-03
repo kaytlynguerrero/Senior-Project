@@ -48,6 +48,13 @@ public class UserWebAppDaoTest {
         User user = dao.registerUser(newuser);
         User user2 = dao.findUser(user.getUserId());
 
+        //Act
+        User newUserWithGetUserName = dao.findUserByName(user.getUserName());
+        User checkUser = dao.findUser(newUserWithGetUserName.getUserId());
+
+        //assert
+        assertEquals(newUserWithGetUserName,checkUser);
+
         //Assert
         assertEquals(user,user2);
 

@@ -10,7 +10,9 @@ public interface UserWebAppDao {
     //generate user id, create encrypted password with this.passwordEncoder.encode(form.getPassword())
     public User registerUser(UserForm form);
 
-    public String loginUser(User user);
+    public User findUserByPassword (String password);
+
+    public User loginUser(String username );
 
     public User findUser(int id);
 

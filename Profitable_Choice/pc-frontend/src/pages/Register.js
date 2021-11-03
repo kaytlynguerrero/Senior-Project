@@ -21,8 +21,14 @@ export default class Register extends React.Component {
 
          const requestData = {
         method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
         headers:{
            'Content-Type': 'application/json'
+        
         },
         body: JSON.stringify(this.state)
       }

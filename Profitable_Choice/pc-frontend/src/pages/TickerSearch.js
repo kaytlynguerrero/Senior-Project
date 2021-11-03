@@ -35,9 +35,8 @@ class stockProfile extends React.Component {
     render() { 
             return(
                 <div className = "create">
-                    <h2> Input Ticker! </h2>
                     <form onSubmit= {this.handleSubmit}>
-                        <label>Ticker: </label>
+                        <label>Ticker Search: </label>
                         <input
                         id = "ticker"
                         type = "text"
@@ -48,10 +47,18 @@ class stockProfile extends React.Component {
                         />
                         <button> Submit </button>
                     </form>
-                <h2>
-                    {this.state.companyProfile.companyName}
-                </h2>
-                </div>
+                <h3>
+                <ul>
+                  <li> Company Name: {this.state.companyProfile.companyName}</li>
+                  <li> Industry: {this.state.companyProfile.industry} </li>
+                  <li> Company Price: {this.state.companyProfile.price} </li>  
+                  <li> Sector: {this.state.companyProfile.sector} </li>
+                  <li> Company Symbol: {this.state.companyProfile.symbol} </li> 
+                  <li> Website: {this.state.companyProfile.website} </li>   
+                </ul>
+                </h3>
+             </div>
+
             )   
       }
 }

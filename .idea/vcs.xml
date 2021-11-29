@@ -2,5 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Profitable_Choice/pc-frontend/src/pages/react-canvasjs-chart-samples/react-canvasjs-chart-samples" vcs="Git" />
   </component>
 </project>

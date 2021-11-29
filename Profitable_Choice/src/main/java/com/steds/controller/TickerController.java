@@ -28,11 +28,10 @@ public class TickerController {
     //api endpoint for historical graphs
     private final String historicalPath = "/api/v3/historical-chart/";
     //Date formatter
-    TimeZone tz = TimeZone.getTimeZone("EST");
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss a");
-    private final String AM ="AM";
-    private final String PM = "PM";
+
 
 
     //autowire our interface for user interface/login/registration
@@ -76,6 +75,7 @@ public class TickerController {
         String ticker = input;
         String timestamp = time;
         String path = uri+"/api/v3/historical-chart/" + timestamp+ "/"+ ticker + "?apikey="+apikey;
+        LinkedHashMap<String, Double> graphXandYPoints = new LinkedHashMap<>();
 
         RestTemplate restTemplate = new RestTemplate();
         List<HashMap> result = restTemplate.getForObject(path, List.class);
@@ -84,19 +84,20 @@ public class TickerController {
         List<StockByTimeCharts> companyInfo = new ArrayList<StockByTimeCharts>();
 
         //FOR 5MIN CHART AKA DAILY add the if statement
-        for(int i=0; i< result.size();i++){
-            //iterate through our list of results
-            Map returnTickerHistorical = result.get(i);
+        if(timestamp.equals("5min")){
+            for(int i=0; i< result.size();i++){
+                //iterate through our list of results
+                Map returnTickerHistorical = result.get(i);
 
-            // create new StockByTimeCharts instantiation
-            StockByTimeCharts chartInfo = new StockByTimeCharts();
-            //date formatting so we can parse the dates later and get our graph endpoints
-            String sDate = (String) returnTickerHistorical.get("date"); //retrieve orig String value of the date
-            Date formattedDate = sdf.parse(sDate);
+                // create new StockByTimeCharts instantiation
+                StockByTimeCharts chartInfo = new StockByTimeCharts();
+                //date formatting so we can parse the dates later and get our graph endpoints
+                String sDate = (String) returnTickerHistorical.get("date"); //retrieve orig String value of the date
+                Date formattedDate = sdf.parse(sDate);
 
-            //Adjust formattedDate for CST by subtracting 1 from the hour since it comes in EST
-            int  centralHour = formattedDate.getHours()-1;
-            formattedDate.setHours(centralHour);
+                //Adjust formattedDate for CST by subtracting 1 from the hour since it comes in EST
+                int  centralHour = formattedDate.getHours()-1;
+                formattedDate.setHours(centralHour);
 
           /*  //Set AM and PM
             if(formattedDate.getHours()>=12){
@@ -106,20 +107,49 @@ public class TickerController {
                 sDate = sDate + " "+ "AM";
             }
             Date AMPMformattedDate = sdf2.parse(sDate);*/ //reformatted with AM and PM and adjusted to CST
-            //set StockByTimeCharts model class attributes
-            chartInfo.setDate((Date) formattedDate);
-            chartInfo.setOpen((double) returnTickerHistorical.get("open"));
-            chartInfo.setLow((double) returnTickerHistorical.get("low"));
-            chartInfo.setHigh((double) returnTickerHistorical.get("high"));
-            chartInfo.setClose((double) returnTickerHistorical.get("close"));
-            chartInfo.setVolume((Integer) returnTickerHistorical.get("volume"));
+                //set StockByTimeCharts model class attributes
+                chartInfo.setDate((Date) formattedDate);
+                chartInfo.setOpen((double) returnTickerHistorical.get("open"));
+                chartInfo.setLow((double) returnTickerHistorical.get("low"));
+                chartInfo.setHigh((double) returnTickerHistorical.get("high"));
+                chartInfo.setClose((double) returnTickerHistorical.get("close"));
+                chartInfo.setVolume((Integer) returnTickerHistorical.get("volume"));
 
-            //add the rest of the StockByTimeChartsModel in here
-            companyInfo.add(chartInfo);
+                //add the rest of the StockByTimeChartsModel in here
+                companyInfo.add(chartInfo);
+            }
+            //our graph endpoints are in here
+            graphXandYPoints = graphDao.getGraphPointsBy5minForDaily(companyInfo);
         }
-        //our graph endpoints are in here
-        LinkedHashMap<String, Double> graphXandYPoints = graphDao.getGraphPointsBy5minForDaily(companyInfo);
-       // this works but comes out in CST but time is really EST System.out.println(companyInfo.get(0).getDate().getHours());
+        if(timestamp.equals("15min")){
+            for(int i=0; i< result.size();i++){
+                //iterate through our list of results
+                Map returnTickerHistorical = result.get(i);
+
+                // create new StockByTimeCharts instantiation
+                StockByTimeCharts chartInfo = new StockByTimeCharts();
+                //date formatting so we can parse the dates later and get our graph endpoints
+                String sDate = (String) returnTickerHistorical.get("date"); //retrieve orig String value of the date
+                Date formattedDate = sdf.parse(sDate);
+
+                //Adjust formattedDate for CST by subtracting 1 from the hour since it comes in EST
+                int  centralHour = formattedDate.getHours()-1;
+                formattedDate.setHours(centralHour);
+
+                chartInfo.setDate((Date) formattedDate);
+                chartInfo.setOpen((double) returnTickerHistorical.get("open"));
+                chartInfo.setLow((double) returnTickerHistorical.get("low"));
+                chartInfo.setHigh((double) returnTickerHistorical.get("high"));
+                chartInfo.setClose((double) returnTickerHistorical.get("close"));
+                chartInfo.setVolume((Integer) returnTickerHistorical.get("volume"));
+
+                //add the rest of the StockByTimeChartsModel in here
+                companyInfo.add(chartInfo);
+            }
+            //our graph endpoints are in here
+            graphXandYPoints = graphDao.getGraphPointsBy15minForDaily(companyInfo);
+        }
+
         return graphXandYPoints;
     }
 

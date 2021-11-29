@@ -9,5 +9,7 @@ public interface stockChartWebAppDao {
 
     //Get the data for 5min chart starting from open time
     public LinkedHashMap<String, Double> getGraphPointsBy5minForDaily (List<StockByTimeCharts> companyInfo);
+    //data for our weekly chart
+    public LinkedHashMap<String, Double> getGraphPointsBy15minForDaily(List<StockByTimeCharts> companyInfo);
 
 }

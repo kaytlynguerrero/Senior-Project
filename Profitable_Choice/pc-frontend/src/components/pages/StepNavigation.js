@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Step from './Step';
-
+import './Step.css';
 
 export default function stepNavigation(props){
     return(

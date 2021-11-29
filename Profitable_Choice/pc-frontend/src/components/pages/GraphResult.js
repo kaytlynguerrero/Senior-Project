@@ -1,12 +1,17 @@
 import '../../App.css';
+// var React = require('react');
+// var Component = React.Component;
+// var CanvasJSReact = require('../../canvasjs.react');
+// var CanvasJS = CanvasJSReact.CanvasJS;
+// var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function GraphResult() {
-    
     return(
         <div>Hello</div>
     )
 }
 export default GraphResult;
+
 
 
 // var React = require('react');

@@ -9,7 +9,7 @@ import { withRouter } from 'react-router-dom';
 class Cards extends React.Component {
   constructor(props){
     super(props)
-    this.state = {};
+    this.state = {companyProfile:{}};
    
   }
   handleChange = (e) => {
@@ -20,27 +20,49 @@ class Cards extends React.Component {
   // going to call whatever we are going to pass and and get the response (graph data?)
   handleSubmit = (e) => {
     e.preventDefault();
+    fetch("http://localhost:8080/search_ticker/"+this.state.ticker)
+    .then(response => response.json())
+    .then(data => this.setState({companyProfile:data}), () => console.log(this.state))
   };
   
-  // routeChange=()=> {
-  //   let path = `/services`;
-  //   let history = useHistory();
-  //   history.push(path);
-  // }
-  redirectToGraph = () => {
-    const { history } = this.props;
-    if(history) history.push('/graphResults');
-   }
+ 
+  // redirectToGraph = () => {
+  //   const { history } = this.props;
+  //   if(history) history.push('/graphResults');
+  //  }
  
   
 
-
   render() {
-  const { history } = this.props;
+  // const { history } = this.props;
     return(
       <div className='cards'>
         <div className='cards__container'>
-        <form onSubmit={this.handleSubmit}>
+        
+        <form onSubmit= {this.handleSubmit}>
+                        <label>Company Search: </label>
+                        <input
+                        id = "ticker"
+                        type = "text"
+                        maxLength={4}
+                        required
+                    /* We are creating a function that is taking an event object and targeting the title value */
+                        onChange = {this.handleChange}
+                        />
+                        <button> Submit </button>
+                    </form>
+                    <h3>
+                <ul>
+                  <li> Company Name: {this.state.companyProfile.companyName}</li>
+                  <li> Industry: {this.state.companyProfile.industry} </li>
+                  <li> Company Price: {this.state.companyProfile.price} </li>  
+                  <li> Sector: {this.state.companyProfile.sector} </li>
+                  <li> Company Symbol: {this.state.companyProfile.symbol} </li> 
+                  <li> Website: {this.state.companyProfile.website} </li>   
+                </ul>
+                </h3>
+            
+        {/* <form onSubmit={this.handleSubmit}>
         <h1>Search Company Symbol! </h1>
           <input
           id="ticker"
@@ -50,14 +72,16 @@ class Cards extends React.Component {
           onChange = {this.handleChange}
           />
           <button onClick={this.redirectToGraph} > Submit </button>
-        </form>
+        </form> */}
+        
       </div>
       </div>
-      
+            
+ 
     )
   }
 }
-export default withRouter(Cards);
+export default Cards;
 
 
 

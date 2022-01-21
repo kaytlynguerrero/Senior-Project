@@ -6,130 +6,134 @@ import {useHistory} from 'react-router-dom'
 import { withRouter } from 'react-router-dom';
 
 
-class Cards extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {companyProfile:{}};
+// class Cards extends React.Component {
+//   constructor(props){
+//     super(props)
+//     this.state = {companyProfile:{}};
    
-  }
-  handleChange = (e) => {
-    const {id, value} = e.target
-    this.setState({[id]:value})
-  }
+//   }
+//   handleChange = (e) => {
+//     const {id, value} = e.target
+//     this.setState({[id]:value})
+//   }
 
-  // going to call whatever we are going to pass and and get the response (graph data?)
-  handleSubmit = (e) => {
-    e.preventDefault();
-    fetch("http://localhost:8080/search_ticker/"+this.state.ticker)
-    .then(response => response.json())
-    .then(data => this.setState({companyProfile:data}), () => console.log(this.state))
-  };
+//   // going to call whatever we are going to pass and and get the response (graph data?)
+//   handleSubmit = (e) => {
+//     e.preventDefault();
+//     fetch("http://localhost:8080/search_ticker/"+this.state.ticker)
+//     .then(response => response.json())
+//     .then(data => this.setState({companyProfile:data}), () => console.log(this.state))
+//   };
   
  
-  // redirectToGraph = () => {
-  //   const { history } = this.props;
-  //   if(history) history.push('/graphResults');
-  //  }
+//   // redirectToGraph = () => {
+//   //   const { history } = this.props;
+//   //   if(history) history.push('/graphResults');
+//   //  }
  
   
 
-  render() {
-  // const { history } = this.props;
-    return(
-      <div className='cards'>
-        <div className='cards__container'>
-        
-        <form onSubmit= {this.handleSubmit}>
-                        <label>Company Search: </label>
-                        <input
-                        id = "ticker"
-                        type = "text"
-                        maxLength={4}
-                        required
-                    /* We are creating a function that is taking an event object and targeting the title value */
-                        onChange = {this.handleChange}
-                        />
-                        <button> Submit </button>
-                    </form>
-                    <h3>
-                <ul>
-                  <li> Company Name: {this.state.companyProfile.companyName}</li>
-                  <li> Industry: {this.state.companyProfile.industry} </li>
-                  <li> Company Price: {this.state.companyProfile.price} </li>  
-                  <li> Sector: {this.state.companyProfile.sector} </li>
-                  <li> Company Symbol: {this.state.companyProfile.symbol} </li> 
-                  <li> Website: {this.state.companyProfile.website} </li>   
-                </ul>
-                </h3>
+//   render() {
+//   // const { history } = this.props;
+//     return(
+//       <div className='cards'>
+//         <div className='cards__container'>
+    
+//         <form onSubmit= {this.handleSubmit}>
+//                         <label>Company Search: </label>
+//                         <input
+//                         id = "ticker"
+//                         type = "text"
+//                         maxLength={4}
+//                         required
+//                     /* We are creating a function that is taking an event object and targeting the title value */
+//                         onChange = {this.handleChange}
+//                         />
+//                         <button> Submit </button>
+//                     </form>
+//                     <h3>
+//                 <ul>
+//                   <li> Company Name: {this.state.companyProfile.companyName}</li>
+//                   <li> Industry: {this.state.companyProfile.industry} </li>
+//                   <li> Company Price: {this.state.companyProfile.price} </li>  
+//                   <li> Sector: {this.state.companyProfile.sector} </li>
+//                   <li> Company Symbol: {this.state.companyProfile.symbol} </li> 
+//                   <li> Website: {this.state.companyProfile.website} </li>   
+//                 </ul>
+//                 </h3>
             
-        {/* <form onSubmit={this.handleSubmit}>
-        <h1>Search Company Symbol! </h1>
-          <input
-          id="ticker"
-          type="text"
-          maxLength={4}
-          required
-          onChange = {this.handleChange}
-          />
-          <button onClick={this.redirectToGraph} > Submit </button>
-        </form> */}
+//         {/* <form onSubmit={this.handleSubmit}>
+//         <h1>Search Company Symbol! </h1>
+//           <input
+//           id="ticker"
+//           type="text"
+//           maxLength={4}
+//           required
+//           onChange = {this.handleChange}
+//           />
+//           <button onClick={this.redirectToGraph} > Submit </button>
+//         </form> */}
         
-      </div>
-      </div>
-            
- 
-    )
-  }
-}
-export default Cards;
-
-
-
-// function Cards() {
-
-//   return (
-//     <div className='cards'>
-//       <h1>Search Company Symbol!</h1>
-//       <div className='cards__container'>
-//         <div className='cards__wrapper'>
-//           <ul className='cards__items'>
-//             <CardItem
-//               src='images/img-9.jpg'
-//               text='Explore the hidden waterfall deep inside the Amazon Jungle'
-//               label='Adventure'
-//               path='/services'
-//             />
-//             <CardItem
-//               src='images/img-2.jpg'
-//               text='Travel through the Islands of Bali in a Private Cruise'
-//               label='Luxury'
-//               path='/services'
-//             />
-//           </ul>
-//           <ul className='cards__items'>
-//             <CardItem
-//               src='images/img-3.jpg'
-//               text='Set Sail in the Atlantic Ocean visiting Uncharted Waters'
-//               label='Mystery'
-//               path='/services'
-//             />
-//             <CardItem
-//               src='images/img-4.jpg'
-//               text='Experience Football on Top of the Himilayan Mountains'
-//               label='Adventure'
-//               path='/products'
-//             />
-//             <CardItem
-//               src='images/img-8.jpg'
-//               text='Ride through the Sahara Desert on a guided camel tour'
-//               label='Adrenaline'
-//               path='/sign-up'
-//             />
-//           </ul>
-//         </div>
 //       </div>
-//     </div>
-//   );
+//       </div>
+            
+ 
+//     )
+//   }
 // }
-
 // export default Cards;
+
+
+
+function Cards() {
+
+  return (
+    <div className='cards'>
+     
+      <div className='cards__container'>
+
+        <div className='cards__wrapper'>
+
+          <ul className='cards__items'>
+            <CardItem
+              src='images/marketwatch.jpeg'
+              text='Explore up to date financial data'
+              label='Market Watch'
+              path='https://www.marketwatch.com/markets'
+          
+            />
+            
+            <CardItem
+              src='images/img-2.jpg'
+              text='Travel through the Islands of Bali in a Private Cruise'
+              label='Luxury'
+              path='/services'
+            />
+          </ul>
+          <ul className='cards__items'>
+            <CardItem
+              src='images/img-3.jpg'
+              text='Set Sail in the Atlantic Ocean visiting Uncharted Waters'
+              label='Mystery'
+              path='/services'
+            />
+            <CardItem
+              src='images/img-4.jpg'
+              text='Experience Football on Top of the Himilayan Mountains'
+              label='Adventure'
+              path='/products'
+            />
+            <CardItem
+              src='images/img-8.jpg'
+              text='Ride through the Sahara Desert on a guided camel tour'
+              label='Adrenaline'
+              path='/sign-up'
+            />
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Cards;

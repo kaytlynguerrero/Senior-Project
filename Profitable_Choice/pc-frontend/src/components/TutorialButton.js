@@ -6,7 +6,7 @@ const STYLES = ['btn--primary', 'btn--outline', 'btn--test'];
 
 const SIZES = ['btn--medium', 'btn--large'];
 
-export const Button = ({
+export const TutorialButton = ({
   children,
   type,
   onClick,
@@ -20,7 +20,7 @@ export const Button = ({
   const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
   // This is where it is linking to services instead of register because we are using the same button component
   return (
-    <Link to='/Register' className='btn-mobile'>
+    <Link to='/services' className='btn-mobile'>
       <button
         className={`btn ${checkButtonStyle} ${checkButtonSize}`}
         onClick={onClick}

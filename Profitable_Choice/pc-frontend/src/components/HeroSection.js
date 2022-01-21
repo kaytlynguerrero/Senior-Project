@@ -3,6 +3,9 @@ import '../App.css';
 import { Button } from './Button';
 import './HeroSection.css';
 
+import { TutorialButton } from './TutorialButton';
+
+
 function HeroSection() {
   return (
     <div className='hero-container'>
@@ -10,21 +13,14 @@ function HeroSection() {
       <h1>LEARNING AWAITS</h1>
       <p>What are you waiting for?</p>
       <div className='hero-btns'>
-        {/* <Button
-          className='btns'
-          buttonStyle='btn--outline'
-          buttonSize='btn--large'
-        >
-          GET STARTED
-        </Button> */}
-        <Button
+        <TutorialButton
           className='btns'
           buttonStyle='btn--primary'
           buttonSize='btn--large'
           onClick={console.log('hey')}
         >
           BEGIN TUTORIAL <i className='far fa-play-circle' />
-        </Button>
+        </TutorialButton>
       </div>
     </div>
   );

@@ -1,10 +1,3 @@
-// import React from 'react';
-// import '../../App.css';
-
-// export default function SignUp() {
-//   return <h1 className='sign-up'>LIKE & SUBSCRIBE</h1>;
-// }
-
 import axios from "axios";
 import React, { Component } from "react";
 export default class Register extends React.Component {

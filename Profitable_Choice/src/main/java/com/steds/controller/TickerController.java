@@ -121,6 +121,7 @@ public class TickerController {
             //our graph endpoints are in here
             graphXandYPoints = graphDao.getGraphPointsBy5minForDaily(companyInfo);
         }
+
         if(timestamp.equals("15min")){
             for(int i=0; i< result.size();i++){
                 //iterate through our list of results

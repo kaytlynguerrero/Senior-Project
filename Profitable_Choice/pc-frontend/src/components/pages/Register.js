@@ -48,6 +48,7 @@ export default class Register extends React.Component {
                             id ="userName"
                             onChange={this.handleChange} />
                     </label>
+                    <br/>
                     <label>
                         First Name:
                         <input type ="text"
@@ -56,6 +57,7 @@ export default class Register extends React.Component {
                             onChange={this.handleChange}
                         />
                     </label>
+                    <br/>
                     <label>
                         Last Name:
                         <input type ="text"
@@ -64,6 +66,7 @@ export default class Register extends React.Component {
                             onChange={this.handleChange}
                         />
                     </label>
+                    <br/>
                     <label>
                         Gender:
                         <input type ="text"
@@ -72,6 +75,7 @@ export default class Register extends React.Component {
                             onChange={this.handleChange}
                         />
                     </label>
+                    <br/>
                     <label>
                         Email:
                         <input type ="text"
@@ -80,6 +84,7 @@ export default class Register extends React.Component {
                             onChange={this.handleChange}
                         />
                     </label>
+                    <br/>
                     <label>
                         Password:
                         <input type ="password"
@@ -88,6 +93,7 @@ export default class Register extends React.Component {
                             onChange={this.handleChange}
                         />
                     </label>
+                    <br/>
                     <label>
                         Confirm Password:
                         <input type ="password"
@@ -96,6 +102,7 @@ export default class Register extends React.Component {
                             onChange={this.handleChange}
                         />
                     </label>
+                    <br/>
                     <button type="submit">Register</button>
                 </form>
             </div>

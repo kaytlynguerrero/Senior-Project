@@ -100,6 +100,7 @@ function Cards() {
               text='Explore up to date financial data'
               label='Market Watch'
               path='https://www.marketwatch.com/markets'
+
           
             />
             

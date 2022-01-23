@@ -39,7 +39,7 @@ class stockProfile extends React.Component {
     .then(response => response.json())
     .then(data => this.setState({companyProfile:data}), () => console.log(this.state))
     this.props.history.push( {pathname: "/graphResults",
-        state: {ticker: this.state.ticker}})
+    state: {ticker: this.state.ticker}})
     console.log(this.state);
     };
     

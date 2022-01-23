@@ -17,40 +17,37 @@ class GraphResult extends React.Component {
   fetchStock() {
     const pointerToThis = this;
     console.log(pointerToThis);
-    const API_KEY = 'HGJWFG4N8AQ66ICD';
-    let StockSymbol = this.props.location.state.ticker;
-    let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockSymbol}&outputsize=compact&apikey=${API_KEY}`;
+    //let StockSymbol = this.props.location.state.ticker;
+    let StockSymbol = "AAPL";
+    console.log(StockSymbol);
+    let API_Call = `http://localhost:8080/stock-historical-price/5min/${StockSymbol}`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
 
-    // fetch(API_Call)
-    //   .then(
-    //     function(response) {
-    //       return response.json();
-    //     }
-    //   )
-    //   .then(
-    //     function(data) {
-    //       console.log(data);
+    fetch(API_Call)
+      .then(
+        function(response) {
+          return response.json();
+        }
+      )
+      .then(
+        function(data) {
+          console.log(data);
+          const values = Object.values(data);
 
-    //       for (var key in data['Time Series (Daily)']) {
-    //         stockChartXValuesFunction.push(key);
-    //         stockChartYValuesFunction.push(data['Time Series (Daily)'][key]['1. open']);
-    //       }
+          for (var key in data) {
+            stockChartXValuesFunction.push(key);
+          }
+          for(var value in values){
+            stockChartYValuesFunction.push(values[value]);
+          }
 
-    //       console.log(stockChartXValuesFunction);
-    //       pointerToThis.setState({
-    //         stockChartXValues: stockChartXValuesFunction,
-    //         stockChartYValues: stockChartYValuesFunction
-    //       });
-    //     }
-    //   )
-
-      pointerToThis.setState({
-        stockChartXValues: stockChartXValuesFunction,
-        stockChartYValues: stockChartYValuesFunction
-      });
-
+          pointerToThis.setState({
+            stockChartXValues: stockChartXValuesFunction,
+            stockChartYValues: stockChartYValuesFunction
+          });
+        }
+      )
   }
 
   render() {

@@ -37,7 +37,9 @@ class stockProfile extends React.Component {
     fetch("http://localhost:8080/search_ticker/"+this.state.ticker)
     .then(response => response.json())
     .then(data => this.setState({companyProfile:data}), () => console.log(this.state))
-   // console.log(this.state);
+    this.props.history.push( {pathname: "/graphResults",
+    state: {ticker: this.state.ticker}})
+    console.log(this.state);
     };
     
 

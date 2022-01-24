@@ -87,6 +87,7 @@ import { withRouter } from 'react-router-dom';
 
 function Cards() {
 
+
   return (
     <div className='cards'>
      
@@ -95,19 +96,19 @@ function Cards() {
         <div className='cards__wrapper'>
 
           <ul className='cards__items'>
-            <CardItem
+          {/* <Link to ={{pathname: "https://www.marketwatch.com/markets" }} target="_blank" /> */}
+            <CardItem 
               src='images/marketwatch.jpeg'
               text='Explore up to date financial data'
               label='Market Watch'
               path='https://www.marketwatch.com/markets'
 
-          
             />
             
             <CardItem
-              src='images/img-2.jpg'
-              text='Travel through the Islands of Bali in a Private Cruise'
-              label='Luxury'
+              src='images/FMP.jpeg'
+              text='Access all stocks discounted cash flow statements, market price, stock market news and learn more about Financial Modeling.'
+              label='Financial Modeling Prep'
               path='/services'
             />
           </ul>

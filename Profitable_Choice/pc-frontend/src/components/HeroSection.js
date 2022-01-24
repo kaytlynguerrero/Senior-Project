@@ -41,10 +41,14 @@ render() {
       <video src='/videos/video-1.mp4' autoPlay loop muted />
       <h1>LEARNING AWAITS</h1>
 
-      <div>
+    <div className="form-container">
+
     <form onSubmit= {this.handleSubmit}>
+
     <label>Company Search: </label>
-    <input
+
+    <br/>
+    <input className='input-container'
     id = "ticker"
     type = "text"
     maxLength={4}

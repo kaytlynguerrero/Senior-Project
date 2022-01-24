@@ -4,6 +4,7 @@ import './Step.css';
 
 export default function stepNavigation(props){
     return(
+    // <div className="bar">
         <div className="stepWrapper">
             {props.labelArray.map((item,index) => <Step key={index} 
             index={index} 
@@ -11,5 +12,6 @@ export default function stepNavigation(props){
             selected={props.currentStep === index + 1} 
             updateStep={props.updateStep}></Step>)}
         </div>
+        // </div>
     )
 }

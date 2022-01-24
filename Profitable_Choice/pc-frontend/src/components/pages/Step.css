@@ -16,12 +16,21 @@
     text-align: center;
   } */
 
-.bar{
-
+/* body {
+  background-color: rgb(133, 154, 175);
+} */
+.bar {
+  justify-content: center;
   text-align: center;
-  margin: 50px;
-  width: 350px;
-  height: 200px;
+  margin: 45px;
+  font-size: 20px;
+  /* width: 350px;
+  height: 200px; */
+  color: black;
+}
+
+.step-desc {
+  font-size: 25px;
 }
 .circle {
   width: 29px;
@@ -40,7 +49,6 @@
 .stepWrapper {
   display: flex;
   margin-bottom: 20px;
-
 }
 
 .stepBlock .circleWrapper {
@@ -65,12 +73,15 @@
   margin: auto;
   z-index: -1;
 }
-.stepBlock:not(:last-child) > .circleWrapper::after{
-  height:3px;
+.stepBlock:not(:last-child) > .circleWrapper::after {
+  height: 3px;
   opacity: 1;
 }
 
-.stepBlock:not(:last-child).selected > .circleWrapper::after, .stepBlock:not(:last-child).selected ~ .stepBlock:not(:last-child) > .circleWrapper::after {
+.stepBlock:not(:last-child).selected > .circleWrapper::after,
+.stepBlock:not(:last-child).selected
+  ~ .stepBlock:not(:last-child)
+  > .circleWrapper::after {
   height: 2px;
   opacity: 0.3;
 }

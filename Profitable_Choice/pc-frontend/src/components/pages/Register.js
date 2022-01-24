@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import './Register.css';
 export default class Register extends React.Component {
     state = {
         userName: '',
@@ -41,9 +42,13 @@ export default class Register extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                
+                <form className="register-container" onSubmit={this.handleSubmit}>
+                Create an Account!
+                <br/>
                     <label>
-                        Username: 
+                        Username:
+                        <br/> 
                         <input type="text"
                             id ="userName"
                             onChange={this.handleChange} />
@@ -51,6 +56,7 @@ export default class Register extends React.Component {
                     <br/>
                     <label>
                         First Name:
+                        <br/>
                         <input type ="text"
                             id = "firstName"
                             required
@@ -60,6 +66,7 @@ export default class Register extends React.Component {
                     <br/>
                     <label>
                         Last Name:
+                        <br/>
                         <input type ="text"
                             id = "lastName"
                             required
@@ -69,6 +76,7 @@ export default class Register extends React.Component {
                     <br/>
                     <label>
                         Gender:
+                        <br/>
                         <input type ="text"
                             id = "gender"
                             required
@@ -78,6 +86,7 @@ export default class Register extends React.Component {
                     <br/>
                     <label>
                         Email:
+                        <br/>
                         <input type ="text"
                             id = "email"
                             required
@@ -87,6 +96,7 @@ export default class Register extends React.Component {
                     <br/>
                     <label>
                         Password:
+                        <br/>
                         <input type ="password"
                             id = "password"
                             required
@@ -96,6 +106,7 @@ export default class Register extends React.Component {
                     <br/>
                     <label>
                         Confirm Password:
+                        <br/>
                         <input type ="password"
                             id = "confirmPassword"
                             required

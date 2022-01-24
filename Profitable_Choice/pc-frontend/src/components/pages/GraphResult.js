@@ -17,8 +17,7 @@ class GraphResult extends React.Component {
   fetchStock() {
     const pointerToThis = this;
     console.log(pointerToThis);
-    //let StockSymbol = this.props.location.state.ticker;
-    let StockSymbol = "AAPL";
+    let StockSymbol = this.props.location.state.ticker;
     console.log(StockSymbol);
     let API_Call = `http://localhost:8080/stock-historical-price/5min/${StockSymbol}`;
     let stockChartXValuesFunction = [];

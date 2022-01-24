@@ -21,13 +21,18 @@ function Services(){
     <p>Selected Step: {currentStep} </p>
       <StepNavigation labelArray={labelArray} currentStep={currentStep} updateStep={updateStep}></StepNavigation>
 
-      
-
-      <div>
+      <div className="step-desc">
 
       {currentStep == 1 &&
-       'Stock: A stock is a form of security that indicates the holder has proportionate ownership in the issuing corporation.'}
-      {currentStep == 2 && 'Stock Symbol: A stock symbol is an arrangement of characters—usually letters—representing publicly-traded securities on an exchange.'}
+       'A stock is a form of security that indicates the holder has proportionate ownership in the issuing corporation.'
+       }
+
+      {currentStep == 2 &&
+      <figure>
+      <img src='images/stock-ticker-symbols.jpeg'/>
+      <figcaption> A stock symbol is an arrangement of characters—usually letters—representing publicly-traded securities on an exchange.</figcaption>
+      </figure>
+      }
       
       {currentStep == 3 &&
       <input data-tip data-for="ticker"
@@ -35,7 +40,8 @@ function Services(){
       type="text"
       placeholder="AAPL"
       maxLength={4}>
-      </input>}
+      </input>
+      }
 
       {currentStep == 4 && 
       'You can gather a companys profile and view their industy, price, description, sector, etc.'}

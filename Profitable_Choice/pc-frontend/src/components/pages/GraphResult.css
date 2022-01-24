@@ -1,11 +1,18 @@
 table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 50%;
-  }
-  
-  td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.about-div {
+  float: right;
+  margin-right: 750px;
+  font-size: 30px;
+}

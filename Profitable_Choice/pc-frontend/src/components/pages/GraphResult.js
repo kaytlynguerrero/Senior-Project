@@ -6,13 +6,24 @@ class GraphResult extends React.Component {
     super(props);
     this.state = {
       stockChartXValues: [],
-      stockChartYValues: []
+      stockChartYValues: [],
+      companyProfile: {}
     }
   }
+
+  
+  handleChange = (e) => {
+    const {id, value} = e.target
+   // this.state[id] = value
+    this.setState({[id]:value})
+    
+}
 
   componentDidMount() {
     this.fetchStock();
   }
+
+
 
   fetchStock() {
     const pointerToThis = this;
@@ -20,9 +31,29 @@ class GraphResult extends React.Component {
     let StockSymbol = this.props.location.state.ticker;
     console.log(StockSymbol);
     let API_Call = `http://localhost:8080/stock-historical-price/5min/${StockSymbol}`;
+    let API_CallTWO = `http://localhost:8080/search_ticker/${StockSymbol}`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
+    
+    //Company Profile API Call
 
+    fetch(API_CallTWO)
+    .then(response => response.json())
+    .then(data => this.setState({companyProfile:data}), () => console.log(this.state))
+
+    // fetch(API_CallTWO)
+    //   .then(
+    //     function(response) {
+    //       return response.json();
+    //     }
+    //   )
+    //   .then(
+    //     function(data) {
+            
+    //     }
+    //   )
+
+    //Graph X and Y CORDS API CALL
     fetch(API_Call)
       .then(
         function(response) {
@@ -52,7 +83,19 @@ class GraphResult extends React.Component {
   render() {
     return (
       <div>
-        <h1>Stock Market</h1>
+        {/* this is not working need to fix connection with submit button */}
+        <form onSubmit= {this.handleSubmit}>
+            <label>Company Search: </label>
+            <input
+            id = "ticker"
+            type = "text"
+            maxLength={4}
+            required
+        /* We are creating a function that is taking an event object and targeting the title value */
+            onChange = {this.handleChange}
+            />
+            <button> Submit </button>
+        </form>
         <Plot
           data={[
             {
@@ -63,7 +106,7 @@ class GraphResult extends React.Component {
               marker: {color: 'red'},
             }
           ]}
-          layout={{width: 720, height: 440, title: 'A Fancy Plot'}}
+          layout={{width: 720, height: 440, title: this.state.companyProfile.companyName}}
         />
       </div>
     )

@@ -111,7 +111,7 @@ class GraphResult extends React.Component {
         />
         Company Price: {this.state.companyProfile.price}
         <div className="about-div">
-       
+          {this.state.companyProfile.description}
 
         </div>
 

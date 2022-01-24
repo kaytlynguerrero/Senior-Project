@@ -21,8 +21,10 @@ import java.util.*;
 @CrossOrigin
 public class TickerController {
 
+    //Kaytlyn api key bdd24a064c278e87dce6eff46915235b
+    //Sabur Api Key d0896058131a955d9158b4672cb56fac
     //api key
-    private final String apikey = "d0896058131a955d9158b4672cb56fac";
+    private final String apikey = "bdd24a064c278e87dce6eff46915235b";
     //api url
     private final String uri = "https://financialmodelingprep.com";
     //api endpoint for historical graphs

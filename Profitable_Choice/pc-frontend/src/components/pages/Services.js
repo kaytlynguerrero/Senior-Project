@@ -6,7 +6,7 @@ import ReactTooltip from "react-tooltip";
 
 
 function Services(){
-  const labelArray=["What is a stock?", " What is a stock symbol?", ' Search stock symbol', 'What data can you gather?', 'Evaluate the stock data', 'What does the data tell you?', ' Other ways to evaluate the data', 'Graph example'];
+  const labelArray=["What is a stock?", " What is a stock symbol?", ' Search stock symbol', 'What data can you gather?', 'Evaluate the stock data', 'What does the data tell you?'];
 
   const [currentStep, updateCurrentStep] = useState(1)
 
@@ -44,29 +44,43 @@ function Services(){
       }
 
       {currentStep == 4 && 
-      'You can gather a companys profile and view their industy, price, description, sector, etc.'}
+      <figure>
+      <img src='images/graph-example.png'/>
+      <figcaption> Price chart displays how a stocks price changes over time. </figcaption>
+      <figcaption>You can select between different time frames to get a better understanding of a stocks performance while viewing the companys profile.</figcaption>
+      </figure>}
 
       {currentStep == 5 && 
-      <ul>For example, you can view data such as:
+      <ul>
+        <h3>For example, you can view data such as:</h3>
+        <br/>
         <li>Company Name: "Apple Inc."</li>
+        <br/>
         <li>Industry: "Consumer Electronics"</li>
+        <br/>
         <li>Company Price: 156.81</li>
+        <br/>
         <li>Sector: "Technology"</li>
+        <br/>
         <li>Website: "http://www.apple.com"</li>
       </ul>
       }
       {currentStep == 6 && 
       <ul>
         <li>Company Name: The full name for the company</li>
+        <br/>
         <li>Industry: Refers to a much more specific group of companies/businesses </li>
+        <br/>
         <li>Company Price: Companys current market value </li>
+        <br/>
         <li>Sector: Identified by what the stock is most common for in their industry </li>
+        <br/>
         <li>Website: Official website</li>
       </ul>
       
       }
-      {currentStep == 7 && ''}
-      {currentStep == 8 && ''}
+  
+      
 
       
       

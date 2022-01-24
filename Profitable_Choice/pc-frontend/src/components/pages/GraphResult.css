@@ -12,7 +12,12 @@ th {
 }
 
 .about-div {
+  /* float:right;
+  margin-right: 450px;
+  font-size: 18px; */
+  display: block;
+  width: 400px;
+  height: 160px;
   float: right;
-  /* margin-right: 450px; */
-  font-size: 18px;
+  margin-right: 400px;
 }

@@ -97,6 +97,12 @@ class GraphResult extends React.Component {
             />
             <button> Submit </button>
         </form>
+       
+        <section className="about-div">
+        
+        {this.state.companyProfile.description}
+
+        </section>
         <Plot
           data={[
             {
@@ -109,12 +115,10 @@ class GraphResult extends React.Component {
           ]}
           layout={{width: 720, height: 440, title: this.state.companyProfile.companyName}}
         />
-        Company Price: {this.state.companyProfile.price}
-        <div className="about-div">
-          {this.state.companyProfile.description}
+        
+        <h2>Company Price: {this.state.companyProfile.price}</h2>
 
-        </div>
-
+       
         <div className="div1">
           <br/>
         
@@ -143,8 +147,8 @@ class GraphResult extends React.Component {
 
           </table>
         </div>
-
       </div>
+      
       
     )
   }

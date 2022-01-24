@@ -56,7 +56,7 @@ render() {
 /* We are creating a function that is taking an event object and targeting the title value */
     onChange = {this.handleChange}
     />
-    <button> Submit </button>
+    <button className="submit-button"> Submit </button>
   </form>
     </div>
       

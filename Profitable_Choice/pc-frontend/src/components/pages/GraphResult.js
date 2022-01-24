@@ -19,7 +19,7 @@ class GraphResult extends React.Component {
     this.setState({[id]:value})
     
 }
-
+    //in order to refresh we need to capture stockSymbol and run fetchStock all over again bc stockSymbol is being sent from api call in HeroSection submit button.
   componentDidMount() {
     this.fetchStock();
   }

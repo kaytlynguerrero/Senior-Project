@@ -105,7 +105,8 @@ function Cards() {
 
             />
             
-            <CardItem
+            <CardItem 
+    
               src='images/FMP.jpeg'
               text='Access all stocks discounted cash flow statements, market price, stock market news and learn more about Financial Modeling.'
               label='Financial Modeling Prep'
@@ -114,21 +115,21 @@ function Cards() {
           </ul>
           <ul className='cards__items'>
             <CardItem
-              src='images/img-3.jpg'
-              text='Set Sail in the Atlantic Ocean visiting Uncharted Waters'
-              label='Mystery'
+              src='images/investopedia.jpeg'
+              text='Investopedia provides investment dictionaries, advice, reviews, ratings and comparisons of financial products.'
+              label='Investopedia'
               path='/services'
             />
             <CardItem
-              src='images/img-4.jpg'
-              text='Experience Football on Top of the Himilayan Mountains'
-              label='Adventure'
+              src='images/financial-times.png'
+              text='A daily newspaper that focuses on business and economic current affairs.'
+              label='Financial Times'
               path='/products'
             />
             <CardItem
-              src='images/img-8.jpg'
-              text='Ride through the Sahara Desert on a guided camel tour'
-              label='Adrenaline'
+              src='images/cnn-markets.jpeg'
+              text='A news network that is finance-focused on markets.'
+              label='CNN Markets'
               path='/sign-up'
             />
           </ul>

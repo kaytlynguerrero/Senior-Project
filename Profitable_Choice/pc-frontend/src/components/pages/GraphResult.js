@@ -1,5 +1,6 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
+import './GraphResult.css';
 
 class GraphResult extends React.Component {
   constructor(props) {
@@ -108,7 +109,37 @@ class GraphResult extends React.Component {
           ]}
           layout={{width: 720, height: 440, title: this.state.companyProfile.companyName}}
         />
+
+        <div>
+          <br/>
+          <h2>Stock Table</h2>
+          <table>
+           
+              <tr>
+                <th>Open</th>
+                <th>High</th>
+                <th>Low</th>
+              </tr>
+              <tr>
+                <td>Data</td>
+                <td>Data</td>
+                <td>Data</td>
+              </tr>
+              <tr>
+                <th>Mkt Cap</th>
+                <th>P/E Ratio </th>
+                <th>Div Yield</th>
+              </tr>
+              <tr>
+                <td>Data</td>
+                <td>Data</td>
+                <td>Data</td>
+              </tr>
+
+          </table>
+        </div>
       </div>
+      
     )
   }
 }

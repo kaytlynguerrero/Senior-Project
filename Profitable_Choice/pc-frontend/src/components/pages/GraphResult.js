@@ -109,8 +109,9 @@ class GraphResult extends React.Component {
           ]}
           layout={{width: 720, height: 440, title: this.state.companyProfile.companyName}}
         />
+        Company Price: {this.state.companyProfile.price}
         <div className="about-div">
-          About:
+    
 
         </div>
 

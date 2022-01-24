@@ -120,24 +120,24 @@ class GraphResult extends React.Component {
           <table>
            
               <tr>
-                <th>Open</th>
-                <th>High</th>
-                <th>Low</th>
+                <th>Sector</th>
+                <th>Industry</th>
+                <th>Exchange</th>
               </tr>
               <tr>
-                <td>Data</td>
-                <td>Data</td>
-                <td>Data</td>
+                <td>{this.state.companyProfile.sector}</td>
+                <td>{this.state.companyProfile.industry}</td>
+                <td>{this.state.companyProfile.exchange}</td>
               </tr>
               <tr>
-                <th>Mkt Cap</th>
-                <th>P/E Ratio </th>
-                <th>Div Yield</th>
+                <th>Website</th>
+                <th></th>
+                <th></th>
               </tr>
               <tr>
-                <td>Data</td>
-                <td>Data</td>
-                <td>Data</td>
+                <td>{this.state.companyProfile.website}</td>
+                <td></td>
+                <td></td>
               </tr>
 
           </table>

@@ -10,7 +10,10 @@ class GraphResult extends React.Component {
       stockChartYValues: [],
       companyProfile: {}
     }
+    this.fetchWeeklyStock = this.fetchWeeklyStock.bind(this);
+    this.fetchStock = this.fetchStock.bind(this);
   }
+
 
   
   handleChange = (e) => {
@@ -23,15 +26,13 @@ class GraphResult extends React.Component {
   componentDidMount() {
     this.fetchStock();
   }
-
-
-
+  
   fetchStock() {
     const pointerToThis = this;
     console.log(pointerToThis);
     let StockSymbol = this.props.location.state.ticker;
     console.log(StockSymbol);
-    let API_Call = `http://localhost:8080/stock-historical-price/5min/${StockSymbol}`;
+    let DAILY_API_CALL = `http://localhost:8080/stock-historical-price/5min/${StockSymbol}`;
     let API_CallTWO = `http://localhost:8080/search_ticker/${StockSymbol}`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
@@ -42,20 +43,9 @@ class GraphResult extends React.Component {
     .then(response => response.json())
     .then(data => this.setState({companyProfile:data}), () => console.log(this.state))
 
-    // fetch(API_CallTWO)
-    //   .then(
-    //     function(response) {
-    //       return response.json();
-    //     }
-    //   )
-    //   .then(
-    //     function(data) {
-            
-    //     }
-    //   )
 
     //Graph X and Y CORDS API CALL
-    fetch(API_Call)
+    fetch(DAILY_API_CALL)
       .then(
         function(response) {
           return response.json();
@@ -79,6 +69,42 @@ class GraphResult extends React.Component {
           });
         }
       )
+  }
+
+  fetchWeeklyStock(){
+    const pointerToThis = this;
+    console.log(pointerToThis);
+    let StockSymbol = this.props.location.state.ticker;
+    console.log(StockSymbol);
+    let WEEKLY_API_CALL = `http://localhost:8080/stock-historical-price/15min/${StockSymbol}`;
+    let stockChartXValuesFunction = [];
+    let stockChartYValuesFunction = [];
+
+     //Graph X and Y CORDS API CALL
+     fetch(WEEKLY_API_CALL)
+     .then(
+       function(response) {
+         return response.json();
+       }
+     )
+     .then(
+       function(data) {
+         console.log(data);
+         const values = Object.values(data);
+
+         for (var key in data) {
+           stockChartXValuesFunction.push(key);
+         }
+         for(var value in values){
+           stockChartYValuesFunction.push(values[value]);
+         }
+
+         pointerToThis.setState({
+           stockChartXValues: stockChartXValuesFunction,
+           stockChartYValues: stockChartYValuesFunction
+         });
+       }
+     )
   }
 
   render() {
@@ -115,6 +141,17 @@ class GraphResult extends React.Component {
           ]}
           layout={{width: 720, height: 440, title: this.state.companyProfile.companyName}}
         />
+        <br/>
+
+        <button onClick={this.fetchWeeklyStock}>
+          Weekly Chart!
+          </button>
+
+        <button onClick={this.fetchStock}>
+          Daily Chart!
+        </button>
+
+        <br/>
         
         <h2>Company Price: {this.state.companyProfile.price}</h2>
 

@@ -23,6 +23,7 @@ public class TickerController {
 
     //Kaytlyn api key bdd24a064c278e87dce6eff46915235b
     //Sabur Api Key d0896058131a955d9158b4672cb56fac
+    //Stedwards email key be141489434b9d5ebd38d0aa148ffc51
     //api key
     private final String apikey = "bdd24a064c278e87dce6eff46915235b";
     //api url

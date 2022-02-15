@@ -22,10 +22,22 @@ class GraphResult extends React.Component {
     this.setState({[id]:value})
     
 }
+
+handleNewCompanySearchSubmit = (e) => {
+  e.preventDefault();
+  fetch("http://localhost:8080/search_ticker/"+this.state.ticker)
+  .then(response => response.json())
+  .then(data => this.setState({companyProfile:data}), () => console.log(this.state))
+  this.props.history.push( {pathname: "/graphResults",
+      state: {ticker: this.state.ticker}})
+  console.log(this.state);
+this.fetchStock();
+}
     //in order to refresh we need to capture stockSymbol and run fetchStock all over again bc stockSymbol is being sent from api call in HeroSection submit button.
   componentDidMount() {
     this.fetchStock();
   }
+
   
   fetchStock() {
     const pointerToThis = this;
@@ -107,11 +119,16 @@ class GraphResult extends React.Component {
      )
   }
 
+
   render() {
     return (
       <div>
         {/* this is not working need to fix connection with submit button */}
+<<<<<<< HEAD
         <form onSubmit= {this.fetchStock}>
+=======
+        <form onSubmit= {this.handleNewCompanySearchSubmit}>
+>>>>>>> 73e3f2fccd72801bb3d760446d1a009c4938bd34
             <label>Company Search: </label>
             <input
             id = "ticker"

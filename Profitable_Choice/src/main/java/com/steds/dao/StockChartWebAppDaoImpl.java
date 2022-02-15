@@ -7,10 +7,7 @@ import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 @Repository
 public class StockChartWebAppDaoImpl implements stockChartWebAppDao {
@@ -99,5 +96,12 @@ public class StockChartWebAppDaoImpl implements stockChartWebAppDao {
         }
         return PriceAndDateOfCompany;
 
+    }
+
+    @Override
+    public List<List<Object>> getGraphPointsByDailyBasis(List<List<Object>> companyInfo) {
+        List<List<Object>> formattedReturn = new ArrayList<>();
+        formattedReturn = companyInfo;
+        return formattedReturn;
     }
 }

@@ -111,7 +111,7 @@ class GraphResult extends React.Component {
     return (
       <div>
         {/* this is not working need to fix connection with submit button */}
-        <form onSubmit= {this.handleSubmit}>
+        <form onSubmit= {this.fetchStock}>
             <label>Company Search: </label>
             <input
             id = "ticker"

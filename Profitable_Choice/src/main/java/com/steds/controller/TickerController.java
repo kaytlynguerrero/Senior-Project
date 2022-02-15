@@ -2,10 +2,8 @@ package com.steds.controller;
 
 import com.steds.dao.UserWebAppDao;
 import com.steds.dao.stockChartWebAppDao;
-import com.steds.model.StockByTimeCharts;
-import com.steds.model.Ticker;
-import com.steds.model.User;
-import com.steds.model.UserForm;
+import com.steds.model.*;
+import com.steds.service.ServiceLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,13 +23,12 @@ public class TickerController {
     //Sabur Api Key d0896058131a955d9158b4672cb56fac
     //Stedwards email key be141489434b9d5ebd38d0aa148ffc51
     //api key
-    private final String apikey = "bdd24a064c278e87dce6eff46915235b";
+    private final String apikey = "be141489434b9d5ebd38d0aa148ffc51";
     //api url
     private final String uri = "https://financialmodelingprep.com";
     //api endpoint for historical graphs
     private final String historicalPath = "/api/v3/historical-chart/";
     //Date formatter
-
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss a");
 
@@ -43,6 +40,8 @@ public class TickerController {
     //Autowire the StockChartWebAppDaoImpl for our graphs
     @Autowired
     protected stockChartWebAppDao graphDao;
+    @Autowired
+    ServiceLayer serivce;
 
     @RequestMapping(value="/search_ticker/{input}", method= RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
@@ -78,6 +77,7 @@ public class TickerController {
         String ticker = input;
         String timestamp = time;
         String path = uri+"/api/v3/historical-chart/" + timestamp+ "/"+ ticker + "?apikey="+apikey;
+
         LinkedHashMap<String, Double> graphXandYPoints = new LinkedHashMap<>();
 
         RestTemplate restTemplate = new RestTemplate();
@@ -153,6 +153,21 @@ public class TickerController {
             //our graph endpoints are in here
             graphXandYPoints = graphDao.getGraphPointsBy15minForDaily(companyInfo);
         }
+
+        return graphXandYPoints;
+    }
+    //Get StockByTimeCharts Model Class --> Graph for the FE
+    @RequestMapping(value="/stock-historical-price/{ticker}", method= RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<List<Object>> StockByTimeWithPriceForDailyPrices (@PathVariable("ticker") String input) throws ParseException {
+        String ticker = input;
+        String path = uri+"/api/v3/historical-price-full/"+ ticker + "?serietype=line" + "&apikey=" + apikey;
+
+        RestTemplate restTemplate = new RestTemplate();
+        DailyChartResponse result = restTemplate.getForObject(path, DailyChartResponse.class);
+
+        //Service layer shit?
+        List<List<Object>> graphXandYPoints = serivce.buildGraphPointsForDailyPrices(result);
 
         return graphXandYPoints;
     }

@@ -11,5 +11,8 @@ public interface stockChartWebAppDao {
     public LinkedHashMap<String, Double> getGraphPointsBy5minForDaily (List<StockByTimeCharts> companyInfo);
     //data for our weekly chart
     public LinkedHashMap<String, Double> getGraphPointsBy15minForDaily(List<StockByTimeCharts> companyInfo);
+    //data for our monthly chart == 23 BUSINESS DAYS
+    public List<List<Object>> getGraphPointsByDailyBasis(List<List<Object>> companyInfo);
+
 
 }

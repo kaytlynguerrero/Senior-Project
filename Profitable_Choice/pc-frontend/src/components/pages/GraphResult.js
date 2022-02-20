@@ -8,7 +8,9 @@ class GraphResult extends React.Component {
     this.state = {
       stockChartXValues: [],
       stockChartYValues: [],
-      companyProfile: {}
+      companyProfile: {},
+      companyStats: [[]],
+      newTickerValue: ""
     }
     this.fetchWeeklyStock = this.fetchWeeklyStock.bind(this);
     this.fetchStock = this.fetchStock.bind(this);
@@ -25,32 +27,74 @@ class GraphResult extends React.Component {
 
 handleNewCompanySearchSubmit = (e) => {
   e.preventDefault();
-  fetch("http://localhost:8080/search_ticker/"+this.state.ticker)
-  .then(response => response.json())
-  .then(data => this.setState({companyProfile:data}), () => console.log(this.state))
   this.props.history.push( {pathname: "/graphResults",
-      state: {ticker: this.state.ticker}})
+      state: {ticker: this.state.newTicker}})
   console.log(this.state);
-this.fetchStock();
+  this.fetchNewStock();
 }
+
     //in order to refresh we need to capture stockSymbol and run fetchStock all over again bc stockSymbol is being sent from api call in HeroSection submit button.
   componentDidMount() {
     this.fetchStock();
   }
 
+  fetchNewStock(){
+
+    const pointerToThis = this;
+    console.log(pointerToThis);
+    const StockSymbol = this.state.newTicker;
+    console.log(StockSymbol);
+    let DAILY_API_CALL = `http://localhost:8080/stock-historical-price/5min/${StockSymbol}`;
+    console.log(DAILY_API_CALL);
+    let API_CallTWO = `http://localhost:8080/search_ticker/${StockSymbol}`;
+    let stockChartXValuesFunction = [];
+    let stockChartYValuesFunction = [];
+  
+    //Company Profile API Call
+    fetch(API_CallTWO)
+    .then(response => response.json())
+    .then(data => this.setState({companyProfile:data}), () => console.log(this.state))
+
+
+    //Graph X and Y CORDS API CALL
+    fetch(DAILY_API_CALL)
+      .then(
+        function(response) {
+          return response.json();
+        }
+      )
+      .then(
+        function(data) {
+          console.log(data);
+          const values = Object.values(data);
+
+          for (var key in data) {
+            stockChartXValuesFunction.push(key);
+          }
+          for(var value in values){
+            stockChartYValuesFunction.push(values[value]);
+          }
+
+          pointerToThis.setState({
+            stockChartXValues: stockChartXValuesFunction,
+            stockChartYValues: stockChartYValuesFunction
+          });
+        }
+      )
+  }
   
   fetchStock() {
     const pointerToThis = this;
     console.log(pointerToThis);
-    let StockSymbol = this.props.location.state.ticker;
+    const StockSymbol = this.props.location.state.ticker;
     console.log(StockSymbol);
     let DAILY_API_CALL = `http://localhost:8080/stock-historical-price/5min/${StockSymbol}`;
+    console.log(DAILY_API_CALL);
     let API_CallTWO = `http://localhost:8080/search_ticker/${StockSymbol}`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
-    
+  
     //Company Profile API Call
-
     fetch(API_CallTWO)
     .then(response => response.json())
     .then(data => this.setState({companyProfile:data}), () => console.log(this.state))
@@ -119,19 +163,52 @@ this.fetchStock();
      )
   }
 
+  fetchMonthly(){
+    const pointerToThis = this;
+    console.log(pointerToThis);
+    let StockSymbol = this.props.location.state.ticker;
+    console.log(StockSymbol);
+    let MONTHLY_API_CALL = `http://localhost:8080/stock-historical-price/${StockSymbol}`;
+    let stockChartXValuesFunction = [];
+    let stockChartYValuesFunction = [];
+
+     //Graph X and Y CORDS API CALL
+     fetch(MONTHLY_API_CALL)
+     .then(
+       function(response) {
+         return response.json();
+       }
+     )
+     .then(
+       function(data) {
+         console.log(data);
+         const values = Object.values(data);
+
+         for (var key in data) {
+           stockChartXValuesFunction.push(key);
+         }
+         for(var value in values){
+           stockChartYValuesFunction.push(values[value]);
+         }
+
+         pointerToThis.setState({
+           stockChartXValues: stockChartXValuesFunction,
+           stockChartYValues: stockChartYValuesFunction
+         });
+       }
+     )
+  }
+
+
 
   render() {
     return (
       <div>
         {/* this is not working need to fix connection with submit button */}
-<<<<<<< HEAD
-        <form onSubmit= {this.fetchStock}>
-=======
         <form onSubmit= {this.handleNewCompanySearchSubmit}>
->>>>>>> 73e3f2fccd72801bb3d760446d1a009c4938bd34
             <label>Company Search: </label>
             <input
-            id = "ticker"
+            id = "newTicker"
             type = "text"
             maxLength={4}
             required
@@ -160,13 +237,17 @@ this.fetchStock();
         />
         <br/>
 
-        <button onClick={this.fetchWeeklyStock}>
-          Weekly Chart!
-          </button>
-
         <button onClick={this.fetchStock}>
           Daily Chart!
         </button>
+
+        <button onClick={this.fetchWeeklyStock}>
+          Weekly Chart!
+          </button>
+        
+          <button onClick={this.fetchMonthly}>
+          Monthly Chart!
+          </button>
 
         <br/>
         

@@ -24,10 +24,7 @@ class HeroSection extends React.Component {
   
   handleSubmit = (e) => {
     /* This prevents the page from being refreshed when submitting the input */
-  e.preventDefault();
-  fetch("http://localhost:8080/search_ticker/"+this.state.ticker)
-  .then(response => response.json())
-  .then(data => this.setState({companyProfile:data}), () => console.log(this.state))
+  e.preventDefault();  
   this.props.history.push( {pathname: "/graphResults",
       state: {ticker: this.state.ticker}})
   console.log(this.state);

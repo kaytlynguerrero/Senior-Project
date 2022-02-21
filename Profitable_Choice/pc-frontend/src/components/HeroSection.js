@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 import { Button } from './Button';
 import './HeroSection.css';
-
+import './pages/GraphResult';
 import useState from 'react-dom';
 
 
@@ -20,6 +20,7 @@ class HeroSection extends React.Component {
     const {id, value} = e.target
        // this.state[id] = value
         this.setState({[id]:value})
+    
   }
 
   handleSubmit = (e) => {

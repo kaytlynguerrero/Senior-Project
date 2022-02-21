@@ -1,10 +1,12 @@
-.stock{
+.stockInfo{
     text-align: center;
     font-size: 25px;
 }
 
-h1{
+.headers{
     margin-top: 20px;
+    margin-bottom: 20px;
     text-align: center;
-    font-size: 50px;
+    font-size: 35px;
+    color: rgb(11, 11, 167);
 }

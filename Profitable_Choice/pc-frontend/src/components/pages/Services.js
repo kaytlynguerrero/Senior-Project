@@ -109,10 +109,80 @@ function Services() {
 
 return(
 <>
+{/* Step 1 */}
 
-<h1> What is a stock?</h1>
-<div className = "stock">
+<h1 className = "headers"> What is a stock?</h1>
+
+<div className = "stockInfo">
 <p1> A stock is a form of security that indicates the holder has proportionate ownership in the issuing corporation. </p1>
+
+{/* Step 2 */}
+
+<h1 className = "headers"> What is a stock symbol?</h1>
+<p1> 
+<figure>
+      <img src='images/stock-ticker-symbols.jpeg'/>
+    <figcaption> A stock symbol is an arrangement of characters—usually letters—representing publicly-traded securities on an exchange.</figcaption>
+    </figure>
+</p1>
+
+{/* Step 3 */}
+<h1 className = "headers"> Search a Stock Symbol</h1>
+<p1> Below, is an example of how you would search a stock symbol within our website. You would search it through its symbol and receive company data. 
+    < br />
+<input data-tip data-for="ticker"
+      id="ticker"
+      type="text"
+      placeholder="NYT"
+      maxLength={4}>
+      </input>
+</p1>
+
+{/* Step 4 */}
+<h1 className = "headers"> What data can you gather?</h1>
+<p1>
+       <figure>
+       <img src='images/graph-example.png'/>
+       <figcaption> Price chart displays how a stocks price changes over time. </figcaption>
+       <figcaption>You can select between different time frames to get a better understanding of a stocks performance while viewing the companys profile.</figcaption>
+       </figure>
+</p1>
+
+{/* Step 5 */}
+<h1 className = "headers">Evaluate the stock data</h1>
+<p1>
+<ul>
+         <h3>For example, you can view data such as:</h3>
+         <br/>
+         <li>Company Name: "Apple Inc."</li>
+         <br/>
+         <li>Industry: "Consumer Electronics"</li>
+         <br/>
+         <li>Company Price: 156.81</li>
+         <br/>
+         <li>Sector: "Technology"</li>
+         <br/>
+         <li>Website: "http://www.apple.com"</li>
+       </ul>
+</p1>
+
+{/* Step 6 */}
+<h1 className = "headers">What does the data tell you?</h1>
+<p1>
+       <ul>
+         <li>Company Name: The full name for the company</li>
+         <br/>
+         <li>Industry: Refers to a much more specific group of companies/businesses </li>
+         <br/>
+         <li>Company Price: Companys current market value </li>
+         <br/>
+         <li>Sector: Identified by what the stock is most common for in their industry </li>
+         <br/>
+         <li>Website: Official website</li>
+       </ul>
+</p1>
+
+
 </div>
 </>
 

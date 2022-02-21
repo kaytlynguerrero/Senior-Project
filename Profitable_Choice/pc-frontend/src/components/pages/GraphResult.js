@@ -323,7 +323,7 @@ handleNewCompanySearchSubmit = (e) => {
                 <td>{this.state.companyMetrics.open}</td>
                 <td>{this.state.companyMetrics.low}</td>
                 <td>{this.state.companyMetrics.high}</td>
-                <td>-</td>
+                <td>{this.state.companyMetrics.close}</td>
               </tr>
               <tr>
                 <th>Sector</th>

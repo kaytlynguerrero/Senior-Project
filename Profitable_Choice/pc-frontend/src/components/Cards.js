@@ -28,13 +28,13 @@ class Cards extends React.Component {
   render(){
     return (
       <div className='cards'>
-       
+       <h1>Latest Stock News</h1>
         <div className='cards__container'>
   
           <div className='cards__wrapper'>
   
             <ul className='cards__items'>
-            {/* <Link to ={{pathname: "https://www.marketwatch.com/markets" }} target="_blank" /> */}
+            
               <CardItem 
                 src={this.state.stockNews[0].image}
                 text={this.state.stockNews[0].text}

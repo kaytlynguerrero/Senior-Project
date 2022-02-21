@@ -281,7 +281,11 @@ handleNewCompanySearchSubmit = (e) => {
               marker: {color: 'red'},
             }
           ]}
-          layout={{width: 720, height: 440, title: this.state.companyProfile.companyName}}
+          layout={{     
+            width: 720, 
+            height: 440, 
+            title: this.state.companyProfile.companyName
+          }}
         />
         <br/>
 

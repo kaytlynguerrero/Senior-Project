@@ -21,7 +21,7 @@ class HeroSection extends React.Component {
        // this.state[id] = value
         this.setState({[id]:value})
   }
-  
+
   handleSubmit = (e) => {
     /* This prevents the page from being refreshed when submitting the input */
   e.preventDefault();  

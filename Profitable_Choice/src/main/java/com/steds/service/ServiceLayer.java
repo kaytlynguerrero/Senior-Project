@@ -35,8 +35,8 @@ public class ServiceLayer {
 
         List<Map<String, Object>> results = result.getHistorical();
         //change the iterations for the time intervals  ex: i+5 for every +5 days
-        int j =0 ;
-        while(j!=23) {
+        int j =23 ;
+        while(j!=0) {
             //historical model
             historical dailyChartData = new historical();
             //extracting Map from arraylist for our model object above
@@ -56,7 +56,7 @@ public class ServiceLayer {
             dailyChartData.setDate(formattedDate);
 
             companyInfo.add(dailyChartData);
-            j++;
+            j--;
         }
         //Graph Data
         double percentage = 0;
@@ -71,8 +71,17 @@ public class ServiceLayer {
         double roundPercentage = Math.round(percentage*100.0)/100.0;
         percentChange.add(0,roundPercentage);
 
+        //Company Stats
+        List<Double> prices = new ArrayList();
+        for(int i=0;i<companyInfo.size();i++){
+            prices.add(companyInfo.get(i).getClose());
+        }
+        List<StockByTimeCharts> companyStats = buildCompanyStatsForDaily(prices);
+
         formattedReturn.add(Collections.singletonList(companyInfo));
         formattedReturn.add(percentChange);
+        formattedReturn.add(Collections.singletonList(companyStats));
+
 
         return formattedReturn;
     }
@@ -139,7 +148,22 @@ public class ServiceLayer {
         newModel.setLow(Collections.min(prices));
         //high
         newModel.setHigh(Collections.max(prices));
-        //close
+        //close CHANGE THIS WHENEVER MARKET IS OPEN BUT WE ARE PRESENTING DURING THE DAY
+        newModel.setClose(prices.get(prices.size()-1));
+
+        newList.add(newModel);
+        return newList;
+    }
+    public List<StockByTimeCharts> buildCompanyStatsForDaily(List<Double> prices){
+        List<StockByTimeCharts> newList = new ArrayList<>();
+        StockByTimeCharts newModel = new StockByTimeCharts();
+        //open
+        newModel.setOpen(prices.get(0));
+        //low
+        newModel.setLow(Collections.min(prices));
+        //high
+        newModel.setHigh(Collections.max(prices));
+        //close CHANGE THIS WHENEVER MARKET IS OPEN BUT WE ARE PRESENTING DURING THE DAY
         newModel.setClose(prices.get(prices.size()-1));
 
         newList.add(newModel);

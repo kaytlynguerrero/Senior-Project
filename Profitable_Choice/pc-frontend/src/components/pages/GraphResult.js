@@ -10,6 +10,7 @@ class GraphResult extends React.Component {
       stockChartYValues: [],
       companyProfile: {},
       companyStats: 0,
+      companyMetrics: {}
      // newTickerValue: ""
     }
     this.fetchMonthly = this.fetchMonthly.bind(this);
@@ -186,16 +187,20 @@ handleNewCompanySearchSubmit = (e) => {
          console.log(data);
          const arrayOfObjects = data[0][0];
          const arrayOfValuesObjects = data[1][0];
+         const arrayOfCompanyMetrics = data[2][0];
 
         arrayOfObjects.map(({date,close}) => {
            stockChartXValuesFunction.push(date);
            stockChartYValuesFunction.push(close);
         });
+
         pointerToThis.setState({
            stockChartXValues: stockChartXValuesFunction,
            stockChartYValues: stockChartYValuesFunction,
-           companyStats: arrayOfValuesObjects
+           companyStats: arrayOfValuesObjects,
+           companyMetrics: data[2][0]
         })
+        console.log(pointerToThis);
        }
      )
   }

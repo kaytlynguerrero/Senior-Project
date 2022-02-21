@@ -16,6 +16,7 @@ class GraphResult extends React.Component {
     this.fetchMonthly = this.fetchMonthly.bind(this);
     this.fetchWeeklyStock = this.fetchWeeklyStock.bind(this);
     this.fetchStock = this.fetchStock.bind(this);
+   
   }
 
 
@@ -24,6 +25,15 @@ class GraphResult extends React.Component {
     const {id, value} = e.target
    // this.state[id] = value
     this.setState({[id]:value})
+
+    let elem = document.getElementById("PC");
+
+    if (this.state.companyMetrics.open > this.state.companyMetrics.close) {
+      elem.style.color = "red"
+    }
+    else {
+      elem.style.color = "green"
+    }
     
 }
 
@@ -213,6 +223,15 @@ handleNewCompanySearchSubmit = (e) => {
        }
      )
   }
+  // changeColor(){
+  //   // el = document.getElementById("PC")
+  //   if (this.state.companyMetrics.open > this.state.companyMetrics.close) {
+  //     this.state.companyStats.style.color = "red";
+  //   }
+  //   else {
+  //     this.state.companyStats.style.color = "green"
+  //   }
+  // }
 
   render() {
     return (
@@ -265,7 +284,8 @@ handleNewCompanySearchSubmit = (e) => {
 
         <br/>
         
-        <h2>Company Price: {this.state.companyProfile.price}, Price Percent Change: {this.state.companyStats}</h2>
+        <h2>Company Price: {this.state.companyProfile.price} </h2>
+        <h2 id="PC"> Price Percent Change: {this.state.companyStats}</h2>
 
        
        
@@ -281,9 +301,9 @@ handleNewCompanySearchSubmit = (e) => {
               </tr>
               <tr>
                 <td>{this.state.companyMetrics.open}</td>
-                <td>Low price call here</td>
-                <td>High price call here</td>
-                <td>Close price call here</td>
+                <td>{this.state.companyMetrics.low}</td>
+                <td>{this.state.companyMetrics.high}</td>
+                <td>{this.state.companyMetrics.close}</td>
               </tr>
               <tr>
                 <th>Sector</th>

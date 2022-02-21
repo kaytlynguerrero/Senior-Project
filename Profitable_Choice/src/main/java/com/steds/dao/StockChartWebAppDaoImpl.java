@@ -1,6 +1,7 @@
 package com.steds.dao;
 
 import com.steds.model.StockByTimeCharts;
+import com.steds.model.historical;
 import org.springframework.stereotype.Repository;
 
 import java.time.DayOfWeek;
@@ -16,15 +17,15 @@ public class StockChartWebAppDaoImpl implements stockChartWebAppDao {
     private int openingTimeMin = 30;
 
     @Override
-    public LinkedHashMap<String, Double> getGraphPointsBy5minForDaily(List<StockByTimeCharts> companyInfo) {
+    public List<historical> getGraphPointsBy5minForDaily(List<StockByTimeCharts> companyInfo) {
         //List of Price and Date
         LinkedHashMap<String, Double> PriceAndDateOfCompany = new LinkedHashMap<>();
-
+        //formatted return statement
+        List<historical> newStats = new ArrayList<>();
         //get the date of first element in companyInfo
         Date realTimeDate = new Date();
         realTimeDate = companyInfo.get(0).getDate();
         int day = realTimeDate.getDay();
-
 
         int index = 0;
         //loop through to find the realTimeDate day and the index of the StockByTimeCharts element that matches with opening time of 9:30 (hour then minute)
@@ -37,18 +38,25 @@ public class StockChartWebAppDaoImpl implements stockChartWebAppDao {
             }
         }
         for(int i= index; i>=0;i--){
-           StockByTimeCharts getGraphPointsFromCompany = companyInfo.get(i);
-           PriceAndDateOfCompany.put(getGraphPointsFromCompany.getDate().toString(), getGraphPointsFromCompany.getClose());
-
+            historical dailyChartData = new historical();
+            StockByTimeCharts getGraphPointsFromCompany = companyInfo.get(i);
+            //Converting to our List<objects here
+            dailyChartData.setClose(getGraphPointsFromCompany.getClose());
+            dailyChartData.setDate(getGraphPointsFromCompany.getDate().toString());
+            //add to our  list objects then
+            newStats.add(dailyChartData);
         }
-        return PriceAndDateOfCompany;
+
+
+        return newStats;
     }
 
     @Override
-    public LinkedHashMap<String, Double> getGraphPointsBy15minForDaily(List<StockByTimeCharts> companyInfo) {
+    public  List<historical> getGraphPointsBy15minForDaily(List<StockByTimeCharts> companyInfo) {
         // x and y cord linkedhashmap
         LinkedHashMap<String, Double> PriceAndDateOfCompany = new LinkedHashMap<>();
-
+        //formatted return statement
+        List<historical> newStats = new ArrayList<>();
         //get the date of first element in companyInfo
         Date realTimeDate = new Date();
         realTimeDate = companyInfo.get(0).getDate();
@@ -90,11 +98,16 @@ public class StockChartWebAppDaoImpl implements stockChartWebAppDao {
             }
         }
         for(int i= index; i>=0;i--){
+            historical dailyChartData = new historical();
             StockByTimeCharts getGraphPointsFromCompany = companyInfo.get(i);
-            PriceAndDateOfCompany.put(getGraphPointsFromCompany.getDate().toString(), getGraphPointsFromCompany.getClose());
-
+            //PriceAndDateOfCompany.put(getGraphPointsFromCompany.getDate().toString(), getGraphPointsFromCompany.getClose());
+            //Converting to our List<objects here
+            dailyChartData.setClose(getGraphPointsFromCompany.getClose());
+            dailyChartData.setDate(getGraphPointsFromCompany.getDate().toString());
+            //add to our  list objects then
+            newStats.add(dailyChartData);
         }
-        return PriceAndDateOfCompany;
+        return newStats;
 
     }
 

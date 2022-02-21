@@ -27,7 +27,7 @@ class HeroSection extends React.Component {
   e.preventDefault();  
   this.props.history.push( {pathname: "/graphResults",
       state: {ticker: this.state.ticker}})
-  console.log(this.state);
+  //console.log(this.state);
 };
 
 

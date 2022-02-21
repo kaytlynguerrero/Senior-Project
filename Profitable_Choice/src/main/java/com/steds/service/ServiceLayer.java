@@ -2,6 +2,7 @@ package com.steds.service;
 
 import com.steds.dao.stockChartWebAppDao;
 import com.steds.model.DailyChartResponse;
+import com.steds.model.StockByTimeCharts;
 import com.steds.model.historical;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -74,6 +75,75 @@ public class ServiceLayer {
         formattedReturn.add(percentChange);
 
         return formattedReturn;
+    }
+
+    public List<Object> buildPercentChangeFor5min (List<Double> prices){
+        List<Object> newList = new ArrayList<>();
+
+        double percentage = 0;
+        double newPrice = prices.get(0);
+        double oldPrice = prices.get(1);
+        if(newPrice>=oldPrice){
+            percentage = ((newPrice-oldPrice)/oldPrice)*100;
+        }
+        else{
+            percentage = ((oldPrice-newPrice)/oldPrice)*100;
+        }
+        double roundPercentage = Math.round(percentage*100.0)/100.0;
+
+        newList.add(roundPercentage);
+
+        return newList;
+    }
+    public List<Object> buildPercentChangeFor15min(List<Double> prices){
+        List<Object> newList = new ArrayList<>();
+
+        double percentage = 0;
+        double newPrice = prices.get(0);
+        double oldPrice = prices.get(1);
+        if(newPrice>=oldPrice){
+            percentage = ((newPrice-oldPrice)/oldPrice)*100;
+        }
+        else{
+            percentage = ((oldPrice-newPrice)/oldPrice)*100;
+        }
+        double roundPercentage = Math.round(percentage*100.0)/100.0;
+
+        newList.add(roundPercentage);
+
+        return newList;
+    }
+
+    public List<StockByTimeCharts> buildCompanyStatsFor5min(List<Double> prices){
+        List<StockByTimeCharts> newList = new ArrayList<>();
+        StockByTimeCharts newModel = new StockByTimeCharts();
+        //open
+        newModel.setOpen(prices.get(0));
+        //low
+        newModel.setLow(Collections.min(prices));
+        //high
+        newModel.setHigh(Collections.max(prices));
+        //close
+        newModel.setClose(prices.get(prices.size()-1));
+
+        newList.add(newModel);
+        return newList;
+    }
+
+    public List<StockByTimeCharts> buildCompanyStatsFor15min(List<Double> prices){
+        List<StockByTimeCharts> newList = new ArrayList<>();
+        StockByTimeCharts newModel = new StockByTimeCharts();
+        //open
+        newModel.setOpen(prices.get(0));
+        //low
+        newModel.setLow(Collections.min(prices));
+        //high
+        newModel.setHigh(Collections.max(prices));
+        //close
+        newModel.setClose(prices.get(prices.size()-1));
+
+        newList.add(newModel);
+        return newList;
     }
 }
 

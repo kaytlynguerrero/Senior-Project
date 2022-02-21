@@ -9,9 +9,10 @@ class GraphResult extends React.Component {
       stockChartXValues: [],
       stockChartYValues: [],
       companyProfile: {},
-      companyStats: [[]],
-      newTickerValue: ""
+      companyStats: 0,
+     // newTickerValue: ""
     }
+    this.fetchMonthly = this.fetchMonthly.bind(this);
     this.fetchWeeklyStock = this.fetchWeeklyStock.bind(this);
     this.fetchStock = this.fetchStock.bind(this);
   }
@@ -39,13 +40,14 @@ handleNewCompanySearchSubmit = (e) => {
   }
 
   fetchNewStock(){
-
     const pointerToThis = this;
     console.log(pointerToThis);
     const StockSymbol = this.state.newTicker;
-    console.log(StockSymbol);
+    //this.setState(newTickerValue,StockSymbol);
+    this.state.newTickerValue = StockSymbol;
+    console.log(this.state);
     let DAILY_API_CALL = `http://localhost:8080/stock-historical-price/5min/${StockSymbol}`;
-    console.log(DAILY_API_CALL);
+   //console.log(DAILY_API_CALL);
     let API_CallTWO = `http://localhost:8080/search_ticker/${StockSymbol}`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
@@ -165,9 +167,9 @@ handleNewCompanySearchSubmit = (e) => {
 
   fetchMonthly(){
     const pointerToThis = this;
-    console.log(pointerToThis);
+    //console.log(pointerToThis);
     let StockSymbol = this.props.location.state.ticker;
-    console.log(StockSymbol);
+    //console.log(StockSymbol);
     let MONTHLY_API_CALL = `http://localhost:8080/stock-historical-price/${StockSymbol}`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
@@ -182,24 +184,21 @@ handleNewCompanySearchSubmit = (e) => {
      .then(
        function(data) {
          console.log(data);
-         const values = Object.values(data);
+         const arrayOfObjects = data[0][0];
+         const arrayOfValuesObjects = data[1][0];
 
-         for (var key in data) {
-           stockChartXValuesFunction.push(key);
-         }
-         for(var value in values){
-           stockChartYValuesFunction.push(values[value]);
-         }
-
-         pointerToThis.setState({
+        arrayOfObjects.map(({date,close}) => {
+           stockChartXValuesFunction.push(date);
+           stockChartYValuesFunction.push(close);
+        });
+        pointerToThis.setState({
            stockChartXValues: stockChartXValuesFunction,
-           stockChartYValues: stockChartYValuesFunction
-         });
+           stockChartYValues: stockChartYValuesFunction,
+           companyStats: arrayOfValuesObjects
+        })
        }
      )
   }
-
-
 
   render() {
     return (
@@ -208,9 +207,10 @@ handleNewCompanySearchSubmit = (e) => {
         <form onSubmit= {this.handleNewCompanySearchSubmit}>
             <label>Company Search: </label>
             <input
-            id = "newTicker"
+            id = "newTicker" 
             type = "text"
             maxLength={4}
+            value={this.newTickerValue}
             required
         /* We are creating a function that is taking an event object and targeting the title value */
             onChange = {this.handleChange}
@@ -243,15 +243,16 @@ handleNewCompanySearchSubmit = (e) => {
 
         <button onClick={this.fetchWeeklyStock}>
           Weekly Chart!
-          </button>
+        </button>
         
-          <button onClick={this.fetchMonthly}>
+        <button onClick={this.fetchMonthly}>
           Monthly Chart!
-          </button>
+        </button>
 
         <br/>
         
         <h2>Company Price: {this.state.companyProfile.price}</h2>
+        <h2>Price Percent Change {this.state.companyStats}</h2>
 
        
         <div className="div1">

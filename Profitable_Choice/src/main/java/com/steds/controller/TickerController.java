@@ -23,7 +23,7 @@ public class TickerController {
     //Sabur Api Key d0896058131a955d9158b4672cb56fac
     //Stedwards email key be141489434b9d5ebd38d0aa148ffc51
     //api key
-    private final String apikey = "be141489434b9d5ebd38d0aa148ffc51";
+    private final String apikey = "d0896058131a955d9158b4672cb56fac";
     //api url
     private final String uri = "https://financialmodelingprep.com";
     //api endpoint for historical graphs
@@ -73,12 +73,15 @@ public class TickerController {
     //Get StockByTimeCharts Model Class --> Graph for the FE
     @RequestMapping(value="/stock-historical-price/{time}/{ticker}", method= RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    public LinkedHashMap<String, Double> returnStockByTimeWithPriceForChart (@PathVariable("ticker") String input, @PathVariable("time") String time) throws ParseException {
+    public List<List<Object>> returnStockByTimeWithPriceForChart (@PathVariable("ticker") String input, @PathVariable("time") String time) throws ParseException {
         String ticker = input;
         String timestamp = time;
         String path = uri+"/api/v3/historical-chart/" + timestamp+ "/"+ ticker + "?apikey="+apikey;
 
-        LinkedHashMap<String, Double> graphXandYPoints = new LinkedHashMap<>();
+        List<historical> graphXandYPoints = new ArrayList<>();
+        List<Object> percentChange = new ArrayList<>();
+        //formatted return
+        List<List<Object>> newStats = new ArrayList<>();
 
         RestTemplate restTemplate = new RestTemplate();
         List<HashMap> result = restTemplate.getForObject(path, List.class);
@@ -102,14 +105,6 @@ public class TickerController {
                 int  centralHour = formattedDate.getHours()-1;
                 formattedDate.setHours(centralHour);
 
-          /*  //Set AM and PM
-            if(formattedDate.getHours()>=12){
-                sDate = sDate + " "+ "PM";
-            }
-            else if(formattedDate.getTime()<12){
-                sDate = sDate + " "+ "AM";
-            }
-            Date AMPMformattedDate = sdf2.parse(sDate);*/ //reformatted with AM and PM and adjusted to CST
                 //set StockByTimeCharts model class attributes
                 chartInfo.setDate((Date) formattedDate);
                 chartInfo.setOpen((double) returnTickerHistorical.get("open"));
@@ -123,6 +118,25 @@ public class TickerController {
             }
             //our graph endpoints are in here
             graphXandYPoints = graphDao.getGraphPointsBy5minForDaily(companyInfo);
+
+            //list of open and old price
+            List<Double> percentChangeList = new ArrayList();
+            percentChangeList.add(graphXandYPoints.get(0).getClose());
+            percentChangeList.add(graphXandYPoints.get(graphXandYPoints.size()-1).getClose());
+            //List of percent Change
+            percentChange = serivce.buildPercentChangeFor5min(percentChangeList);
+
+            //list of prices for StockByTimeChart model with company stats
+            List<Double> prices = new ArrayList();
+            for(int i=0;i<graphXandYPoints.size();i++){
+                prices.add(graphXandYPoints.get(i).getClose());
+            }
+            //List of company open, low, high, close prices
+            List<StockByTimeCharts> companyStats = serivce.buildCompanyStatsFor5min(prices);
+
+            newStats.add(Collections.singletonList(graphXandYPoints));
+            newStats.add((List<Object>) percentChange);
+            newStats.add(Collections.singletonList(companyStats));
         }
 
         if(timestamp.equals("15min")){
@@ -152,9 +166,27 @@ public class TickerController {
             }
             //our graph endpoints are in here
             graphXandYPoints = graphDao.getGraphPointsBy15minForDaily(companyInfo);
+            //list of open and old price
+            List<Double> percentChangeList = new ArrayList();
+            percentChangeList.add(graphXandYPoints.get(0).getClose());
+            percentChangeList.add(graphXandYPoints.get(graphXandYPoints.size()-1).getClose());
+            //builds percentChange into this list
+            percentChange = serivce.buildPercentChangeFor15min(percentChangeList);
+
+            //list of prices for StockByTimeChart model with company stats
+            List<Double> prices = new ArrayList();
+            for(int i=0;i<graphXandYPoints.size();i++){
+                prices.add(graphXandYPoints.get(i).getClose());
+            }
+            //List of company open, low, high, close prices
+            List<StockByTimeCharts> companyStats = serivce.buildCompanyStatsFor15min(prices);
+
+            newStats.add(Collections.singletonList(graphXandYPoints));
+            newStats.add((List<Object>) percentChange);
+            newStats.add(Collections.singletonList(companyStats));
         }
 
-        return graphXandYPoints;
+        return newStats;
     }
     //Get StockByTimeCharts Model Class --> Graph for the FE
     @RequestMapping(value="/stock-historical-price/{ticker}", method= RequestMethod.GET)

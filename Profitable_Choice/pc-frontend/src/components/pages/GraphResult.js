@@ -10,7 +10,12 @@ class GraphResult extends React.Component {
       stockChartYValues: [],
       companyProfile: {},
       companyStats: 0,
-      companyMetrics: {}
+      companyMetrics: {
+        open: "",
+        low: "",
+        high: "",
+        close: ""
+      }
      // newTickerValue: ""
     }
     this.fetchMonthly = this.fetchMonthly.bind(this);
@@ -188,6 +193,9 @@ handleNewCompanySearchSubmit = (e) => {
          const arrayOfObjects = data[0][0];
          const arrayOfValuesObjects = data[1][0];
          const arrayOfCompanyMetrics = data[2][0];
+         //let metric = this.state.companyMetrics;
+
+        console.log(arrayOfCompanyMetrics['open']);
 
         arrayOfObjects.map(({date,close}) => {
            stockChartXValuesFunction.push(date);
@@ -271,7 +279,7 @@ handleNewCompanySearchSubmit = (e) => {
                 <th>Closing Price</th>
               </tr>
               <tr>
-                <td>Open price call here</td>
+                <td>{this.state.companyMetrics.open}</td>
                 <td>Low price call here</td>
                 <td>High price call here</td>
                 <td>Close price call here</td>

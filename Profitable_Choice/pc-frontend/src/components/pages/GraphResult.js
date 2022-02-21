@@ -209,7 +209,7 @@ handleNewCompanySearchSubmit = (e) => {
     return (
       <div>
         {/* this is not working need to fix connection with submit button */}
-        <form onSubmit= {this.handleNewCompanySearchSubmit}>
+        <form class = "submitForm"onSubmit= {this.handleNewCompanySearchSubmit}>
             <label>Company Search: </label>
             <input
             id = "newTicker" 
@@ -224,7 +224,7 @@ handleNewCompanySearchSubmit = (e) => {
         </form>
        
         <section className="about-div">
-        
+        <h1>Company Description</h1>
         {this.state.companyProfile.description}
 
         </section>
@@ -242,49 +242,53 @@ handleNewCompanySearchSubmit = (e) => {
         />
         <br/>
 
-        <button onClick={this.fetchStock}>
+        <button class= "graphBTN" onClick={this.fetchStock}>
           Daily Chart!
         </button>
 
-        <button onClick={this.fetchWeeklyStock}>
+        <button  class= "graphBTN" onClick={this.fetchWeeklyStock}>
           Weekly Chart!
         </button>
         
-        <button onClick={this.fetchMonthly}>
+        <button  class= "graphBTN"  onClick={this.fetchMonthly}>
           Monthly Chart!
         </button>
 
         <br/>
         
-        <h2>Company Price: {this.state.companyProfile.price}</h2>
-        <h2>Price Percent Change {this.state.companyStats}</h2>
+        <h2>Company Price: {this.state.companyProfile.price}, Price Percent Change: {this.state.companyStats}</h2>
 
+       
        
         <div className="div1">
           <br/>
         
           <table>
-           
+          <tr>
+                <th>Open Price</th>
+                <th>Lowest Price</th>
+                <th>Highest Price</th>
+                <th>Closing Price</th>
+              </tr>
+              <tr>
+                <td>Open price call here</td>
+                <td>Low price call here</td>
+                <td>High price call here</td>
+                <td>Close price call here</td>
+              </tr>
               <tr>
                 <th>Sector</th>
                 <th>Industry</th>
                 <th>Exchange</th>
+                <th>Website</th>
               </tr>
               <tr>
                 <td>{this.state.companyProfile.sector}</td>
                 <td>{this.state.companyProfile.industry}</td>
                 <td>{this.state.companyProfile.exchange}</td>
-              </tr>
-              <tr>
-                <th>Website</th>
-                <th></th>
-                <th></th>
-              </tr>
-              <tr>
                 <td>{this.state.companyProfile.website}</td>
-                <td></td>
-                <td></td>
               </tr>
+
 
           </table>
         </div>

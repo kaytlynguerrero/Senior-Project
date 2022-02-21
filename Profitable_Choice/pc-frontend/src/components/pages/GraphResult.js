@@ -10,12 +10,7 @@ class GraphResult extends React.Component {
       stockChartYValues: [],
       companyProfile: {},
       companyStats: 0,
-      companyMetrics: {
-        open: "",
-        low: "",
-        high: "",
-        close: ""
-      }
+      companyMetrics: [{}]
      // newTickerValue: ""
     }
     this.fetchMonthly = this.fetchMonthly.bind(this);
@@ -117,21 +112,25 @@ handleNewCompanySearchSubmit = (e) => {
       )
       .then(
         function(data) {
-          console.log(data);
-          const values = Object.values(data);
+        console.log(data);
+        const arrayOfObjects = data[0][0];
+        const arrayOfValuesObjects = data[1][0];
+         // const values = Object.values(data);'
+        //console.log(data[2][0][0]);
 
-          for (var key in data) {
-            stockChartXValuesFunction.push(key);
-          }
-          for(var value in values){
-            stockChartYValuesFunction.push(values[value]);
-          }
+         arrayOfObjects.map(({date,close}) => {
+          stockChartXValuesFunction.push(date);
+          stockChartYValuesFunction.push(close);
+       });
 
-          pointerToThis.setState({
-            stockChartXValues: stockChartXValuesFunction,
-            stockChartYValues: stockChartYValuesFunction
-          });
-        }
+       pointerToThis.setState({
+          stockChartXValues: stockChartXValuesFunction,
+          stockChartYValues: stockChartYValuesFunction,
+          companyStats: arrayOfValuesObjects,
+          companyMetrics: data[2][0][0]
+       })
+       console.log(pointerToThis);
+      }
       )
   }
 
@@ -152,22 +151,24 @@ handleNewCompanySearchSubmit = (e) => {
        }
      )
      .then(
-       function(data) {
-         console.log(data);
-         const values = Object.values(data);
+      function(data) {
+      console.log(data);
+      const arrayOfObjects = data[0][0];
+      const arrayOfValuesObjects = data[1][0];
 
-         for (var key in data) {
-           stockChartXValuesFunction.push(key);
-         }
-         for(var value in values){
-           stockChartYValuesFunction.push(values[value]);
-         }
+       arrayOfObjects.map(({date,close}) => {
+        stockChartXValuesFunction.push(date);
+        stockChartYValuesFunction.push(close);
+     });
 
-         pointerToThis.setState({
-           stockChartXValues: stockChartXValuesFunction,
-           stockChartYValues: stockChartYValuesFunction
-         });
-       }
+     pointerToThis.setState({
+        stockChartXValues: stockChartXValuesFunction,
+        stockChartYValues: stockChartYValuesFunction,
+        companyStats: arrayOfValuesObjects,
+        companyMetrics: data[2][0][0]
+     })
+     console.log(pointerToThis);
+    }
      )
   }
 
@@ -206,7 +207,7 @@ handleNewCompanySearchSubmit = (e) => {
            stockChartXValues: stockChartXValuesFunction,
            stockChartYValues: stockChartYValuesFunction,
            companyStats: arrayOfValuesObjects,
-           companyMetrics: data[2][0]
+           companyMetrics: data[2][0][0]
         })
         console.log(pointerToThis);
        }

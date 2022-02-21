@@ -28,14 +28,14 @@ class GraphResult extends React.Component {
    // this.state[id] = value
     this.setState({[id]:value})
 
-    let elem = document.getElementById("PC");
+    // let elem = document.getElementById("PC");
 
-    if (this.state.companyMetrics.open > this.state.companyMetrics.close) {
-      elem.style.color = "red"
-    }
-    else {
-      elem.style.color = "green"
-    }
+    // if (this.state.companyMetrics.open > this.state.companyMetrics.close) {
+    //   elem.style.color = "red"
+    // }
+    // else {
+    //   elem.style.color = "green"
+    // }
     
 }
 

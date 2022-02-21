@@ -10,7 +10,8 @@ class GraphResult extends React.Component {
       stockChartYValues: [],
       companyProfile: {},
       companyStats: 0,
-      companyMetrics: [{}]
+      companyMetrics: [{}],
+      stockNews: [{},{},{},{},{},{},{},{}]
      // newTickerValue: ""
     }
     this.fetchMonthly = this.fetchMonthly.bind(this);
@@ -52,22 +53,26 @@ handleNewCompanySearchSubmit = (e) => {
 
   fetchNewStock(){
     const pointerToThis = this;
-    console.log(pointerToThis);
+   // console.log(pointerToThis);
     const StockSymbol = this.state.newTicker;
     //this.setState(newTickerValue,StockSymbol);
     this.state.newTickerValue = StockSymbol;
-    console.log(this.state);
+   // console.log(this.state);
     let DAILY_API_CALL = `http://localhost:8080/stock-historical-price/5min/${StockSymbol}`;
    //console.log(DAILY_API_CALL);
     let API_CallTWO = `http://localhost:8080/search_ticker/${StockSymbol}`;
+    let STOCK_NEWS_API = `http://localhost:8080/stocknews/${StockSymbol}`
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
   
+    fetch(STOCK_NEWS_API)
+    .then(response => response.json())
+    .then(data => this.setState({stockNews:data}), () => console.log(this.state))
+
     //Company Profile API Call
     fetch(API_CallTWO)
     .then(response => response.json())
     .then(data => this.setState({companyProfile:data}), () => console.log(this.state))
-
 
     //Graph X and Y CORDS API CALL
     fetch(DAILY_API_CALL)
@@ -79,12 +84,12 @@ handleNewCompanySearchSubmit = (e) => {
       .then(
         function(data) {
         console.log(data);
-        const arrayOfObjects = data[0][0];
+        //const arrayOfObjects = data[0][0];
         const arrayOfValuesObjects = data[1][0];
          // const values = Object.values(data);'
         //console.log(data[2][0][0]);
 
-         arrayOfObjects.map(({date,close}) => {
+         data[0][0].map(({date,close}) => {
           stockChartXValuesFunction.push(date);
           stockChartYValuesFunction.push(close);
        });
@@ -95,9 +100,9 @@ handleNewCompanySearchSubmit = (e) => {
           companyStats: arrayOfValuesObjects,
           companyMetrics: data[2][0][0]
        })
-       console.log(pointerToThis);
       }
       )
+    console.log(pointerToThis);
   }
   
   fetchStock() {
@@ -108,6 +113,7 @@ handleNewCompanySearchSubmit = (e) => {
     let DAILY_API_CALL = `http://localhost:8080/stock-historical-price/5min/${StockSymbol}`;
     console.log(DAILY_API_CALL);
     let API_CallTWO = `http://localhost:8080/search_ticker/${StockSymbol}`;
+    let STOCK_NEWS_API = `http://localhost:8080/stocknews/${StockSymbol}`
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
   
@@ -116,6 +122,10 @@ handleNewCompanySearchSubmit = (e) => {
     .then(response => response.json())
     .then(data => this.setState({companyProfile:data}), () => console.log(this.state))
 
+    //STock news API
+    fetch(STOCK_NEWS_API)
+    .then(response => response.json())
+    .then(data => this.setState({stockNews:data}), () => console.log(this.state))
 
     //Graph X and Y CORDS API CALL
     fetch(DAILY_API_CALL)
@@ -135,17 +145,18 @@ handleNewCompanySearchSubmit = (e) => {
          arrayOfObjects.map(({date,close}) => {
           stockChartXValuesFunction.push(date);
           stockChartYValuesFunction.push(close);
-       });
+         });
 
        pointerToThis.setState({
           stockChartXValues: stockChartXValuesFunction,
           stockChartYValues: stockChartYValuesFunction,
           companyStats: arrayOfValuesObjects,
           companyMetrics: data[2][0][0]
-       })
-       console.log(pointerToThis);
-      }
+        })
+        console.log(pointerToThis);
+      } 
       )
+      
   }
 
   fetchWeeklyStock(){

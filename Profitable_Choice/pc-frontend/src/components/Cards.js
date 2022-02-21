@@ -9,7 +9,7 @@ class Cards extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      stockNews: [{}]
+      stockNews: [{},{},{},{},{},{},{},{}]
     };
   }
   fetchStockNews(){
@@ -40,35 +40,33 @@ class Cards extends React.Component {
                 text={this.state.stockNews[0].text}
                 label={this.state.stockNews[0].title}
                 path={this.state.stockNews[0].url}
-  
               />
-              
               <CardItem 
       
-                src='images/FMP.jpeg'
-                text='Access all stocks discounted cash flow statements, market price, stock market news and learn more about Financial Modeling.'
-                label='Financial Modeling Prep'
-                path='/services'
+                src={this.state.stockNews[1].image}
+                text={this.state.stockNews[1].text}      
+                label={this.state.stockNews[1].title} 
+                path={this.state.stockNews[1].url} 
               />
             </ul>
             <ul className='cards__items'>
               <CardItem
-                src='images/investopedia.jpeg'
-                text='Investopedia provides investment dictionaries, advice, reviews, ratings and comparisons of financial products.'
-                label='Investopedia'
-                path='/services'
+               src={this.state.stockNews[2].image}
+               text={this.state.stockNews[2].text}      
+               label={this.state.stockNews[2].title} 
+               path={this.state.stockNews[2].url} 
               />
               <CardItem
-                src='images/financial-times.png'
-                text='A daily newspaper that focuses on business and economic current affairs.'
-                label='Financial Times'
-                path='/products'
+                src={this.state.stockNews[3].image}
+                text={this.state.stockNews[3].text}      
+                label={this.state.stockNews[3].title} 
+                path={this.state.stockNews[3].url} 
               />
               <CardItem
-                src='images/cnn-markets.jpeg'
-                text='A news network that is finance-focused on markets.'
-                label='CNN Markets'
-                path='/sign-up'
+                src={this.state.stockNews[4].image}
+                text={this.state.stockNews[4].text}      
+                label={this.state.stockNews[4].title} 
+                path={this.state.stockNews[4].url} 
               />
             </ul>
           </div>

@@ -204,7 +204,7 @@ handleNewCompanySearchSubmit = (e) => {
     return (
       <div>
         {/* this is not working need to fix connection with submit button */}
-        <form onSubmit= {this.handleNewCompanySearchSubmit}>
+        <form class = "submitForm"onSubmit= {this.handleNewCompanySearchSubmit}>
             <label>Company Search: </label>
             <input
             id = "newTicker" 
@@ -237,15 +237,15 @@ handleNewCompanySearchSubmit = (e) => {
         />
         <br/>
 
-        <button onClick={this.fetchStock}>
+        <button class= "graphBTN" onClick={this.fetchStock}>
           Daily Chart!
         </button>
 
-        <button onClick={this.fetchWeeklyStock}>
+        <button  class= "graphBTN" onClick={this.fetchWeeklyStock}>
           Weekly Chart!
         </button>
         
-        <button onClick={this.fetchMonthly}>
+        <button  class= "graphBTN"  onClick={this.fetchMonthly}>
           Monthly Chart!
         </button>
 
@@ -266,7 +266,7 @@ handleNewCompanySearchSubmit = (e) => {
                 <th>Closing Price</th>
               </tr>
               <tr>
-                <td> Open price call here</td>
+                <td>Open price call here</td>
                 <td>Low price call here</td>
                 <td>High price call here</td>
                 <td>Close price call here</td>

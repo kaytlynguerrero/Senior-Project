@@ -13,12 +13,13 @@ class Cards extends React.Component {
     };
   }
   fetchStockNews(){
-    //const pointerToThis = this;
+    const pointerToThis = this;
     let API_CALL = `http://localhost:8080/homepageNews`;
 
     fetch(API_CALL)
     .then(response => response.json())
     .then(data => this.setState({stockNews:data}), () => console.log(this.state))
+    console.log(pointerToThis);
   }
   componentDidMount() {
     this.fetchStockNews();
@@ -35,10 +36,10 @@ class Cards extends React.Component {
             <ul className='cards__items'>
             {/* <Link to ={{pathname: "https://www.marketwatch.com/markets" }} target="_blank" /> */}
               <CardItem 
-                src='images/marketwatch.jpeg'
-                text='Explore up to date financial data'
-                label='Market Watch'
-                path='https://www.marketwatch.com/markets'
+                src={this.state.stockNews[0].image}
+                text={this.state.stockNews[0].text}
+                label={this.state.stockNews[0].title}
+                path={this.state.stockNews[0].url}
   
               />
               

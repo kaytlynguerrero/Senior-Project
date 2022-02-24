@@ -5,7 +5,6 @@ import com.steds.model.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -22,9 +21,6 @@ public class UserWepAppDaoJdbcTemplateImpl implements UserWebAppDao {
 
     private static final Map<Integer, User> USERS_MAP = new HashMap<Integer, User>();
     private final static Random randomizer = new Random(System.currentTimeMillis());
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     // Prepared statement strings
     private static final String INSERT_USER_SQL =

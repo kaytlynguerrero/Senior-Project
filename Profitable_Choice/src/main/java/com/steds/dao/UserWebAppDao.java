@@ -4,7 +4,6 @@ import com.steds.model.User;
 import com.steds.model.UserForm;
 
 import java.util.List;
-
 public interface UserWebAppDao {
 
     //generate user id, create encrypted password with this.passwordEncoder.encode(form.getPassword())

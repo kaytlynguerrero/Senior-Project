@@ -28,14 +28,14 @@ class GraphResult extends React.Component {
    // this.state[id] = value
     this.setState({[id]:value})
 
-    // let elem = document.getElementById("PC");
+    let elem = document.getElementById("PC");
 
-    // if (this.state.companyMetrics.open > this.state.companyMetrics.close) {
-    //   elem.style.color = "red"
-    // }
-    // else {
-    //   elem.style.color = "green"
-    // }
+    if (this.state.companyMetrics.open > this.state.companyMetrics.close) {
+      elem.style.color = "red"
+    }
+    else {
+      elem.style.color = "green"
+    }
     
 }
 
@@ -59,7 +59,7 @@ handleNewCompanySearchSubmit = (e) => {
     //this.setState(newTickerValue,StockSymbol);
     this.state.newTickerValue = StockSymbol;
    // console.log(this.state);
-    let DAILY_API_CALL = `http://localhost:8080/stock-historical-price/5min/${StockSymbol}`;
+    let DAILY_API_CALL = `http://localhost:8080/stock-daily-charts/5min/${StockSymbol}`;
    //console.log(DAILY_API_CALL);
     let API_CallTWO = `http://localhost:8080/search_ticker/${StockSymbol}`;
     let STOCK_NEWS_API = `http://localhost:8080/stocknews/${StockSymbol}`
@@ -111,7 +111,7 @@ handleNewCompanySearchSubmit = (e) => {
     console.log(pointerToThis);
     const StockSymbol = this.props.location.state.ticker;
     console.log(StockSymbol);
-    let DAILY_API_CALL = `http://localhost:8080/stock-historical-price/5min/${StockSymbol}`;
+    let DAILY_API_CALL = `http://localhost:8080/stock-daily-charts/5min/${StockSymbol}`;
     console.log(DAILY_API_CALL);
     let API_CallTWO = `http://localhost:8080/search_ticker/${StockSymbol}`;
     let STOCK_NEWS_API = `http://localhost:8080/stocknews/${StockSymbol}`
@@ -165,7 +165,7 @@ handleNewCompanySearchSubmit = (e) => {
     console.log(pointerToThis);
     let StockSymbol = this.props.location.state.ticker;
     console.log(StockSymbol);
-    let WEEKLY_API_CALL = `http://localhost:8080/stock-historical-price/15min/${StockSymbol}`;
+    let WEEKLY_API_CALL = `http://localhost:8080/stock-daily-chrarts/15min/${StockSymbol}`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
 
@@ -203,7 +203,8 @@ handleNewCompanySearchSubmit = (e) => {
     //console.log(pointerToThis);
     let StockSymbol = this.props.location.state.ticker;
     //console.log(StockSymbol);
-    let MONTHLY_API_CALL = `http://localhost:8080/stock-historical-price/${StockSymbol}`;
+    let time = '1';
+    let MONTHLY_API_CALL = `http://localhost:8080/stock-historical-daily-prices/${time}/${StockSymbol}`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
 

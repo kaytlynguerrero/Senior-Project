@@ -1,5 +1,7 @@
 package com.steds.controller;
 
+//import com.steds.dao.UserWebAppDao;
+
 import com.steds.dao.UserWebAppDao;
 import com.steds.dao.stockChartWebAppDao;
 import com.steds.model.*;
@@ -23,7 +25,7 @@ public class TickerController {
     //Sabur Api Key d0896058131a955d9158b4672cb56fac
     //Stedwards email key be141489434b9d5ebd38d0aa148ffc51
     //api key
-    private final String apikey = "d0896058131a955d9158b4672cb56fac";
+    private final String apikey = "be141489434b9d5ebd38d0aa148ffc51";
     //api url
     private final String uri = "https://financialmodelingprep.com";
     //api endpoint for historical graphs
@@ -43,9 +45,10 @@ public class TickerController {
     @Autowired
     ServiceLayer serivce;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value="/search_ticker/{input}", method= RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    public Ticker returnCompanyProfile(@PathVariable String input) {
+    public CompanyInfo returnCompanyProfile(@PathVariable String input) {
         String ticker = input;
         String path = uri+"/api/v3/profile/"+ticker+"?apikey="+apikey;
 
@@ -54,7 +57,7 @@ public class TickerController {
 
         Map returnObject = result.get(0);
 
-        Ticker companyInfo = new Ticker();
+        CompanyInfo companyInfo = new CompanyInfo();
         companyInfo.setSymbol((String) returnObject.get("symbol"));
         companyInfo.setPrice((Double) returnObject.get("price"));
         companyInfo.setIndustry((String) returnObject.get("industry"));
@@ -69,9 +72,37 @@ public class TickerController {
         return companyInfo;
     }
 
+    //Ticker Search for homepage and similar tickers
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(value="/search/{input}", method= RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public Ticker[] returnNameAndSymbol(@PathVariable String input) {
+        String ticker = input;
+        String path = uri+"/api/v3/search-name?query="+ticker+"&limit=10&apikey="+apikey;
+
+        RestTemplate restTemplate = new RestTemplate();
+        Ticker[] result = restTemplate.getForObject(path, Ticker[].class);
+
+        return result;
+    }
+
+    //https://financialmodelingprep.com/api/v4/stock_peers?symbol=AAPL&apikey=be141489434b9d5ebd38d0aa148ffc51
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(value="/searchPeers/{symbol}", method= RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public PeerList[] companyPeers(@PathVariable String symbol) {
+        String path = uri+"/api/v4/stock_peers?symbol="+symbol+"&apikey="+apikey;
+
+        RestTemplate restTemplate = new RestTemplate();
+        PeerList[] result = restTemplate.getForObject(path, PeerList[].class);
+
+        return result;
+    }
+
 
     //Get StockByTimeCharts Model Class --> Graph for the FE
-    @RequestMapping(value="/stock-historical-price/{time}/{ticker}", method= RequestMethod.GET)
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(value="/stock-daily-charts/{time}/{ticker}", method= RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public List<List<Object>> returnStockByTimeWithPriceForChart (@PathVariable("ticker") String input, @PathVariable("time") String time) throws ParseException {
         String ticker = input;
@@ -189,20 +220,52 @@ public class TickerController {
         return newStats;
     }
     //Get StockByTimeCharts Model Class --> Graph for the FE
-    @RequestMapping(value="/stock-historical-price/{ticker}", method= RequestMethod.GET)
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(value="/stock-historical-daily-prices/{time}/{ticker}", method= RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    public List<List<Object>> StockByTimeWithPriceForDailyPrices (@PathVariable("ticker") String input) throws ParseException {
+    public List<List<Object>> historicalDailyPrices(@PathVariable("time") String time,@PathVariable("ticker") String input) throws ParseException {
         String ticker = input;
+        List<List<Object>> graphXandYPoints = new ArrayList<>();
         String path = uri+"/api/v3/historical-price-full/"+ ticker + "?serietype=line" + "&apikey=" + apikey;
 
         RestTemplate restTemplate = new RestTemplate();
         DailyChartResponse result = restTemplate.getForObject(path, DailyChartResponse.class);
 
-        //Service layer shit?
-        List<List<Object>> graphXandYPoints = serivce.buildGraphPointsForDailyPrices(result);
+        //Service layer --> if chartType == 1M...3M..1Y..5Y or M
+        if(time.equals("1")) {
+            graphXandYPoints = serivce.monthlyChart(result);
+        }
+        else if(time.equals("3")) {
+            graphXandYPoints = serivce.threeMonthsChart(result);
+        }
 
         return graphXandYPoints;
     }
+
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(value="/homepageNews", method= RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public StockNews[] homepageStockNews () throws ParseException {
+        String path = uri+"/api/v3/stock_news?limit=8"+ "&apikey=" + apikey;
+
+        RestTemplate restTemplate = new RestTemplate();
+        StockNews[] result = restTemplate.getForObject(path, StockNews[].class);
+
+        return result;
+    }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping(value="/stocknews/{ticker}", method= RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public StockNews[] IndividualStockNews (@PathVariable("ticker") String input) throws ParseException {
+        String path = uri+"/api/v3/stock_news?tickers=" + input + "&limit=8"+ "&apikey=" + apikey;
+
+        RestTemplate restTemplate = new RestTemplate();
+        StockNews[] result = restTemplate.getForObject(path, StockNews[].class);
+
+        return result;
+    }
+
 
     @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody UserForm form) {
@@ -221,7 +284,8 @@ public class TickerController {
             response = new ResponseEntity<User>(user,HttpStatus.BAD_REQUEST);
         }*/
         return response;
-    }
+       }
+
 
 
   /*  @RequestMapping(value="/log-in/{username}/{password}", method= RequestMethod.GET)

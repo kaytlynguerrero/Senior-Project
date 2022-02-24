@@ -2,14 +2,15 @@ package com.steds.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Ticker {
+import java.util.ArrayList;
+
+public class PeerList {
     @JsonProperty("name")
     private String name;
-    @JsonProperty("symbol")
-    private String symbol;
+    @JsonProperty("peersList")
+    private ArrayList peers;
 
-    public Ticker() {
-
+    public PeerList() {
     }
 
     public String getName() {
@@ -20,11 +21,11 @@ public class Ticker {
         this.name = name;
     }
 
-    public String getSymbol() {
-        return symbol;
+    public ArrayList getPeers() {
+        return peers;
     }
 
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
+    public void setPeers(ArrayList peers) {
+        this.peers = peers;
     }
 }

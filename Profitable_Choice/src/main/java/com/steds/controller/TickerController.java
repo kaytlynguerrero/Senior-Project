@@ -102,7 +102,7 @@ public class TickerController {
 
     //Get StockByTimeCharts Model Class --> Graph for the FE
     @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping(value="/stock-daily-charts/{time}/{ticker}", method= RequestMethod.GET)
+    @GetMapping(value="/stock-daily-charts/{time}/{ticker}")
     @ResponseStatus(value = HttpStatus.OK)
     public List<List<Object>> returnStockByTimeWithPriceForChart (@PathVariable("ticker") String input, @PathVariable("time") String time) throws ParseException {
         String ticker = input;

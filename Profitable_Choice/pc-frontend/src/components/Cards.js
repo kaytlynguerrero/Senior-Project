@@ -28,18 +28,24 @@ class Cards extends React.Component {
   render(){
     return (
       <div className='cards'>
-       <h1>Latest Stock News</h1>
+       
         <div className='cards__container'>
   
           <div className='cards__wrapper'>
   
             <ul className='cards__items'>
-            
+            {}
               <CardItem 
                 src={this.state.stockNews[0].image}
                 text={this.state.stockNews[0].text}
                 label={this.state.stockNews[0].title}
                 path={this.state.stockNews[0].url}
+              />
+               <CardItem 
+                src={this.state.stockNews[5].image}
+                text={this.state.stockNews[5].text}      
+                label={this.state.stockNews[5].title} 
+                path={this.state.stockNews[5].url} 
               />
               <CardItem 
       

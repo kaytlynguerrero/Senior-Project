@@ -12,30 +12,21 @@ class GraphResult extends React.Component {
       companyProfile: {},
       companyStats: 0,
       companyMetrics: [{}],
-      stockNews: [{},{},{},{},{},{},{},{}]
+      stockNews: [{},{},{},{},{},{},{},{}],
+      color:"green"
      // newTickerValue: ""
     }
+    this.fetchOneYear = this.fetchOneYear.bind(this);
+    this.fetchThreeMonth = this.fetchThreeMonth.bind(this);
     this.fetchMonthly = this.fetchMonthly.bind(this);
     this.fetchWeeklyStock = this.fetchWeeklyStock.bind(this);
     this.fetchStock = this.fetchStock.bind(this);
-   
   }
-
-
   
   handleChange = (e) => {
     const {id, value} = e.target
    // this.state[id] = value
     this.setState({[id]:value})
-
-    let elem = document.getElementById("PC");
-
-    if (this.state.companyMetrics.open > this.state.companyMetrics.close) {
-      elem.style.color = "red"
-    }
-    else {
-      elem.style.color = "green"
-    }
     
 }
 
@@ -101,18 +92,23 @@ handleNewCompanySearchSubmit = (e) => {
           companyStats: arrayOfValuesObjects,
           companyMetrics: data[2][0][0]
        })
+       if(pointerToThis.state.companyMetrics.open > pointerToThis.state.companyMetrics.close) {
+        pointerToThis.setState({color:"red"})
       }
-      )
-    console.log(pointerToThis);
+      else {
+        pointerToThis.setState({color:"green"});
+      }
+      console.log(pointerToThis);
+      })
   }
   
   fetchStock() {
     const pointerToThis = this;
     console.log(pointerToThis);
     const StockSymbol = this.props.location.state.ticker;
-    console.log(StockSymbol);
+    //console.log(StockSymbol);
     let DAILY_API_CALL = `http://localhost:8080/stock-daily-charts/5min/${StockSymbol}`;
-    console.log(DAILY_API_CALL);
+    //console.log(DAILY_API_CALL);
     let API_CallTWO = `http://localhost:8080/search_ticker/${StockSymbol}`;
     let STOCK_NEWS_API = `http://localhost:8080/stocknews/${StockSymbol}`
     let stockChartXValuesFunction = [];
@@ -154,10 +150,14 @@ handleNewCompanySearchSubmit = (e) => {
           companyStats: arrayOfValuesObjects,
           companyMetrics: data[2][0][0]
         })
+        if(pointerToThis.state.companyMetrics.open > pointerToThis.state.companyMetrics.close) {
+          pointerToThis.setState({color:"red"})
+        }
+        else {
+          pointerToThis.setState({color:"green"});
+        }
         console.log(pointerToThis);
-      } 
-      )
-      
+      } )
   }
 
   fetchWeeklyStock(){
@@ -165,7 +165,7 @@ handleNewCompanySearchSubmit = (e) => {
     console.log(pointerToThis);
     let StockSymbol = this.props.location.state.ticker;
     console.log(StockSymbol);
-    let WEEKLY_API_CALL = `http://localhost:8080/stock-daily-chrarts/15min/${StockSymbol}`;
+    let WEEKLY_API_CALL = `http://localhost:8080/stock-daily-charts/15min/${StockSymbol}`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
 
@@ -193,9 +193,14 @@ handleNewCompanySearchSubmit = (e) => {
         companyStats: arrayOfValuesObjects,
         companyMetrics: data[2][0][0]
      })
-     console.log(pointerToThis);
+     if(pointerToThis.state.companyMetrics.open > pointerToThis.state.companyMetrics.close) {
+      pointerToThis.setState({color:"red"})
     }
-     )
+    else {
+      pointerToThis.setState({color:"green"});
+    }
+    console.log(pointerToThis);
+    })
   }
 
   fetchMonthly(){
@@ -203,13 +208,62 @@ handleNewCompanySearchSubmit = (e) => {
     //console.log(pointerToThis);
     let StockSymbol = this.props.location.state.ticker;
     //console.log(StockSymbol);
-    let time = '1';
+    let time = '1M';
     let MONTHLY_API_CALL = `http://localhost:8080/stock-historical-daily-prices/${time}/${StockSymbol}`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
 
      //Graph X and Y CORDS API CALL
      fetch(MONTHLY_API_CALL)
+     .then(
+       function(response) {
+         return response.json();
+       }
+     )
+     .then(
+       function(data) {
+         console.log(data);
+         const arrayOfObjects = data[0][0];
+         const arrayOfValuesObjects = data[1][0];
+         const arrayOfCompanyMetrics = data[2][0];
+         //let metric = this.state.companyMetrics;
+
+        //console.log(arrayOfCompanyMetrics['open']);
+
+        arrayOfObjects.map(({date,close}) => {
+           stockChartXValuesFunction.push(date);
+           stockChartYValuesFunction.push(close);
+        });
+
+        pointerToThis.setState({
+           stockChartXValues: stockChartXValuesFunction,
+           stockChartYValues: stockChartYValuesFunction,
+           companyStats: arrayOfValuesObjects,
+           companyMetrics: data[2][0][0]
+        })
+        if(pointerToThis.state.companyMetrics.open > pointerToThis.state.companyMetrics.close) {
+          pointerToThis.setState({color:"red"})
+        }
+        else {
+          pointerToThis.setState({color:"green"});
+        }
+        console.log(pointerToThis);
+       })
+  }
+
+  //3M chart
+  fetchThreeMonth(){
+    const pointerToThis = this;
+    console.log(pointerToThis);
+    let StockSymbol = this.props.location.state.ticker;
+    //console.log(StockSymbol);
+    let time = '3M';
+    let THREE_M_API = `http://localhost:8080/stock-historical-daily-prices/${time}/${StockSymbol}`;
+    let stockChartXValuesFunction = [];
+    let stockChartYValuesFunction = [];
+
+     //Graph X and Y CORDS API CALL
+     fetch(THREE_M_API)
      .then(
        function(response) {
          return response.json();
@@ -236,9 +290,72 @@ handleNewCompanySearchSubmit = (e) => {
            companyStats: arrayOfValuesObjects,
            companyMetrics: data[2][0][0]
         })
+        if(pointerToThis.state.companyMetrics.open > pointerToThis.state.companyMetrics.close) {
+          pointerToThis.setState({color:"red"})
+        }
+        else {
+          pointerToThis.setState({color:"green"});
+        }
         console.log(pointerToThis);
+       })  
+  }
+  //1Y chart
+  fetchOneYear(){
+    const pointerToThis = this;
+    console.log(pointerToThis);
+    let StockSymbol = this.props.location.state.ticker;
+    //console.log(StockSymbol);
+    let time = '1Y';
+    let ONE_YEAR_API = `http://localhost:8080/stock-historical-daily-prices/${time}/${StockSymbol}`;
+    let stockChartXValuesFunction = [];
+    let stockChartYValuesFunction = [];
+
+     //Graph X and Y CORDS API CALL
+     fetch(ONE_YEAR_API)
+     .then(
+       function(response) {
+         return response.json();
        }
      )
+     .then(
+       function(data) {
+         console.log(data);
+         const arrayOfObjects = data[0][0];
+         const arrayOfValuesObjects = data[1][0];
+         const arrayOfCompanyMetrics = data[2][0];
+         //let metric = this.state.companyMetrics;
+
+        //console.log(arrayOfCompanyMetrics['open']);
+
+        arrayOfObjects.map(({date,close}) => {
+           stockChartXValuesFunction.push(date);
+           stockChartYValuesFunction.push(close);
+        });
+
+        pointerToThis.setState({
+           stockChartXValues: stockChartXValuesFunction,
+           stockChartYValues: stockChartYValuesFunction,
+           companyStats: arrayOfValuesObjects,
+           companyMetrics: data[2][0][0]
+        })
+        if(pointerToThis.state.companyMetrics.open > pointerToThis.state.companyMetrics.close) {
+          pointerToThis.setState({color:"red"})
+        }
+        else {
+          pointerToThis.setState({color:"green"});
+        }
+        console.log(pointerToThis);
+       })
+  }
+  handlePercentChange() {
+  
+    console.log(this.state.companyMetrics.open);
+    if (this.state.companyMetrics.open > this.state.companyMetrics.close) {
+      this.setState({color:"red"})
+    }
+    else {
+      this.setState({color:"green"});
+    }
   }
   // changeColor(){
   //   // el = document.getElementById("PC")
@@ -273,15 +390,20 @@ handleNewCompanySearchSubmit = (e) => {
         {this.state.companyProfile.description}
 
         </section>
-        <Plot
+        <div className="div2">
+        <Plot 
+          
+          //onAfterPlot = {this.handlePercentChange}
           data={[
             {
               x: this.state.stockChartXValues,
               y: this.state.stockChartYValues,
               type: 'scatter',
               mode: 'lines+markers',
-              marker: {color: 'red'},
+              marker: {color: this.state.color},
+              
             }
+            
           ]}
           layout={{     
             width: 720, 
@@ -289,18 +411,27 @@ handleNewCompanySearchSubmit = (e) => {
             title: this.state.companyProfile.companyName
           }}
         />
+        </div>
         <br/>
 
         <button class= "graphBTN" onClick={this.fetchStock}>
-          Daily Chart!
+          1D
         </button>
 
         <button  class= "graphBTN" onClick={this.fetchWeeklyStock}>
-          Weekly Chart!
+          5D
         </button>
         
         <button  class= "graphBTN"  onClick={this.fetchMonthly}>
-          Monthly Chart!
+          1M
+        </button>
+
+        <button  class= "graphBTN"  onClick={this.fetchThreeMonth}>
+          3M
+        </button>
+
+        <button  class= "graphBTN" onClick={this.fetchOneYear} >
+          1Y
         </button>
 
         <br/>

@@ -475,8 +475,12 @@ handleNewCompanySearchSubmit = (e) => {
           <tr>
             <th> Stock Peers List </th>
           </tr>
+<<<<<<< HEAD
           {/* have the stock peers as an element that you are able to cick on. have them be their own variable, element so when you click on one it will perform a function*/}
           <td> List of stock peers here </td>
+=======
+          <td> {this.state.stockPeers[0].peersList} </td>
+>>>>>>> 84ff812f1d4dde0cddcac565f43a13fd0ba8703a
         </table>
         </div>
     

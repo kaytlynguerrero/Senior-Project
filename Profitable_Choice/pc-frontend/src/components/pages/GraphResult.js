@@ -473,7 +473,7 @@ handleNewCompanySearchSubmit = (e) => {
           <tr>
             <th> Stock Peers List </th>
           </tr>
-          <td> List of stock peers here </td>
+          <td> {this.state.stockPeers[0].peersList} </td>
         </table>
         </div>
     

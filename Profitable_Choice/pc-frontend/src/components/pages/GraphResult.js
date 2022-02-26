@@ -126,6 +126,8 @@ handleNewCompanySearchSubmit = (e) => {
     .then(response => response.json())
     .then(data => this.setState({stockNews:data}), () => console.log(this.state))
 
+    //loop inside it and append a list of state into a table
+    //
     //Stock Peers API
     fetch(STOCK_PEERS_API)
     .then(response => response.json())
@@ -473,6 +475,7 @@ handleNewCompanySearchSubmit = (e) => {
           <tr>
             <th> Stock Peers List </th>
           </tr>
+          {/* have the stock peers as an element that you are able to cick on. have them be their own variable, element so when you click on one it will perform a function*/}
           <td> List of stock peers here </td>
         </table>
         </div>

@@ -12,6 +12,7 @@ class GraphResult extends React.Component {
       companyProfile: {},
       companyStats: 0,
       companyMetrics: [{}],
+      stockPeers: [{}],
       stockNews: [{},{},{},{},{},{},{},{}],
       color:"green"
      // newTickerValue: ""
@@ -110,7 +111,8 @@ handleNewCompanySearchSubmit = (e) => {
     let DAILY_API_CALL = `http://localhost:8080/stock-daily-charts/5min/${StockSymbol}`;
     //console.log(DAILY_API_CALL);
     let API_CallTWO = `http://localhost:8080/search_ticker/${StockSymbol}`;
-    let STOCK_NEWS_API = `http://localhost:8080/stocknews/${StockSymbol}`
+    let STOCK_NEWS_API = `http://localhost:8080/stocknews/${StockSymbol}`;
+    let STOCK_PEERS_API = `http://localhost:8080/searchPeers/${StockSymbol}`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
   
@@ -123,6 +125,11 @@ handleNewCompanySearchSubmit = (e) => {
     fetch(STOCK_NEWS_API)
     .then(response => response.json())
     .then(data => this.setState({stockNews:data}), () => console.log(this.state))
+
+    //Stock Peers API
+    fetch(STOCK_PEERS_API)
+    .then(response => response.json())
+    .then(data => this.setState({stockPeers:data}), () => console.log(this.state))
 
     //Graph X and Y CORDS API CALL
     fetch(DAILY_API_CALL)
@@ -193,7 +200,7 @@ handleNewCompanySearchSubmit = (e) => {
         companyStats: arrayOfValuesObjects,
         companyMetrics: data[2][0][0]
      })
-     if(pointerToThis.state.companyMetrics.open > pointerToThis.state.companyMetrics.close) {
+    if(pointerToThis.state.companyMetrics.open > pointerToThis.state.companyMetrics.close) {
       pointerToThis.setState({color:"red"})
     }
     else {
@@ -277,7 +284,7 @@ handleNewCompanySearchSubmit = (e) => {
          const arrayOfCompanyMetrics = data[2][0];
          //let metric = this.state.companyMetrics;
 
-        console.log(arrayOfCompanyMetrics['open']);
+       // console.log(arrayOfCompanyMetrics['open']);
 
         arrayOfObjects.map(({date,close}) => {
            stockChartXValuesFunction.push(date);
@@ -346,16 +353,6 @@ handleNewCompanySearchSubmit = (e) => {
         }
         console.log(pointerToThis);
        })
-  }
-  handlePercentChange() {
-  
-    console.log(this.state.companyMetrics.open);
-    if (this.state.companyMetrics.open > this.state.companyMetrics.close) {
-      this.setState({color:"red"})
-    }
-    else {
-      this.setState({color:"green"});
-    }
   }
   // changeColor(){
   //   // el = document.getElementById("PC")

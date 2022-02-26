@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 import { Button } from './Button';
 import './HeroSection.css';
-import './pages/GraphResult';
+
 import useState from 'react-dom';
 
 
@@ -13,14 +13,15 @@ import { withRouter } from 'react-router';
 class HeroSection extends React.Component {
   constructor(props){
     super(props)
-    this.state = {companyProfile: {}};
+    this.state = {
+      stockNews: [{}]
+    };
   }
 
   handleChange = (e) => {
     const {id, value} = e.target
        // this.state[id] = value
         this.setState({[id]:value})
-    
   }
 
   handleSubmit = (e) => {
@@ -49,7 +50,7 @@ render() {
     <input className='input-container'
     id = "ticker"
     type = "text"
-    maxLength={4}
+    maxLength={6}
     required
 /* We are creating a function that is taking an event object and targeting the title value */
     onChange = {this.handleChange}

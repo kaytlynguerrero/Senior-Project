@@ -385,6 +385,8 @@ handleNewCompanySearchSubmit = (e) => {
             <button> Submit </button>
         </form>
        
+
+
         <section className="about-div">
         <h1>Company Description</h1>
         {this.state.companyProfile.description}
@@ -469,9 +471,13 @@ handleNewCompanySearchSubmit = (e) => {
                 <td>{this.state.companyProfile.exchange}</td>
                 <td>{this.state.companyProfile.website}</td>
               </tr>
-
-
           </table>
+          <table className="table2">
+          <tr>
+            <th> Stock Peers List </th>
+          </tr>
+          <td> List of stock peers here </td>
+        </table>
         </div>
     
         

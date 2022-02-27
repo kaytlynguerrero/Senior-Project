@@ -42,3 +42,8 @@ h2, p{
   margin-top: 20px;
   margin-left: 100px;
 }
+
+#moreText {
+  /* Display nothing for the element */
+  display: none;
+}

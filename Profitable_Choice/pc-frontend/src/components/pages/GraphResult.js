@@ -368,12 +368,12 @@ handleNewCompanySearchSubmit = (e) => {
        })
   }
 
-  
 
   render() {
     const [color] = 
       this.state.companyMetrics.open > this.state.companyMetrics.close ? ["red"] :
       ["green"]
+
 
     return (
       <div>
@@ -484,12 +484,70 @@ handleNewCompanySearchSubmit = (e) => {
           <table className="table2">
           <tr>
             <th> Stock Peers List </th>
+            <th>Testing</th>
+
+          {/* This is just grabbing the peers list without mapping, the first way sabur did */}
           </tr>
           <td> {this.state.stockPeers[0].peersList} </td>
+
+
+          <td> 
+            {/* This maps through stock peers and prints out peers list. i just wanted to test and see it printed with the map function  */}
+            {this.state.stockPeers.map(function(d) {
+              return (
+                <span key = {d.peersList}> {d.peersList} 
+                </span>
+              )
+            })}
+          </td>
+          <span ></span>
+
+
+
         </table>
         </div>
-    
-        
+
+      {/* Here i messed around with the mapping and added commas at the end of each item but its index, the key is the index - peersList is the return valye */}
+
+        Comma list 
+              <br/>
+              {this.state.stockPeers.map(function(d, index) {
+                return(
+                  <span key = {`${index}`}> { (index ? ',' : '') + d.peersList}</span>
+                )
+              })}
+       
+
+        <div className='cards'>
+       <div className='cards__container'>
+         <div className='cards__wrapper'>
+           <ul className='cards__items'>
+                <CardItem 
+               
+                text= {this.state.stockPeers.map(function(d, index) {
+                      return(
+                    <span key = {`${index}`}> { (index ? ',' : '') + d.peersList}</span>
+                  )
+                })}
+              />
+
+           </ul>
+          </div>
+        </div>
+      </div>
+
+              
+            
+    <br />
+  
+
+
+
+
+
+
+
+
         <div className='cards'>
        
         <div className='cards__container'>

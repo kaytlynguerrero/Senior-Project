@@ -11,6 +11,9 @@ th {
   padding: 8px;
 }
 
+h2, p{
+  display: inline;
+}
 
 .about-div {
   /* float:right;

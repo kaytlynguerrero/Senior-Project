@@ -2,6 +2,8 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 import './GraphResult.css';
 import CardItem from '../CardItem';
+import { useState } from "react";
+
 
 class GraphResult extends React.Component {
   constructor(props) {
@@ -24,10 +26,19 @@ class GraphResult extends React.Component {
     this.fetchStock = this.fetchStock.bind(this);
   }
   
+
+
   handleChange = (e) => {
     const {id, value} = e.target
    // this.state[id] = value
     this.setState({[id]:value})
+    //   // el = document.getElementById("PC")
+  //   if (this.state.companyMetrics.open > this.state.companyMetrics.close) {
+  //     this.state.companyStats.style.color = "red";
+  //   }
+  //   else {
+  //     this.state.companyStats.style.color = "green"
+  //   }
     
 }
 
@@ -356,17 +367,14 @@ handleNewCompanySearchSubmit = (e) => {
         console.log(pointerToThis);
        })
   }
-  // changeColor(){
-  //   // el = document.getElementById("PC")
-  //   if (this.state.companyMetrics.open > this.state.companyMetrics.close) {
-  //     this.state.companyStats.style.color = "red";
-  //   }
-  //   else {
-  //     this.state.companyStats.style.color = "green"
-  //   }
-  // }
+
+  
 
   render() {
+    const [color] = 
+      this.state.companyMetrics.open > this.state.companyMetrics.close ? ["red"] :
+      ["green"]
+
     return (
       <div>
         {/* this is not working need to fix connection with submit button */}
@@ -438,7 +446,9 @@ handleNewCompanySearchSubmit = (e) => {
         <br/>
         
         <h2>Company Price: {this.state.companyProfile.price} </h2>
-        <h2 id="PC"> Price Percent Change: {this.state.companyStats}</h2>
+
+        
+        <h2> Price Percent Change: <p style={{color}}> {this.state.companyStats} </p> </h2>
 
        
        
@@ -475,12 +485,7 @@ handleNewCompanySearchSubmit = (e) => {
           <tr>
             <th> Stock Peers List </th>
           </tr>
-<<<<<<< HEAD
-          {/* have the stock peers as an element that you are able to cick on. have them be their own variable, element so when you click on one it will perform a function*/}
-          <td> List of stock peers here </td>
-=======
           <td> {this.state.stockPeers[0].peersList} </td>
->>>>>>> 84ff812f1d4dde0cddcac565f43a13fd0ba8703a
         </table>
         </div>
     

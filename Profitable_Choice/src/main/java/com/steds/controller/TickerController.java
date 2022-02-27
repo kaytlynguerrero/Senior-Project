@@ -232,12 +232,16 @@ public class TickerController {
         DailyChartResponse result = restTemplate.getForObject(path, DailyChartResponse.class);
 
         //Service layer --> if chartType == 1M...3M..1Y..5Y or M
-        if(time.equals("1")) {
+        if(time.equals("1M")) {
             graphXandYPoints = serivce.monthlyChart(result);
         }
-        else if(time.equals("3")) {
+        else if(time.equals("3M")) {
             graphXandYPoints = serivce.threeMonthsChart(result);
         }
+        else if(time.equals("1Y")) {
+            graphXandYPoints = serivce.oneYearChart(result);
+        }
+
 
         return graphXandYPoints;
     }

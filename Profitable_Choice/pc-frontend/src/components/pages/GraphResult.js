@@ -2,8 +2,7 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 import './GraphResult.css';
 import CardItem from '../CardItem';
-import { useState } from "react";
-
+import Readmore from './Readmore';
 
 class GraphResult extends React.Component {
   constructor(props) {
@@ -11,7 +10,9 @@ class GraphResult extends React.Component {
     this.state = {
       stockChartXValues: [],
       stockChartYValues: [],
-      companyProfile: {},
+      companyProfile: {
+        description: "",
+      },
       companyStats: 0,
       companyMetrics: [{}],
       stockPeers: [{}],
@@ -32,14 +33,6 @@ class GraphResult extends React.Component {
     const {id, value} = e.target
    // this.state[id] = value
     this.setState({[id]:value})
-    //   // el = document.getElementById("PC")
-  //   if (this.state.companyMetrics.open > this.state.companyMetrics.close) {
-  //     this.state.companyStats.style.color = "red";
-  //   }
-  //   else {
-  //     this.state.companyStats.style.color = "green"
-  //   }
-    
 }
 
 handleNewCompanySearchSubmit = (e) => {
@@ -367,8 +360,54 @@ handleNewCompanySearchSubmit = (e) => {
         console.log(pointerToThis);
        })
   }
+  toggleText() {
+    console.log("test");
+    // Get all the elements from the page
+    var points = 
+        document.getElementById("points");
 
-  
+    var showMoreText =
+        document.getElementById("moreText");
+
+    var buttonText =
+        document.getElementById("textButton");
+
+    console.log(showMoreText);
+
+    // If the display property of the dots 
+    // to be displayed is already set to 
+    // 'none' (that is hidden) then this 
+    // section of code triggers
+    if (points.style.display === "none") {
+
+        // Hide the text between the span
+        // elements
+        showMoreText.style.display = "none";
+
+        // Show the dots after the text
+        points.style.display = "inline";
+
+        // Change the text on button to 
+        // 'Show More'
+        buttonText.innerHTML = "Show More";
+    }
+
+    // If the hidden portion is revealed,
+    // we will change it back to be hidden
+    else {
+
+        // Show the text between the
+        // span elements
+        showMoreText.style.display = "inline";
+
+        // Hide the dots after the text
+        points.style.display = "none";
+
+        // Change the text on button
+        // to 'Show Less'
+        buttonText.innerHTML = "Show Less";
+    }
+}
 
   render() {
     const [color] = 
@@ -391,14 +430,23 @@ handleNewCompanySearchSubmit = (e) => {
             />
             <button> Submit </button>
         </form>
-       
 
-
-        <section className="about-div">
-        <h1>Company Description</h1>
-        {this.state.companyProfile.description}
-
+      
+        <section className='about-div'>
+        {<h1>Company Description</h1>}
+        <p>
+          {this.state.companyProfile.description.substring(0,250)}
+          <span id="points">...</span>
+      
+          <span id="moreText">{this.state.companyProfile.description.substring(250)}
+          </span>
+        </p>
+        <button onClick={this.toggleText} id="textButton">
+        Show More
+        </button>
+        
         </section>
+
         <div className="div2">
         <Plot 
           

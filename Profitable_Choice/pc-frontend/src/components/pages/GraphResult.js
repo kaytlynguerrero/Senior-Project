@@ -181,7 +181,7 @@ handleNewCompanySearchSubmit = (e) => {
 
         var mytable = "<table><th> Stock Peers List </th> <tr>";
         for (var CELL of pointerToThis.state.arrayOfPeers) {  
-          mytable += "<td>" + CELL + "</td>"; 
+          mytable += "<td>" + CELL + "</td>" + "<tr>"; 
         }
         mytable += "</tr></table>";
         document.getElementById("table2").innerHTML = mytable;
@@ -546,14 +546,13 @@ handleNewCompanySearchSubmit = (e) => {
                 <td>{this.state.companyProfile.exchange}</td>
                 <td>{this.state.companyProfile.website}</td>
               </tr>
-          </table>
-
-
-          <table id="table2" className="table2">
-        </table>
-
+              </table>
         </div>
 
+        <section className='about-div'> 
+        <table id="table2" className="table2">
+        </table>
+        </section>
 
 
         <div className='cards'>

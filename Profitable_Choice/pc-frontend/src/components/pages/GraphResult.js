@@ -60,9 +60,11 @@ handleNewCompanySearchSubmit = (e) => {
     let DAILY_API_CALL = `http://localhost:8080/stock-daily-charts/5min/${StockSymbol}`;
    //console.log(DAILY_API_CALL);
     let API_CallTWO = `http://localhost:8080/search_ticker/${StockSymbol}`;
-    let STOCK_NEWS_API = `http://localhost:8080/stocknews/${StockSymbol}`
+    let STOCK_NEWS_API = `http://localhost:8080/stocknews/${StockSymbol}`;
+    let STOCK_PEERS_API = `http://localhost:8080/searchPeers/${StockSymbol}`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
+    let stockPeers = [];
   
     fetch(STOCK_NEWS_API)
     .then(response => response.json())
@@ -72,6 +74,12 @@ handleNewCompanySearchSubmit = (e) => {
     fetch(API_CallTWO)
     .then(response => response.json())
     .then(data => this.setState({companyProfile:data}), () => console.log(this.state))
+
+    //Stock Peers API
+    fetch(STOCK_PEERS_API)
+    .then(response => response.json())
+    .then(data => this.setState({stockPeers:data[0]}), () => console.log(this.state)
+    )
 
     //Graph X and Y CORDS API CALL
     fetch(DAILY_API_CALL)
@@ -122,7 +130,6 @@ handleNewCompanySearchSubmit = (e) => {
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
     let stockPeers = [];
-    let stockPeers2 = [];
 
     //Company Profile API Call
     fetch(API_CallTWO)
@@ -141,8 +148,6 @@ handleNewCompanySearchSubmit = (e) => {
     .then(response => response.json())
     .then(data => this.setState({stockPeers:data[0]}), () => console.log(this.state)
     )
-
-    let stocks = 
 
     //Graph X and Y CORDS API CALL
     fetch(DAILY_API_CALL)
@@ -174,17 +179,10 @@ handleNewCompanySearchSubmit = (e) => {
           pointerToThis.setState({color:"red"})
         }
         else {
-          pointerToThis.setState({color:"green"});
+          pointerToThis.setState({color:"#2ca02c"});
         }
         stockPeers = pointerToThis.state.stockPeers.peersList;
         pointerToThis.setState({arrayOfPeers:stockPeers});
-
-        var mytable = "<table><th> Stock Peers List </th> <tr>";
-        for (var CELL of pointerToThis.state.arrayOfPeers) {  
-          mytable += "<td>" + CELL + "</td>" + "<tr>"; 
-        }
-        mytable += "</tr></table>";
-        document.getElementById("table2").innerHTML = mytable;
 
         console.log(pointerToThis);
       } )
@@ -374,6 +372,7 @@ handleNewCompanySearchSubmit = (e) => {
         else {
           pointerToThis.setState({color:"green"});
         }
+
         console.log(pointerToThis);
        })
   }
@@ -467,11 +466,10 @@ handleNewCompanySearchSubmit = (e) => {
 
         <div className="div2">
         <Plot 
-          
           //onAfterPlot = {this.handlePercentChange}
           data={[
             {
-              x: this.state.stockChartXValues,
+              x: this.state.stockChartXValues, color:"white",
               y: this.state.stockChartYValues,
               type: 'scatter',
               mode: 'lines+markers',
@@ -482,9 +480,13 @@ handleNewCompanySearchSubmit = (e) => {
           ]}
           layout={{     
             width: 720, 
-            height: 440, 
-            title: this.state.companyProfile.companyName
+            height: 440,
+            title: this.state.companyProfile.companyName,
+             plot_bgcolor:"gradiant",
+             paper_bgcolor:"rgba(152,222,217,0.2)",         
           }}
+          
+          
         />
         </div>
         <br/>

@@ -179,16 +179,17 @@ handleNewCompanySearchSubmit = (e) => {
         stockPeers = pointerToThis.state.stockPeers.peersList;
         pointerToThis.setState({arrayOfPeers:stockPeers});
 
-        var mytable = "<table><th> Stock Peers List </th> <tr>";
-        for (var CELL of pointerToThis.state.arrayOfPeers) {  
-          mytable += "<td>" + CELL + "</td>" + "<tr>"; 
-        }
-        mytable += "</tr></table>";
-        document.getElementById("table2").innerHTML = mytable;
+        // var mytable = "<table><th> Stock Peers List </th> <tr>";
+        // for (var CELL of pointerToThis.state.arrayOfPeers) {  
+        //   mytable += "<td>" + CELL + "</td>" + "<tr>"; 
+        // }
+        // mytable += "</tr></table>";
+        // document.getElementById("table2").innerHTML = mytable;
 
         console.log(pointerToThis);
       } )
   }
+
 
   fetchWeeklyStock(){
     const pointerToThis = this;
@@ -426,6 +427,7 @@ handleNewCompanySearchSubmit = (e) => {
     }
 }
 
+
   render() {
     const [color] = 
       this.state.companyMetrics.open > this.state.companyMetrics.close ? ["red"] :
@@ -463,7 +465,42 @@ handleNewCompanySearchSubmit = (e) => {
         Show More
         </button>
 
+    
         <table id="table2" className="table2">
+          <tr>
+            <th>Stock Peers List</th>
+          </tr>
+          <tr>
+          <td id="peer0">{this.state.arrayOfPeers[0]}</td>
+          </tr>
+          <tr>
+            <td id="peer1">{this.state.arrayOfPeers[1]}</td>
+          </tr>
+          <tr>
+            <td id="peer2">{this.state.arrayOfPeers[2]}</td>
+          </tr>
+          <tr>
+            <td>{this.state.arrayOfPeers[3]}</td>
+          </tr>
+          <tr>
+            <td>{this.state.arrayOfPeers[4]}</td>
+          </tr>
+          <tr>
+            <td>{this.state.arrayOfPeers[5]}</td>
+          </tr>
+          <tr>
+            <td>{this.state.arrayOfPeers[6]}</td>
+          </tr>
+          <tr>
+            <td>{this.state.arrayOfPeers[7]}</td>
+          </tr>
+          <tr>
+            <td>{this.state.arrayOfPeers[8]}</td>
+          </tr>
+          <tr>
+            <td>{this.state.arrayOfPeers[9]}</td>
+          </tr>
+
         </table>
         
         </section>
@@ -551,9 +588,7 @@ handleNewCompanySearchSubmit = (e) => {
               </tr>
               </table>
         </div>
-
         
-
         <div className='cards'>
        
         <div className='cards__container'>

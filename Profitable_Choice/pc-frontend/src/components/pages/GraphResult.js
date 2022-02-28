@@ -462,6 +462,9 @@ handleNewCompanySearchSubmit = (e) => {
         <button onClick={this.toggleText} id="textButton">
         Show More
         </button>
+
+        <table id="table2" className="table2">
+        </table>
         
         </section>
 
@@ -518,7 +521,7 @@ handleNewCompanySearchSubmit = (e) => {
 
        
        
-        <div className="div1">
+        <div>
           <br/>
         
           <table>
@@ -549,11 +552,7 @@ handleNewCompanySearchSubmit = (e) => {
               </table>
         </div>
 
-        <section className='about-div'> 
-        <table id="table2" className="table2">
-        </table>
-        </section>
-
+        
 
         <div className='cards'>
        

@@ -19,6 +19,7 @@ class GraphResult extends React.Component {
       stockNews: [{},{},{},{},{},{},{},{}],
       color:"green"
      // newTickerValue: ""
+
     }
     this.fetchOneYear = this.fetchOneYear.bind(this);
     this.fetchThreeMonth = this.fetchThreeMonth.bind(this);
@@ -366,8 +367,6 @@ handleNewCompanySearchSubmit = (e) => {
     var points = 
         document.getElementById("points");
 
-<<<<<<< HEAD
-=======
     var showMoreText =
         document.getElementById("moreText");
 
@@ -410,7 +409,6 @@ handleNewCompanySearchSubmit = (e) => {
         buttonText.innerHTML = "Show Less";
     }
 }
->>>>>>> a7eeff6623e5ea081995438c2db6be98cddb8ebc
 
   render() {
     const [color] = 
@@ -552,8 +550,17 @@ handleNewCompanySearchSubmit = (e) => {
               )
             })}
           </td>
-          <span ></span>
 
+          <p> 
+
+          {this.state.stockPeers.forEach(function(item) {
+            console.log(item.peersList)
+          })} 
+          </p>
+          
+
+            
+            
 
 
         </table>
@@ -567,7 +574,10 @@ handleNewCompanySearchSubmit = (e) => {
                 return(
                   <span key = {`${index}`}> { (index ? ',' : '') + d.peersList}</span>
                 )
+                
               })}
+
+         
        
 
         <div className='cards'>

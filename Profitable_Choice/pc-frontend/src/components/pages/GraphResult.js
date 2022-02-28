@@ -461,6 +461,43 @@ handleNewCompanySearchSubmit = (e) => {
         <button onClick={this.toggleText} id="textButton">
         Show More
         </button>
+
+        <table id="table2" className="table2">
+          
+          <th>Stock Peers List</th>
+          <tr>
+            <td id="peer0">{this.state.arrayOfPeers[0]}</td>
+          </tr>
+          <tr>
+            <td id="peer1">{this.state.arrayOfPeers[1]}</td>
+          </tr>
+          <tr>
+            <td id="peer2">{this.state.arrayOfPeers[2]}</td>
+          </tr>
+          <tr>
+            <td id="peer3">{this.state.arrayOfPeers[3]}</td>
+          </tr>
+          <tr>
+            <td id="peer4">{this.state.arrayOfPeers[4]}</td>
+          </tr>
+          <tr>
+            <td id="peer5">{this.state.arrayOfPeers[5]}</td>
+          </tr>
+          <tr>
+            <td id="peer6">{this.state.arrayOfPeers[6]}</td>
+          </tr>
+          <tr>
+            <td id="peer7">{this.state.arrayOfPeers[7]}</td>
+          </tr>
+          <tr>
+            <td id="peer8">{this.state.arrayOfPeers[8]}</td>
+          </tr>
+          <tr>
+            <td id="peer9">{this.state.arrayOfPeers[9]}</td>
+          </tr>
+
+
+        </table>
         
         </section>
 
@@ -551,11 +588,7 @@ handleNewCompanySearchSubmit = (e) => {
               </table>
         </div>
 
-        <section className='about-div'> 
-        <table id="table2" className="table2">
-        </table>
-        </section>
-
+      
 
         <div className='cards'>
        

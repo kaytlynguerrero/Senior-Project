@@ -113,6 +113,8 @@ handleNewCompanySearchSubmit = (e) => {
       else {
         pointerToThis.setState({color:"green"});
       }
+      stockPeers = pointerToThis.state.stockPeers.peersList;
+      pointerToThis.setState({arrayOfPeers:stockPeers});
       console.log(pointerToThis);
       })
   }

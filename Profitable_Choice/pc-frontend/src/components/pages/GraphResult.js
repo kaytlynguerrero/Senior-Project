@@ -15,7 +15,8 @@ class GraphResult extends React.Component {
       },
       companyStats: 0,
       companyMetrics: [{}],
-      stockPeers: [{}],
+      stockPeers: {},
+      arrayOfPeers: [],
       stockNews: [{},{},{},{},{},{},{},{}],
       color:"green"
      // newTickerValue: ""
@@ -120,7 +121,9 @@ handleNewCompanySearchSubmit = (e) => {
     let STOCK_PEERS_API = `http://localhost:8080/searchPeers/${StockSymbol}`;
     let stockChartXValuesFunction = [];
     let stockChartYValuesFunction = [];
-  
+    let stockPeers = [];
+    let stockPeers2 = [];
+
     //Company Profile API Call
     fetch(API_CallTWO)
     .then(response => response.json())
@@ -136,7 +139,10 @@ handleNewCompanySearchSubmit = (e) => {
     //Stock Peers API
     fetch(STOCK_PEERS_API)
     .then(response => response.json())
-    .then(data => this.setState({stockPeers:data}), () => console.log(this.state))
+    .then(data => this.setState({stockPeers:data[0]}), () => console.log(this.state)
+    )
+
+    let stocks = 
 
     //Graph X and Y CORDS API CALL
     fetch(DAILY_API_CALL)
@@ -170,6 +176,16 @@ handleNewCompanySearchSubmit = (e) => {
         else {
           pointerToThis.setState({color:"green"});
         }
+        stockPeers = pointerToThis.state.stockPeers.peersList;
+        pointerToThis.setState({arrayOfPeers:stockPeers});
+
+        var mytable = "<table><th> Stock Peers List </th> <tr>";
+        for (var CELL of pointerToThis.state.arrayOfPeers) {  
+          mytable += "<td>" + CELL + "</td>"; 
+        }
+        mytable += "</tr></table>";
+        document.getElementById("table2").innerHTML = mytable;
+
         console.log(pointerToThis);
       } )
   }
@@ -531,82 +547,12 @@ handleNewCompanySearchSubmit = (e) => {
                 <td>{this.state.companyProfile.website}</td>
               </tr>
           </table>
-          <table className="table2">
-          <tr>
-            <th> Stock Peers List </th>
-            <th>Testing</th>
-
-          {/* This is just grabbing the peers list without mapping, the first way sabur did */}
-          </tr>
-          <td> {this.state.stockPeers[0].peersList} </td>
 
 
-          <td> 
-            {/* This maps through stock peers and prints out peers list. i just wanted to test and see it printed with the map function  */}
-            {this.state.stockPeers.map(function(d) {
-              return (
-                <span key = {d.peersList}> {d.peersList} 
-                </span>
-              )
-            })}
-          </td>
-
-          <p> 
-
-          {this.state.stockPeers.forEach(function(item) {
-            console.log(item.peersList)
-          })} 
-          </p>
-          
-
-            
-            
-
-
+          <table id="table2" className="table2">
         </table>
+
         </div>
-
-      {/* Here i messed around with the mapping and added commas at the end of each item but its index, the key is the index - peersList is the return valye */}
-
-        Comma list 
-              <br/>
-              {this.state.stockPeers.map(function(d, index) {
-                return(
-                  <span key = {`${index}`}> { (index ? ',' : '') + d.peersList}</span>
-                )
-                
-              })}
-
-         
-       
-
-        <div className='cards'>
-       <div className='cards__container'>
-         <div className='cards__wrapper'>
-           <ul className='cards__items'>
-                <CardItem 
-               
-                text= {this.state.stockPeers.map(function(d, index) {
-                      return(
-                    <span key = {`${index}`}> { (index ? ',' : '') + d.peersList}</span>
-                  )
-                })}
-              />
-
-           </ul>
-          </div>
-        </div>
-      </div>
-
-              
-            
-    <br />
-  
-
-
-
-
-
 
 
 

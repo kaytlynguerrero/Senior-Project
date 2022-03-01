@@ -29,8 +29,6 @@ class GraphResult extends React.Component {
     this.fetchStock = this.fetchStock.bind(this);
   }
   
-
-
   handleChange = (e) => {
     const {id, value} = e.target
    // this.state[id] = value
@@ -39,10 +37,22 @@ class GraphResult extends React.Component {
 
 handleNewCompanySearchSubmit = (e) => {
   e.preventDefault();
-  this.props.history.push( {pathname: "/graphResults",
-      state: {ticker: this.state.newTicker}})
+  console.log(this.props);
+  this.props.history.push({
+    pathname: "/graphResults",
+    state:{
+      ticker: this.state.newTicker}})
+  console.log(this.props);
   console.log(this.state);
   this.fetchNewStock();
+}
+
+handlePeerList = (e) =>{
+  this.state.newTickerValue = e;
+  //console.log(this.props);
+  console.log(this.state);
+  this.fetchPeerList(e);
+  console.log(e);
 }
 
     //in order to refresh we need to capture stockSymbol and run fetchStock all over again bc stockSymbol is being sent from api call in HeroSection submit button.
@@ -57,6 +67,75 @@ handleNewCompanySearchSubmit = (e) => {
     //this.setState(newTickerValue,StockSymbol);
     this.state.newTickerValue = StockSymbol;
    // console.log(this.state);
+    let DAILY_API_CALL = `http://localhost:8080/stock-daily-charts/5min/${StockSymbol}`;
+   //console.log(DAILY_API_CALL);
+    let API_CallTWO = `http://localhost:8080/search_ticker/${StockSymbol}`;
+    let STOCK_NEWS_API = `http://localhost:8080/stocknews/${StockSymbol}`;
+    let STOCK_PEERS_API = `http://localhost:8080/searchPeers/${StockSymbol}`;
+    let stockChartXValuesFunction = [];
+    let stockChartYValuesFunction = [];
+    let stockPeers = [];
+  
+    fetch(STOCK_NEWS_API)
+    .then(response => response.json())
+    .then(data => this.setState({stockNews:data}), () => console.log(this.state))
+
+    //Company Profile API Call
+    fetch(API_CallTWO)
+    .then(response => response.json())
+    .then(data => this.setState({companyProfile:data}), () => console.log(this.state))
+
+    //Stock Peers API
+    fetch(STOCK_PEERS_API)
+    .then(response => response.json())
+    .then(data => this.setState({stockPeers:data[0]}), () => console.log(this.state)
+    )
+
+    //Graph X and Y CORDS API CALL
+    fetch(DAILY_API_CALL)
+      .then(
+        function(response) {
+          return response.json();
+        }
+      )
+      .then(
+        function(data) {
+        console.log(data);
+        //const arrayOfObjects = data[0][0];
+        const arrayOfValuesObjects = data[1][0];
+         // const values = Object.values(data);'
+        //console.log(data[2][0][0]);
+
+         data[0][0].map(({date,close}) => {
+          stockChartXValuesFunction.push(date);
+          stockChartYValuesFunction.push(close);
+       });
+
+       pointerToThis.setState({
+          stockChartXValues: stockChartXValuesFunction,
+          stockChartYValues: stockChartYValuesFunction,
+          companyStats: arrayOfValuesObjects,
+          companyMetrics: data[2][0][0]
+       })
+       if(pointerToThis.state.companyMetrics.open > pointerToThis.state.companyMetrics.close) {
+        pointerToThis.setState({color:"red"})
+      }
+      else {
+        pointerToThis.setState({color:"green"});
+      }
+      stockPeers = pointerToThis.state.stockPeers.peersList;
+      pointerToThis.setState({arrayOfPeers:stockPeers});
+      console.log(pointerToThis);
+      })
+  }
+
+  fetchPeerList=  (e) =>{
+    const pointerToThis = this;
+   // console.log(pointerToThis);
+    const StockSymbol = e;
+    //this.setState(newTickerValue,StockSymbol);
+    //this.state.newTickerValue = StockSymbol;
+     console.log(StockSymbol);
     let DAILY_API_CALL = `http://localhost:8080/stock-daily-charts/5min/${StockSymbol}`;
    //console.log(DAILY_API_CALL);
     let API_CallTWO = `http://localhost:8080/search_ticker/${StockSymbol}`;
@@ -468,7 +547,7 @@ handleNewCompanySearchSubmit = (e) => {
           
           <th>Stock Peers List</th>
           <tr>
-            <td id="peer0">{this.state.arrayOfPeers[0]}</td>
+            <td id="newTickerValue" onClick={() => this.handlePeerList(this.state.arrayOfPeers[0])}>{this.state.arrayOfPeers[0]}</td>
           </tr>
           <tr>
             <td id="peer1">{this.state.arrayOfPeers[1]}</td>

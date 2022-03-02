@@ -1,8 +1,9 @@
-import React from 'react';
+// import React from 'react';
 import Plot from 'react-plotly.js';
 import './GraphResult.css';
 import CardItem from '../CardItem';
-import Readmore from './Readmore';
+import React, {useState} from "react";
+//import GetCompanyName from '../GetCompanyName';
 
 class GraphResult extends React.Component {
   constructor(props) {
@@ -264,9 +265,10 @@ handlePeerList = (e) =>{
         }
         stockPeers = pointerToThis.state.stockPeers.peersList;
         pointerToThis.setState({arrayOfPeers:stockPeers});
-
+        
         console.log(pointerToThis);
       } )
+
   }
 
   fetchWeeklyStock(){
@@ -521,34 +523,45 @@ handlePeerList = (e) =>{
           
           <th className="peer">Stock Peers List</th>
           <tr>
-            <td className="peer" id="newTickerValue" onClick={() => this.handlePeerList(this.state.arrayOfPeers[0])}>{this.state.arrayOfPeers[0]}</td>
+            <td className="peer" id="newTickerValue" onClick={() => this.handlePeerList(this.state.arrayOfPeers[0])}>
+              {this.state.arrayOfPeers[0]} 
+              </td>
           </tr>
           <tr>
-            <td className="peer">{this.state.arrayOfPeers[1]}</td>
+            <td className="peer" onClick={() => this.handlePeerList(this.state.arrayOfPeers[1])}>
+              {this.state.arrayOfPeers[1]}</td>
           </tr>
           <tr>
-            <td className="peer">{this.state.arrayOfPeers[2]}</td>
+            <td className="peer" onClick={() => this.handlePeerList(this.state.arrayOfPeers[2])}>
+              {this.state.arrayOfPeers[2]}</td>
           </tr>
           <tr>
-            <td className="peer">{this.state.arrayOfPeers[3]}</td>
+            <td className="peer" onClick={() => this.handlePeerList(this.state.arrayOfPeers[3])}>
+              {this.state.arrayOfPeers[3]}</td>
           </tr>
           <tr>
-            <td className="peer">{this.state.arrayOfPeers[4]}</td>
+            <td className="peer"onClick={() => this.handlePeerList(this.state.arrayOfPeers[4])}>
+              {this.state.arrayOfPeers[4]}</td>
           </tr>
           <tr>
-            <td className="peer">{this.state.arrayOfPeers[5]}</td>
+            <td className="peer" onClick={() => this.handlePeerList(this.state.arrayOfPeers[5])}>
+              {this.state.arrayOfPeers[5]}</td>
           </tr>
           <tr>
-            <td className="peer">{this.state.arrayOfPeers[6]}</td>
+            <td className="peer" onClick={() => this.handlePeerList(this.state.arrayOfPeers[6])}>
+              {this.state.arrayOfPeers[6]}</td>
           </tr>
           <tr>
-            <td className="peer">{this.state.arrayOfPeers[7]}</td>
+            <td className="peer" onClick={() => this.handlePeerList(this.state.arrayOfPeers[7])}> 
+              {this.state.arrayOfPeers[7]}</td>
           </tr>
           <tr>
-            <td className="peer">{this.state.arrayOfPeers[8]}</td>
+            <td className="peer" onClick={() => this.handlePeerList(this.state.arrayOfPeers[8])}>
+              {this.state.arrayOfPeers[8]}</td>
           </tr>
           <tr>
-            <td className="peer">{this.state.arrayOfPeers[9]}</td>
+            <td className="peer"onClick={() => this.handlePeerList(this.state.arrayOfPeers[9])}>
+              {this.state.arrayOfPeers[9]}</td>
           </tr>
 
 

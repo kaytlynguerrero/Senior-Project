@@ -113,35 +113,50 @@ return(
 
 <div className='hero-container2'>
        <img className="stockphoto" src='images/stockmarketphoto.jpeg'/>
-<h1> A Guide to Stock Basics... </h1>
+<h1> A Guide to Stock Basics </h1>
 
 
 </div>
+
 <div className="articleDiv"> 
+
 
 {/* Step 1 */}
 
-<h1 className = "headers"> What is a stock?</h1>
 
-<div className = "stockInfo">
-<p1> A stock is a form of security that indicates the holder has proportionate ownership in the issuing corporation. </p1>
+
+<h1 className="titleHeaders"> &#8594; Stocks &#8592;</h1>
+
+<div>
+
+<h1 className = "headers"> 1. What is a stock?</h1>
+
+<p1 className="definitions"> A stock is a share in the ownership of a company. < br/> A stock exchange, or stock market, is a system for buying and selling securities, or stocks and bonds. < br/>   </p1>
+
+< br/>
+< br/>
+
 
 {/* Step 2 */}
 
-<h1 className = "headers"> What is a stock symbol?</h1>
-<p1> 
+
+
+<h1 className = "headers"> 2. What is a stock symbol?</h1>
+<p1 className="definitions" > 
 <figure>
       <img src='images/stock-ticker-symbols.jpeg'/>
-    <figcaption> A stock symbol is an arrangement of characters—usually letters—representing publicly-traded securities on an exchange.</figcaption>
+    <figcaption> A stock symbol is an arrangement of characters—usually letters—representing publicly-traded securities on an exchange. <br /> In the photo above, the symbols are represented in the circled elements. </figcaption>
     </figure>
 </p1>
 
+< br/>
+< br/>
 {/* Step 3 */}
-<h1 className = "headers"> Search a Stock Symbol</h1>
-<p1> Below, is an example of how you would search a stock symbol within our website. You would search it through its symbol and receive company data. 
+<h1 className = "headers"> 3. Search a stock symbol</h1>
+<p1 className="definitions"> Below, is an example of how you would search a stock symbol within our website. You would search it through its symbol and receive company data. 
     < br />
-<input data-tip data-for="ticker"
-      id="ticker"
+<p1 id="ticker2"> Ticker Search: </p1><input data-tip data-for="ticker" 
+      id="ticker2"
       type="text"
       placeholder="NYT"
       maxLength={4}>
@@ -149,8 +164,12 @@ return(
 </p1>
 
 {/* Step 4 */}
-<h1 className = "headers"> What data can you gather?</h1>
-<p1>
+
+< br/>
+< br/>
+<h1 className="titleHeaders"> &#8594; Stock Data &#8592;</h1>
+<h1 className = "headers"> 4. What data can you gather?</h1>
+<p1 className="definitions">
        <figure>
        <img src='images/graph-example.png'/>
        <figcaption> Price chart displays how a stocks price changes over time. </figcaption>
@@ -158,9 +177,12 @@ return(
        </figure>
 </p1>
 
+< br/>
+< br/>
+
 {/* Step 5 */}
-<h1 className = "headers">Evaluate the stock data</h1>
-<p1>
+<h1 className = "headers"> 5. Evaluate the stock data</h1>
+<p1 className="definitions">
 <ul>
          <h3>For example, you can view data such as:</h3>
          <br/>
@@ -176,9 +198,11 @@ return(
        </ul>
 </p1>
 
+< br/>
+< br/>
 {/* Step 6 */}
-<h1 className = "headers">What does the data tell you?</h1>
-<p1>
+<h1 className = "headers"> 6. What does the data tell you?</h1>
+<p1 className="definitions">
        <ul>
          <li>Company Name: The full name for the company</li>
          <br/>
@@ -192,8 +216,11 @@ return(
        </ul>
 </p1>
 
+< br/>
+< br/>
 
 </div>
+
 </div>
 </>
 

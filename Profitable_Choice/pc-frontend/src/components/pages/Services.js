@@ -104,11 +104,21 @@ import ReactTooltip from "react-tooltip";
 // }
 // export default Services;
 
+
 function Services() {
 
 
 return(
 <>
+
+<div className='hero-container2'>
+       <img className="stockphoto" src='images/stockmarketphoto.jpeg'/>
+<h1> A Guide to Stock Basics </h1>
+
+
+</div>
+<div className="articleDiv"> 
+
 {/* Step 1 */}
 
 <h1 className = "headers"> What is a stock?</h1>
@@ -183,6 +193,7 @@ return(
 </p1>
 
 
+</div>
 </div>
 </>
 

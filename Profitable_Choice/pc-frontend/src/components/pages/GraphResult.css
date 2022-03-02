@@ -1,7 +1,7 @@
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 50%;
+  width: 80%;
 }
 
 td,
@@ -15,14 +15,14 @@ h2, p{
   display: inline;
 }
 
-.about-div {
+/* .about-div {
   display: block;
   width: 400px;
   height: 160px;
   float: right;
   margin-right: 400px;
 
-}
+} */
 
 .graphBTN {
   padding: 8px 20px;
@@ -45,4 +45,29 @@ h2, p{
 #moreText {
   /* Display nothing for the element */
   display: none;
+}
+
+.peer{
+  text-align: center;
+}
+
+.column {
+  float: left;
+  padding: 10px;
+ 
+}
+
+.left, .right {
+  width: 25%;
+}
+
+.middle {
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }

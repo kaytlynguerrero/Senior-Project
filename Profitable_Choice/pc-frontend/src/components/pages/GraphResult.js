@@ -514,7 +514,50 @@ handlePeerList = (e) =>{
 
     return (
       <div>
-        {/* this is not working need to fix connection with submit button */}
+    <div className="row">
+
+    <div className="column left">
+        <table id="table2" className="table2">
+          
+          <th className="peer">Stock Peers List</th>
+          <tr>
+            <td className="peer" id="newTickerValue" onClick={() => this.handlePeerList(this.state.arrayOfPeers[0])}>{this.state.arrayOfPeers[0]}</td>
+          </tr>
+          <tr>
+            <td className="peer">{this.state.arrayOfPeers[1]}</td>
+          </tr>
+          <tr>
+            <td className="peer">{this.state.arrayOfPeers[2]}</td>
+          </tr>
+          <tr>
+            <td className="peer">{this.state.arrayOfPeers[3]}</td>
+          </tr>
+          <tr>
+            <td className="peer">{this.state.arrayOfPeers[4]}</td>
+          </tr>
+          <tr>
+            <td className="peer">{this.state.arrayOfPeers[5]}</td>
+          </tr>
+          <tr>
+            <td className="peer">{this.state.arrayOfPeers[6]}</td>
+          </tr>
+          <tr>
+            <td className="peer">{this.state.arrayOfPeers[7]}</td>
+          </tr>
+          <tr>
+            <td className="peer">{this.state.arrayOfPeers[8]}</td>
+          </tr>
+          <tr>
+            <td className="peer">{this.state.arrayOfPeers[9]}</td>
+          </tr>
+
+
+        </table>
+        </div>
+      
+
+
+      <div className="column middle">
         <form class = "submitForm"onSubmit= {this.handleNewCompanySearchSubmit}>
             <label>Company Search: </label>
             <input
@@ -528,61 +571,6 @@ handlePeerList = (e) =>{
             />
             <button> Submit </button>
         </form>
-
-      
-        <section className='about-div'>
-        {<h1>Company Description</h1>}
-        <p>
-          {this.state.companyProfile.description.substring(0,250)}
-          <span id="points">...</span>
-      
-          <span id="moreText">{this.state.companyProfile.description.substring(250)}
-          </span>
-        </p>
-        <button onClick={this.toggleText} id="textButton">
-        Show More
-        </button>
-
-        <table id="table2" className="table2">
-          
-          <th>Stock Peers List</th>
-          <tr>
-            <td id="newTickerValue" onClick={() => this.handlePeerList(this.state.arrayOfPeers[0])}>{this.state.arrayOfPeers[0]}</td>
-          </tr>
-          <tr>
-            <td id="peer1">{this.state.arrayOfPeers[1]}</td>
-          </tr>
-          <tr>
-            <td id="peer2">{this.state.arrayOfPeers[2]}</td>
-          </tr>
-          <tr>
-            <td id="peer3">{this.state.arrayOfPeers[3]}</td>
-          </tr>
-          <tr>
-            <td id="peer4">{this.state.arrayOfPeers[4]}</td>
-          </tr>
-          <tr>
-            <td id="peer5">{this.state.arrayOfPeers[5]}</td>
-          </tr>
-          <tr>
-            <td id="peer6">{this.state.arrayOfPeers[6]}</td>
-          </tr>
-          <tr>
-            <td id="peer7">{this.state.arrayOfPeers[7]}</td>
-          </tr>
-          <tr>
-            <td id="peer8">{this.state.arrayOfPeers[8]}</td>
-          </tr>
-          <tr>
-            <td id="peer9">{this.state.arrayOfPeers[9]}</td>
-          </tr>
-
-
-        </table>
-        
-        </section>
-
-        <div className="div2">
         <Plot 
           //onAfterPlot = {this.handlePercentChange}
           data={[
@@ -606,7 +594,7 @@ handlePeerList = (e) =>{
           
           
         />
-        </div>
+  
         <br/>
 
         <button class= "graphBTN" onClick={this.fetchStock}>
@@ -638,9 +626,8 @@ handlePeerList = (e) =>{
 
        
        
-        <div className="div1">
-          <br/>
         
+          <br/>
           <table>
           <tr>
                 <th>Open Price</th>
@@ -667,9 +654,35 @@ handlePeerList = (e) =>{
                 <td>{this.state.companyProfile.website}</td>
               </tr>
               </table>
+      
         </div>
 
+
+
+
+
+
+        <div className="column right">
+        <div className='about-div'>
+        {<h1>Company Description</h1>}
+        <p>
+          {this.state.companyProfile.description.substring(0,250)}
+          <span id="points">...</span>
       
+          <span id="moreText">{this.state.companyProfile.description.substring(250)}
+          </span>
+        </p>
+        <button onClick={this.toggleText} id="textButton">
+        Show More
+        </button>
+        </div>
+        </div>
+
+        </div>
+
+
+
+      <div> 
 
         <div className='cards'>
        
@@ -723,7 +736,7 @@ handlePeerList = (e) =>{
           </div>
         </div>
       </div>
-        
+</div>        
 
       </div>
 

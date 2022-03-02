@@ -28,6 +28,7 @@ class Cards extends React.Component {
   render(){
     return (
       <div className='cards'>
+        <h1> Up to Date Stock News!</h1>
        
         <div className='cards__container'>
   

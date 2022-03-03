@@ -19,17 +19,17 @@
 /* body {
   background-color: rgb(133, 154, 175);
 } */
-.bar {
+/* .bar {
   justify-content: center;
   text-align: center;
   margin: 45px;
   font-size: 20px;
   /* width: 350px;
   height: 200px; */
-  color: black;
-}
+  /* color: black;
+} */ 
 
-.step-desc {
+/* .step-desc {
   font-size: 25px;
 }
 .circle {
@@ -44,14 +44,14 @@
   -moz-background-clip: padding-box;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-}
+} */
 
-.stepWrapper {
+/* .stepWrapper {
   display: flex;
   margin-bottom: 20px;
-}
+} */
 
-.stepBlock .circleWrapper {
+/* .stepBlock .circleWrapper {
   padding: 0px 20px;
   position: relative;
 }
@@ -94,4 +94,4 @@
   color: white;
   border-radius: 4px;
   cursor: pointer;
-}
+} */

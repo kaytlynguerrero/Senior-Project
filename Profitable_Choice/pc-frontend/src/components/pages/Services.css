@@ -1,60 +1,72 @@
-.stockInfo{
-    text-align: center;
-    font-size: 25px;
+.hero-container {
+  /* background: url('/images/img-home.jpg') center center/cover no-repeat; */
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+  object-fit: contain;
+}
+.hero-container > h1 {
+  color: #fff;
+  font-size: 100px;
+  margin-top: -100px;
 }
 
-.headers{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-size: 35px;
-    color: rgb(11, 11, 167);
+.stockphoto {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
 }
 
-  .hero-container {
-    /* background: url('/images/img-home.jpg') center center/cover no-repeat; */
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
-    object-fit: contain;
-  }
-  .hero-container > h1 {
-    color: #fff;
-    font-size: 100px;
-    margin-top: -100px;
-  }
-  
+.hero-container2 {
+  /* background: url('/images/img-home.jpg') center center/cover no-repeat; */
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2); */
+  object-fit: contain;
+}
+.hero-container2 > h1 {
+  color: #fff;
+  font-size: 100px;
+  margin-top: -100px;
+}
 
+.articleDiv {
+  background-color: white;
+  padding-left: 25px;
+}
 
-  .stockphoto {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: -1;
-  }
-  
-  .hero-container2 {
-    /* background: url('/images/img-home.jpg') center center/cover no-repeat; */
-    height: 80vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2); */
-    object-fit: contain;
-  }
-  .hero-container2 > h1 {
-    color: #fff;
-    font-size: 100px;
-    margin-top: -100px;
-  }
+.titleHeaders {
+  text-align: center;
+  font-size: 70px;
+}
 
-  .articleDiv {
-      background-color: white;
-  }
+.headers {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 35px;
+  color: rgb(7, 7, 131);
+  text-align: left;
+}
+
+.definitions {
+  color: black;
+  text-align: left;
+  font-size: 25px;
+  padding-bottom: 30px;
+}
+
+#ticker2 {
+  height: 30px;
+  padding-left: 20px;
+  font-size: 20px;
+}

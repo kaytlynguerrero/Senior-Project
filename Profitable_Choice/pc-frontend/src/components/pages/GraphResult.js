@@ -521,7 +521,7 @@ handlePeerList = (e) =>{
     <div className="column left">
         <table id="table2" className="table2">
           
-          <th className="peer">Stock Peers List</th>
+          <th className="peer"><h2>Similar Companies to {this.state.companyProfile.companyName}</h2></th>
           <tr>
             <td className="peer" onClick={() => this.handlePeerList(this.state.arrayOfPeers[0])}>
               {this.state.arrayOfPeers[0]} 
@@ -572,7 +572,7 @@ handlePeerList = (e) =>{
 
       <div className="column middle">
         <form class = "submitForm"onSubmit= {this.handleNewCompanySearchSubmit}>
-            <label>Company Search: </label>
+            <h2>Company Search: </h2>
             <input
             id = "newTicker" 
             type = "text"
@@ -672,12 +672,13 @@ handlePeerList = (e) =>{
               <td>{this.state.companyProfile.sector}</td>
               <td>{this.state.companyProfile.industry}</td>
               <td>{this.state.companyProfile.exchange}</td>
-              <td>{this.state.companyProfile.website}</td>
+              <td> <a href={this.state.companyProfile.website}>{this.state.companyProfile.website}</a></td>
         </tr>
         </tbody>
     </table>
-</div>
-        </div>
+      </div>
+      
+  </div>
 
 
 

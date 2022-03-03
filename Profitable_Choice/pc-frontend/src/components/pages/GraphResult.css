@@ -65,6 +65,7 @@ h2, p{
   width: 50%;
 }
 
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -104,12 +105,13 @@ body{
 
 .fl-table td {
   border-right: 1px solid #f8f8f8;
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .fl-table thead th {
   color: #ffffff;
   background: #4FC3A1;
+  font-size: 15px;
 }
 
 

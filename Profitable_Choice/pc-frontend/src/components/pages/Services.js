@@ -171,7 +171,7 @@ return(
 <h1 className = "headers"> 4. What data can you gather?</h1>
 <p1 className="definitions">
        <figure>
-       <img src='images/graph-example.png'/>
+       <img src='images/NYTgraph.jpeg'/>
        <figcaption> Price chart displays how a stocks price changes over time. </figcaption>
        <figcaption>You can select between different time frames to get a better understanding of a stocks performance while viewing the companys profile.</figcaption>
        </figure>
@@ -183,7 +183,12 @@ return(
 {/* Step 5 */}
 <h1 className = "headers"> 5. Evaluate the stock data</h1>
 <p1 className="definitions">
-<ul>
+<h3>For example, you can view data such as:</h3>
+
+<figure>
+       <img src='images/NYTtable.jpeg' />
+</figure>
+{/* <ul>
          <h3>For example, you can view data such as:</h3>
          <br/>
          <li>Company Name: "Apple Inc."</li>
@@ -195,7 +200,7 @@ return(
          <li>Sector: "Technology"</li>
          <br/>
          <li>Website: "http://www.apple.com"</li>
-       </ul>
+       </ul> */}
 </p1>
 
 < br/>
@@ -204,21 +209,42 @@ return(
 <h1 className = "headers"> 6. What does the data tell you?</h1>
 <p1 className="definitions">
        <ul>
-         <li>Company Name: The full name for the company</li>
+         <li><h3>Company Name:</h3> The full name for the company</li>
          <br/>
-         <li>Industry: Refers to a much more specific group of companies/businesses </li>
+         <li><h3>Company Price:</h3> Companys current market value </li>
          <br/>
-         <li>Company Price: Companys current market value </li>
+         <li><h3>Price Percent Change:</h3> The percent changes that represents the difference between opening and closing of a stock during that day. </li>
          <br/>
-         <li>Sector: Identified by what the stock is most common for in their industry </li>
+         <li><h3> Open Price:</h3> The price at which a security first trades when an exchange opens for the day. </li>
          <br/>
-         <li>Website: Official website</li>
+         <li><h3> Lowest Price:</h3> The lowest price at which a specific stock trades over the course of a trading day. </li>
+         <br/>
+         <li><h3>Highest Price:</h3> The highest price at which a stock traded during the course of the trading day - typically highre than closing or equal to opening.  </li>
+         <br/>
+         <li><h3>Closing Price:</h3> The last price at which a stock trades during a regular trading sesion. A session runs from 8:30 am - 3:00 pm CST.  </li>
+         <br/>
+         <li><h3>Sector:</h3> Identified by what the stock is most common for in their industry </li>
+         <br/>
+         <li><h3>Industry:</h3> Refers to a much more specific group of companies/businesses </li>
+         <br/>
+         <li><h3>Exchange:</h3> Centeralized location that brings corporations and governments so that investors can buy and sell.  </li>
+         <br/>
+         <li><h3>Website:</h3> Official website</li>
        </ul>
 </p1>
 
 < br/>
 < br/>
 
+<h1 className = "headers"> 7. What is a stock peers list? </h1>
+<p1 className="definitions"> 
+<figure>
+       <img src='images/NYTpeer.jpeg'/>
+       <figcaption> A stock peers list is a generated list based off the similarity in the sector in the company that is searched.  </figcaption>
+       </figure>
+</p1>
+< br/>
+< br/>
 </div>
 
 </div>

@@ -639,14 +639,14 @@ handlePeerList = (e) =>{
         <h2>Company Price: {this.state.companyProfile.price} </h2>
 
         
-        <h2> Price Percent Change: <p style={{color}}> {this.state.companyStats} </p> </h2>
+        <h3> Price Percent Change: </h3> <p style={{color}}> {this.state.companyStats}% </p> 
 
        
        
         
           <br/>
           <div class="table-wrapper">
-    <table class="fl-table">
+          <table class="fl-table">
         <thead>
         <tr>
             <th>Open Price</th>
@@ -710,12 +710,16 @@ handlePeerList = (e) =>{
 
 
       <div> 
+        
 
         <div className='cards'>
+        <h1> &#8594; Up to date stock articles similar to your search  &#8592;</h1>
+        
        
         <div className='cards__container'>
   
           <div className='cards__wrapper'>
+          
   
             <ul className='cards__items'>
             {/* <Link to ={{pathname: "https://www.marketwatch.com/markets" }} target="_blank" /> */}
@@ -764,8 +768,8 @@ handlePeerList = (e) =>{
         </div>
       </div>
 </div>        
+</div>
 
-      </div>
 
 
       

@@ -43,7 +43,6 @@ handleNewCompanySearchSubmit = (e) => {
     pathname: "/graphResults",
     state:{
       ticker: this.state.newTicker}})
-  console.log(this.props);
   console.log(this.state);
   this.fetchNewStock();
 }
@@ -64,7 +63,7 @@ handlePeerList = (e) =>{
   fetchNewStock(){
     const pointerToThis = this;
    // console.log(pointerToThis);
-    const StockSymbol = this.state.newTicker;
+    let StockSymbol = this.state.newTicker.toUpperCase();
     //this.setState(newTickerValue,StockSymbol);
     this.state.newTickerValue = StockSymbol;
    // console.log(this.state);

@@ -570,8 +570,8 @@ handlePeerList = (e) =>{
 
       <div className="column middle">
         <form class = "submitForm" onSubmit= {this.handleNewCompanySearchSubmit}>
-            <h2>Company Search: </h2>
-            <input
+            <h2>Company Search </h2> <br />
+            <input className="gsInput"
             id = "newTicker" 
             type = "text"
             maxLength={4}
@@ -580,8 +580,9 @@ handlePeerList = (e) =>{
         /* We are creating a function that is taking an event object and targeting the title value */
             onChange = {this.handleChange}
             />
-            <button> Search </button>
+            <button className ="gsButton"> Search </button>
         </form>
+        <br/>
         <Plot 
           data={[
             {

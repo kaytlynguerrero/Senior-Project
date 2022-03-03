@@ -523,7 +523,7 @@ handlePeerList = (e) =>{
           
           <th className="peer">Stock Peers List</th>
           <tr>
-            <td className="peer" id="newTickerValue" onClick={() => this.handlePeerList(this.state.arrayOfPeers[0])}>
+            <td className="peer" onClick={() => this.handlePeerList(this.state.arrayOfPeers[0])}>
               {this.state.arrayOfPeers[0]} 
               </td>
           </tr>
@@ -641,33 +641,42 @@ handlePeerList = (e) =>{
        
         
           <br/>
-          <table>
-          <tr>
-                <th>Open Price</th>
-                <th>Lowest Price</th>
-                <th>Highest Price</th>
-                <th>Closing Price</th>
-              </tr>
-              <tr>
-                <td>{this.state.companyMetrics.open}</td>
-                <td>{this.state.companyMetrics.low}</td>
-                <td>{this.state.companyMetrics.high}</td>
-                <td>{this.state.companyMetrics.close}</td>
-              </tr>
-              <tr>
-                <th>Sector</th>
-                <th>Industry</th>
-                <th>Exchange</th>
-                <th>Website</th>
-              </tr>
-              <tr>
-                <td>{this.state.companyProfile.sector}</td>
-                <td>{this.state.companyProfile.industry}</td>
-                <td>{this.state.companyProfile.exchange}</td>
-                <td>{this.state.companyProfile.website}</td>
-              </tr>
-              </table>
-      
+          <div class="table-wrapper">
+    <table class="fl-table">
+        <thead>
+        <tr>
+            <th>Open Price</th>
+            <th>Lowest Price</th>
+            <th>Highest Price</th>
+            <th>Closing Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{this.state.companyMetrics.open}</td>
+            <td>{this.state.companyMetrics.low}</td>
+            <td>{this.state.companyMetrics.high}</td>
+            <td>-</td>
+        </tr>
+        </tbody>
+        <thead>
+        <tr>
+            <th>Sector</th>
+            <th>Industry</th>
+            <th>Exchange</th>
+            <th>Website</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+              <td>{this.state.companyProfile.sector}</td>
+              <td>{this.state.companyProfile.industry}</td>
+              <td>{this.state.companyProfile.exchange}</td>
+              <td>{this.state.companyProfile.website}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
         </div>
 
 

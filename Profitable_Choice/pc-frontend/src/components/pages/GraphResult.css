@@ -65,6 +65,8 @@ p {
 
 .peer {
   text-align: center;
+  border-width: 8px;
+  border-color: black;
 }
 
 .column {

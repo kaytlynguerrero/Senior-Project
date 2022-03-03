@@ -515,6 +515,7 @@ handlePeerList = (e) =>{
 
     return (
       <div>
+        <br/>
     <div className="row">
 
     <div className="column left">
@@ -699,7 +700,7 @@ handlePeerList = (e) =>{
           <span id="moreText">{this.state.companyProfile.description.substring(250)}
           </span>
         </p>
-        <button onClick={this.toggleText} id="textButton">
+        <button onClick={this.toggleText} id="textButton" className="gsButton">
         Show More
         </button>
         </div>

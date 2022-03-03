@@ -55,6 +55,7 @@ function Navbar() {
               </Link>
             </li>
 
+
             <li>
               <Link
                 to='/Register'
@@ -65,7 +66,7 @@ function Navbar() {
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle='btn--outline'>REGISTER</Button>}
+          {/* {button && <Button buttonStyle='btn--outline'>REGISTER</Button>} */}
         </div>
       </nav>
     </>

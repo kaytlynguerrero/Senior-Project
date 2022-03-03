@@ -635,14 +635,14 @@ handlePeerList = (e) =>{
         <h2>Company Price: {this.state.companyProfile.price} </h2>
 
         
-        <h2> Price Percent Change: <p style={{color}}> {this.state.companyStats} </p> </h2>
+        <h3> Price Percent Change: </h3> <p style={{color}}> {this.state.companyStats}% </p> 
 
        
        
         
           <br/>
           <div class="table-wrapper">
-    <table class="fl-table">
+          <table class="fl-table">
         <thead>
         <tr>
             <th>Open Price</th>

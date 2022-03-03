@@ -5,6 +5,7 @@ import CardItem from '../CardItem';
 import React, {useState} from "react";
 //import GetCompanyName from '../GetCompanyName';
 
+
 class GraphResult extends React.Component {
   constructor(props) {
     super(props);
@@ -761,7 +762,8 @@ handlePeerList = (e) =>{
           </div>
         </div>
       </div>
-</div>        
+</div>
+    
 </div>
 
 

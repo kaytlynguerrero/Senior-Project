@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../pages/Services.css'
 import StepNavigation from './StepNavigation';
 import ReactTooltip from "react-tooltip";
-// import Footer from '../Footer'
+import Footer from '../Footer'
 
 
 
@@ -246,8 +246,9 @@ return(
 < br/>
 < br/>
 </div>
-
+   
 </div>
+<Footer /> 
 </>
 
 

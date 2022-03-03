@@ -73,6 +73,7 @@ p {
   text-align: center;
 }
 
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -112,12 +113,21 @@ body {
 
 .fl-table td {
   border-right: 1px solid #f8f8f8;
+<<<<<<< HEAD
   font-size: 14px;
+=======
+  font-size: 15px;
+>>>>>>> 26ea091ae5d5fd6b8bc85f4531eba37565605a33
 }
 
 .fl-table thead th {
   color: #ffffff;
+<<<<<<< HEAD
   background: #4fc3a1;
+=======
+  background: #4FC3A1;
+  font-size: 15px;
+>>>>>>> 26ea091ae5d5fd6b8bc85f4531eba37565605a33
 }
 
 .fl-table thead th:nth-child(odd) {

@@ -563,15 +563,13 @@ handlePeerList = (e) =>{
             <td className="peer"onClick={() => this.handlePeerList(this.state.arrayOfPeers[9])}>
               {this.state.arrayOfPeers[9]}</td>
           </tr>
-
-
         </table>
         </div>
       
 
 
       <div className="column middle">
-        <form class = "submitForm"onSubmit= {this.handleNewCompanySearchSubmit}>
+        <form class = "submitForm" onSubmit= {this.handleNewCompanySearchSubmit}>
             <h2>Company Search: </h2>
             <input
             id = "newTicker" 
@@ -582,7 +580,7 @@ handlePeerList = (e) =>{
         /* We are creating a function that is taking an event object and targeting the title value */
             onChange = {this.handleChange}
             />
-            <button> Submit </button>
+            <button> Search </button>
         </form>
         <Plot 
           //onAfterPlot = {this.handlePercentChange}
@@ -600,9 +598,15 @@ handlePeerList = (e) =>{
           layout={{     
             width: 720, 
             height: 440,
-            title: this.state.companyProfile.companyName,
-             plot_bgcolor:"gradiant",
-             paper_bgcolor:"rgba(152,222,217,0.2)",         
+            title: {
+              text: this.state.companyProfile.companyName,
+              font: {
+                family: 'Courier New, monospace',
+                size: 24
+              }
+            },
+            plot_bgcolor:"gradiant",
+            paper_bgcolor:"rgba(152,222,217,0.2)",         
           }}
           
           

@@ -706,12 +706,16 @@ handlePeerList = (e) =>{
 
 
       <div> 
+        
 
         <div className='cards'>
+        <h1> &#8594; Up to date stock articles similar to your search  &#8592;</h1>
+        
        
         <div className='cards__container'>
   
           <div className='cards__wrapper'>
+          
   
             <ul className='cards__items'>
             {/* <Link to ={{pathname: "https://www.marketwatch.com/markets" }} target="_blank" /> */}
@@ -760,8 +764,8 @@ handlePeerList = (e) =>{
         </div>
       </div>
 </div>        
+</div>
 
-      </div>
 
 
       

@@ -8,22 +8,12 @@ function Footer() {
     <div className='footer-container'>
       <section className='footer-subscription'>
         <p className='footer-subscription-heading'>
-          Stay Connected!
+          Profitable Choice
         </p>
         <p className='footer-subscription-text'>
-          You can unsubscribe at any time.
+          Sabur Khan and Kaytlyn Guerrero
         </p>
-        <div className='input-areas'>
-          <form>
-            <input
-              className='footer-input'
-              name='email'
-              type='email'
-              placeholder='Your Email'
-            />
-            <Button buttonStyle='btn--outline'>Subscribe</Button>
-          </form>
-        </div>
+      
       </section>
       
     </div>

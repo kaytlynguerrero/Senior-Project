@@ -690,8 +690,9 @@ handlePeerList = (e) =>{
 
         <div className="column right">
         <div className='about-div'>
-        {<h1>Company Description</h1>}
-        <p>
+        {<h2>Company Description</h2>}
+        <br />
+        <p className="compDescr">
           {this.state.companyProfile.description.substring(0,250)}
           <span id="points">...</span>
       

@@ -66,6 +66,7 @@ p {
 .left,
 .right {
   width: 25%;
+  text-align: center;
 }
 
 .middle {
@@ -73,6 +74,9 @@ p {
   text-align: center;
 }
 
+.compDescr {
+  font-size: 24px;
+}
 
 /* Clear floats after the columns */
 .row:after {
@@ -87,7 +91,6 @@ body {
   -webkit-font-smoothing: antialiased;
   background: rgb(205, 219, 235);
 }
-
 
 .table-wrapper {
   margin: 10px 70px 70px;
@@ -119,7 +122,7 @@ body {
 
 .fl-table thead th {
   color: #ffffff;
-  background: #4FC3A1;
+  background: #4fc3a1;
   font-size: 15px;
 }
 

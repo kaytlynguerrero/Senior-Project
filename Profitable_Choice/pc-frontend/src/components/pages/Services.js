@@ -113,7 +113,7 @@ return(
 
 <div className='hero-container2'>
        <img className="stockphoto" src='images/stockmarketphoto.jpeg'/>
-<h1> A Guide to Stock Basics </h1>
+<h1> A GUIDE TO STOCK BASICS </h1>
 
 
 </div>

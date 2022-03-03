@@ -602,7 +602,7 @@ handlePeerList = (e) =>{
               text: this.state.companyProfile.companyName,
               font: {
                 family: 'Courier New, monospace',
-                size: 24
+                size: 30
               }
             },
             plot_bgcolor:"gradiant",

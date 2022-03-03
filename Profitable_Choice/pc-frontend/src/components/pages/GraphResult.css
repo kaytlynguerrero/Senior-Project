@@ -61,12 +61,17 @@ p {
 #moreText {
   /* Display nothing for the element */
   display: none;
+  font-family: serif;
+  
 }
 
+.table2 {
+  border-bottom:1px solid rgb(173, 41, 41);
+}
 .peer {
   text-align: center;
-  border-width: 8px;
-  border-color: black;
+  border-width: 2px;
+  border-color: rgb(33, 66, 104);
 }
 
 .column {
@@ -86,7 +91,8 @@ p {
 }
 
 .compDescr {
-  font-size: 24px;
+  font-size: 25px;
+  font-family: serif;
 }
 
 /* Clear floats after the columns */

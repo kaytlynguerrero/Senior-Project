@@ -27,8 +27,9 @@ class HeroSection extends React.Component {
   handleSubmit = (e) => {
     /* This prevents the page from being refreshed when submitting the input */
   e.preventDefault();  
+  let uppercasetext = this.state.ticker.toUpperCase();
   this.props.history.push( {pathname: "/graphResults",
-      state: {ticker: this.state.ticker}})
+      state: {ticker: uppercasetext}})
   //console.log(this.state);
 };
 

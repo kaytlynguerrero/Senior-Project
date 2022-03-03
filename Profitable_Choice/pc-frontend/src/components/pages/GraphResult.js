@@ -583,7 +583,6 @@ handlePeerList = (e) =>{
             <button> Search </button>
         </form>
         <Plot 
-          //onAfterPlot = {this.handlePercentChange}
           data={[
             {
               x: this.state.stockChartXValues, color:"white",
@@ -596,8 +595,8 @@ handlePeerList = (e) =>{
             
           ]}
           layout={{     
-            width: 720, 
-            height: 440,
+            width: 780, 
+            height: 520,
             title: {
               text: this.state.companyProfile.companyName,
               font: {

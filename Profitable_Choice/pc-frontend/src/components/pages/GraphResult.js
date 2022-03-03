@@ -555,14 +555,6 @@ handlePeerList = (e) =>{
             <td className="peer" onClick={() => this.handlePeerList(this.state.arrayOfPeers[7])}> 
               {this.state.arrayOfPeers[7]}</td>
           </tr>
-          <tr>
-            <td className="peer" onClick={() => this.handlePeerList(this.state.arrayOfPeers[8])}>
-              {this.state.arrayOfPeers[8]}</td>
-          </tr>
-          <tr>
-            <td className="peer"onClick={() => this.handlePeerList(this.state.arrayOfPeers[9])}>
-              {this.state.arrayOfPeers[9]}</td>
-          </tr>
         </table>
         </div>
       

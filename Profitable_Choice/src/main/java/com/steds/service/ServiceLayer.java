@@ -7,6 +7,7 @@ import com.steds.model.historical;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -113,7 +114,8 @@ public class ServiceLayer {
             //THIS IS OUR FORMATTER... WE CAN CHANGE MEDIUM TO LONG TO HAVE 'APRIL' INSTEAD OF 'APR'
             String formattedDate = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
 
-            dailyChartData.setClose(price);
+            DecimalFormat df = new DecimalFormat("#.##");
+            dailyChartData.setClose(Double.valueOf(df.format(price)));
             dailyChartData.setDate(formattedDate);
 
             companyInfo.add(dailyChartData);
@@ -174,7 +176,8 @@ public class ServiceLayer {
             //THIS IS OUR FORMATTER... WE CAN CHANGE MEDIUM TO LONG TO HAVE 'APRIL' INSTEAD OF 'APR'
             String formattedDate = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
 
-            dailyChartData.setClose(price);
+            DecimalFormat df = new DecimalFormat("#.##");
+            dailyChartData.setClose(Double.valueOf(df.format(price)));
             dailyChartData.setDate(formattedDate);
 
             companyInfo.add(dailyChartData);
